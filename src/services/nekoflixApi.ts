@@ -108,6 +108,12 @@ export const nekoflixApi = {
   async getTrending(): Promise<Anime[]> {
     const { cards } = await apiGet<{ cards: any[] }>('/od/trending');
     const details = await Promise.all((cards || []).slice(0, 10).map((c: any) => apiGet<any>(`/od/anime/${c.slug}`).catch(() => null)));
+    return dedupe(details.filter(Boolean).map((a: any) => ({ ...mapSeries(a), title: cards.find((c: any) => c.slug === a.slug)?.title || a.title })));
+  },
+
+  async getAction(): Promise<Anime[]> {
+    const cards = await this.genreCards('action').catch(() => []);
+    const details = await Promise.all(cards.slice(0, 24).map((c: any) => apiGet<any>(`/od/anime/${c.slug}`).catch(() => null)));
     return dedupe(details.filter(Boolean).map(mapSeries));
   },
 

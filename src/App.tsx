@@ -17,6 +17,7 @@ export default function App() {
   const [animes, setAnimes] = useState<Anime[]>(() => storageService.getAnimes());
   const [livePopular, setLivePopular] = useState<Anime[]>([]);
   const [liveTrending, setLiveTrending] = useState<Anime[]>([]);
+  const [liveAction, setLiveAction] = useState<Anime[]>([]);
   const [liveSchedule, setLiveSchedule] = useState<Record<string, Anime[]>>({});
 
   useEffect(() => {
@@ -40,6 +41,11 @@ export default function App() {
   useEffect(() => {
     let cancelled = false;
     nekoflixApi.getTrending().then((items) => { if (!cancelled) setLiveTrending(items); }).catch((e) => console.warn('Trending anime gagal dimuat:', e));
+    return () => { cancelled = true; };
+  }, []);
+  useEffect(() => {
+    let cancelled = false;
+    nekoflixApi.getAction().then((items) => { if (!cancelled) setLiveAction(items); }).catch((e) => console.warn('Genre Action gagal dimuat:', e));
     return () => { cancelled = true; };
   }, []);
   useEffect(() => {
@@ -393,7 +399,7 @@ export default function App() {
               <AnimeRow
                 title="Aksi & Shounen Terhebat"
                 subtitle="Anime genre Action dari OtakuDesu"
-                animes={actionAnimes}
+                animes={liveAction.length ? liveAction : actionAnimes}
                 onPlay={handlePlayAnime}
                 onOpenDetails={handleOpenDetails}
                 watchlist={watchlist}
