@@ -95,6 +95,8 @@ async function mediaProxy(url) {
   if (!/^https?:$/.test(u.protocol) || !ALLOWED_HOSTS.test(u.hostname)) return new Response('host not allowed', { status: 403 });
   const headers = { 'User-Agent': UA, Accept: '*/*' };
   if (/^s\d+\.kotakanimeid\.link$/.test(u.hostname)) headers.Referer = 'https://s13.nontonanimeid.boats/';
+  // odcloud's WAF requires the otakudesu Referer (403/error 1010 without it)
+  if (/odcloud\.net$/.test(u.hostname)) headers.Referer = `${OD_BASE}/`;
   let upstream;
   for (let i = 1; ; i++) {
     try { upstream = await fetch(target, { headers, redirect: 'follow' }); break; }
