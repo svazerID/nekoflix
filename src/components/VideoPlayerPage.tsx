@@ -145,7 +145,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({
   useEffect(() => {
     const video = videoRef.current;
     if (!video || !activeVideoSrc) return;
-    if (activeVideoSrc.endsWith('.m3u8') && !video.canPlayType('application/vnd.apple.mpegurl')) {
+    if (activeVideoSrc.includes('.m3u8') && !video.canPlayType('application/vnd.apple.mpegurl')) {
       let hls: { destroy: () => void } | null = null;
       let cancelled = false;
       import('hls.js').then(({ default: Hls }) => {
@@ -161,6 +161,27 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({
     video.src = activeVideoSrc;
     video.play().catch(() => setIsPlaying(false));
   }, [activeVideoSrc]);
+
+  // Autoplay retries: browsers block programmatic play before user gesture; also retry on stalls
+  const [stallRetries, setStallRetries] = useState(0);
+  useEffect(() => { setStallRetries(0); }, [activeVideoSrc]);
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video || !activeVideoSrc || resolving || resolveError) return;
+    const t = window.setTimeout(() => {
+      video.load(); // restart the fetch — stalled pipelines recover
+      video.play().catch(() => setIsPlaying(false));
+    }, 9000);
+    return () => window.clearTimeout(t);
+  }, [activeVideoSrc, stallRetries, resolving, resolveError]);
+  const onStalled = useCallback(() => {
+    const video = videoRef.current;
+    if (!video || resolving || resolveError) return;
+    if (stallRetries >= 2) { setResolveError('Koneksi ke server video lambat. Coba server lain atau lagi nanti.'); return; }
+    setStallRetries((n) => n + 1);
+    video.load();
+    video.play().catch(() => setIsPlaying(false));
+  }, [stallRetries, resolving, resolveError]);
 
   const formatTime = (secs: number) => {
     if (isNaN(secs) || secs < 0) return '00:00';
@@ -327,6 +348,8 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({
         }}
         onPlay={() => setIsPlaying(true)}
         onPause={() => setIsPlaying(false)}
+        onStalled={onStalled}
+        onWaiting={() => { /* buffer underrun — onStalled covers hard cases */ }}
         onError={() => {
           // current source failed -> try next available source automatically
           if (sources.length > 1 && sourceIndex < sources.length - 1) {

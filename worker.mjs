@@ -88,12 +88,15 @@ function proxyUrl(u, base) {
   return `/api/proxy?url=${encodeURIComponent(new URL(u, base).toString())}`;
 }
 
-async function mediaProxy(url) {
+async function mediaProxy(req, url) {
   const target = url.searchParams.get('url') || '';
   let u;
   try { u = new URL(target); } catch { return new Response('bad url', { status: 400 }); }
   if (!/^https?:$/.test(u.protocol) || !ALLOWED_HOSTS.test(u.hostname)) return new Response('host not allowed', { status: 403 });
   const headers = { 'User-Agent': UA, Accept: '*/*' };
+  // forward the browser's Range — <video> seeks depend on 206 + Content-Range
+  const range = req.headers.get('range');
+  if (range) headers.Range = range;
   if (/^s\d+\.kotakanimeid\.link$/.test(u.hostname)) headers.Referer = 'https://s13.nontonanimeid.boats/';
   // odcloud's WAF requires the otakudesu Referer (403/error 1010 without it)
   if (/odcloud\.net$/.test(u.hostname)) headers.Referer = `${OD_BASE}/`;
@@ -135,7 +138,7 @@ async function handleApi(req, url) {
     if (odAnimeM) return await odAnime(decodeURIComponent(odAnimeM[1]));
     const odWatchM = path.match(/^\/api\/od\/watch\/([^/]+)$/);
     if (odWatchM) return await odWatch(odWatchM[1], url);
-    if (path === '/api/proxy') return await mediaProxy(url);
+    if (path === '/api/proxy') return await mediaProxy(req, url);
     return json({ error: `unknown api route: ${path}` }, 404);
   } catch (e) {
     return json({ error: String(e.message || e) }, 502);

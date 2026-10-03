@@ -118,22 +118,26 @@ export const nekoflixApi = {
     }
     const sources: { url: string; label: string; kind: 'hls' | 'mp4' }[] = [];
     for (const s of raw.streams || []) {
-      // directStream is either an .m3u8 or a /go/dl/ gate that 302s to an MP4 — both go through the proxy
-      if (s.directStream) {
-        const isHls = s.directStream.includes('.m3u8');
+      const ds: string | undefined = s.directStream || s.direct_stream;
+      if (ds) {
+        const isHls = ds.includes('.m3u8');
         sources.push({
-          url: `/api/proxy?url=${encodeURIComponent(s.directStream)}`,
-          label: `${s.serverName || 'Server'}${isHls ? ' (HLS)' : ''}`,
+          url: `/api/proxy?url=${encodeURIComponent(ds)}`,
+          label: `${s.serverName || s.server_name || 'Server'}${isHls ? ' (HLS)' : ''}`,
           kind: isHls ? 'hls' : 'mp4',
         });
       }
     }
     // resolved download mirrors are direct mp4s — playable natively, good fallback
     for (const d of raw.downloads || []) {
-      if (d.directUrl && !sources.some((s) => s.url === d.directUrl)) {
-        sources.push({ url: d.directUrl, label: `${d.serverName || 'Download'}${d.quality ? ` ${d.quality}` : ''} (MP4)`, kind: 'mp4' });
-      } else if (d.outUrl && !sources.some((s) => s.url === d.outUrl)) {
-        sources.push({ url: d.outUrl, label: `${d.serverName || 'Download'} (tautan)`, kind: 'mp4' });
+      const du: string | undefined = d.directUrl || d.direct_url;
+      if (du && !du.includes('.m3u8') && !sources.some((s) => s.url === du)) {
+        sources.push({ url: `/api/proxy?url=${encodeURIComponent(du)}`, label: `${d.serverName || d.server_name || 'Download'}${d.quality ? ` ${d.quality}` : ''} (MP4)`, kind: 'mp4' });
+      } else if (d.outUrl || d.out_url) {
+        const ou = d.outUrl || d.out_url;
+        if (!sources.some((s) => s.url === ou)) {
+          sources.push({ url: ou, label: `${d.serverName || d.server_name || 'Download'} (tautan)`, kind: 'mp4' });
+        }
       }
     }
     if (!sources.length) {
