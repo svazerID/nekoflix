@@ -45,7 +45,7 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({
             <span aria-hidden="true">·</span>
             <span className="text-amber-400 flex items-center gap-1">
               <Sparkles className="w-3.5 h-3.5" />
-              #1 Anime Terpopuler di Indonesia
+              #Populer
             </span>
           </div>
 

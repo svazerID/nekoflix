@@ -344,7 +344,7 @@ export default function App() {
               )}
 
               <AnimeRow
-                title="Top 10 Anime di Indonesia Hari Ini"
+                title="Top 10 Anime Populer"
                 subtitle="Diperbarui setiap hari berdasarkan jumlah streaming penonton"
                 animes={top10Animes}
                 isTop10={true}
@@ -360,6 +360,18 @@ export default function App() {
                 title="Sedang Tren Sekarang"
                 subtitle="Tayangan paling sering diperbincangkan minggu ini"
                 animes={trendingAnimes}
+                onPlay={handlePlayAnime}
+                onOpenDetails={handleOpenDetails}
+                watchlist={watchlist}
+                onToggleWatchlist={handleToggleWatchlist}
+                favorites={favorites}
+                onToggleFavorite={handleToggleFavorite}
+              />
+
+              <AnimeRow
+                title="Sedang Tayang (Ongoing)"
+                subtitle="Anime yang masih rilis episode terbaru setiap minggu"
+                animes={animes.filter((a) => a.status === 'Ongoing')}
                 onPlay={handlePlayAnime}
                 onOpenDetails={handleOpenDetails}
                 watchlist={watchlist}
@@ -493,7 +505,7 @@ export default function App() {
               onToggleFavorite={handleToggleFavorite}
             />
             <AnimeRow
-              title="Top 10 Hari Ini"
+              title="Top 10 Anime Populer"
               isTop10={true}
               animes={top10Animes}
               onPlay={handlePlayAnime}
