@@ -144,8 +144,11 @@ export const nekoflixApi = {
       const ds: string | undefined = s.directStream || s.direct_stream;
       if (ds) {
         const isHls = ds.includes('.m3u8');
+        // edge CDNs (upbolt/filedon) serve CORS:* and block datacenter proxy IPs — play direct;
+        // odcloud blocks browser Referer — must go through proxy. desustream needs no special care.
+        const edge = /upbolt\.|filedon\.|edge\d*\./.test(new URL(ds).hostname);
         sources.push({
-          url: `/api/proxy?url=${encodeURIComponent(ds)}`,
+          url: edge ? ds : `/api/proxy?url=${encodeURIComponent(ds)}`,
           label: `${s.serverName || s.server_name || 'Server'}${isHls ? ' (HLS)' : ''}`,
           kind: isHls ? 'hls' : 'mp4',
         });
