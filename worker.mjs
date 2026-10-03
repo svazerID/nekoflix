@@ -127,10 +127,17 @@ async function mediaProxy(req, url) {
   if (/^s\d+\.kotakanimeid\.link$/.test(u.hostname)) headers.Referer = 'https://s13.nontonanimeid.boats/';
   // odcloud's WAF requires the otakudesu Referer (403/error 1010 without it)
   if (/odcloud\.net$/.test(u.hostname)) headers.Referer = `${OD_BASE}/`;
+  // upbolt/filedon edge CDNs require their own site as Referer
+  if (/upbolt\.[a-z.]+$/.test(u.hostname) || /filedon\.co$/.test(u.hostname)) headers.Referer = `https://${u.hostname.replace(/^edge\d*\./, '')}/`;
   let upstream;
   for (let i = 1; ; i++) {
-    try { upstream = await fetch(target, { headers, redirect: 'follow' }); break; }
-    catch (e) {
+    try {
+      upstream = await fetch(target, { headers, redirect: 'follow' });
+      // edge hosts (upbolt/filedon) intermittently 403 fresh CF egress connections — retry clears it
+      if (upstream.status !== 403 || i >= 4) break;
+      await new Promise((r) => setTimeout(r, 700 * i));
+      continue;
+    } catch (e) {
       if (i >= 3) return new Response('proxy failed', { status: 502 });
       await new Promise((r) => setTimeout(r, 800 * i));
     }
