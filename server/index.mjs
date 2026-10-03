@@ -4,6 +4,7 @@ import fs from 'fs';
 import path from 'path';
 import { Readable } from 'stream';
 import { fileURLToPath } from 'url';
+import { parseOdSearch, parseOdHome, parseOdSeries, parseOdEpisode, parseOdSeriesFromEpisode, OD_BASE } from './otakudesu.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const BASE = 'https://s13.nontonanimeid.boats';
@@ -14,6 +15,21 @@ const PORT = process.env.PORT || 8787;
 const CLEARANCE_FILE = process.env.NEKOFLIX_CLEARANCE || '/home/hatch/.nekoflix-clearance.json';
 let clearanceDomains = {};
 let clearanceMtime = 0;
+// Optional egress proxy for hosts that block direct access (403/503).
+// NEKOFLIX_PROXY=http://user:pass@host:port or socks5://user:pass@host:port
+let PROXY_AGENT = null;
+{
+  const p = process.env.NEKOFLIX_PROXY;
+  if (p) {
+    try {
+      const { ProxyAgent } = await import('undici');
+      PROXY_AGENT = new ProxyAgent(p);
+      console.log(`[nekoflix] proxy enabled: ${p.replace(/\/\/[^@]*@/, '//***@')}`);
+    } catch (e) {
+      console.error('[nekoflix] undici not available, proxy disabled:', e.message);
+    }
+  }
+}
 function clearanceFor(host) {
   try {
     const st = fs.statSync(CLEARANCE_FILE);
@@ -39,10 +55,26 @@ async function fetchText(url, opts = {}) {
     if (jar && !headers.Cookie) headers.Cookie = jar;
   } catch {}
   if (opts.body && !opts.headers?.['Content-Type']) headers['Content-Type'] = 'application/x-www-form-urlencoded; charset=UTF-8';
-  const res = await fetch(url, { method: opts.method || 'GET', headers, body: opts.body, redirect: 'manual' });
-  const text = await res.text();
-  const out = { status: res.status, text, headers: Object.fromEntries(res.headers) };
-  if (!opts.skipCache && res.status < 400) cache.set(key, { t: Date.now(), data: out });
+  // The origin intermittently serves 503 "temporarily busy" pages; a short retry clears it.
+  let res;
+  let last;
+  for (let i = 1; ; i++) {
+    last = await fetch(url, { method: opts.method || 'GET', headers, body: opts.body, redirect: 'manual' });
+    if (last.status !== 503 || i >= 3) break;
+    await new Promise((r) => setTimeout(r, 1200 * i));
+  }
+  // direct path blocked (403/503 after retries) -> fall back to the configured proxy
+  if ((last.status === 403 || last.status === 503) && PROXY_AGENT) {
+    try {
+      last = await fetch(url, {
+        method: opts.method || 'GET', headers, body: opts.body, redirect: 'manual',
+        dispatcher: PROXY_AGENT,
+      });
+    } catch {}
+  }
+  const text = await last.text();
+  const out = { status: last.status, text, headers: Object.fromEntries(last.headers) };
+  if (!opts.skipCache && last.status < 400) cache.set(key, { t: Date.now(), data: out });
   return out;
 }
 const setHeaders = (extra = {}) => ({
@@ -289,7 +321,7 @@ async function parseEpisode(pageUrl, html) {
 }
 
 // ---------- stream proxy (Referer-gated CDN + m3u8 rewrite) ----------
-const ALLOWED_HOSTS = /^(s\d+\.kotakanimeid\.link|cdn\d*\.kotakanimeid\.link|s13\.nontonanimeid\.boats|i0\.wp\.com)$/;
+const ALLOWED_HOSTS = /^(s\d+\.kotakanimeid\.link|cdn\d*\.kotakanimeid\.link|s13\.nontonanimeid\.boats|i0\.wp\.com|cdn\.odcloud\.net|desustream\.net)$/;
 
 export function buildApp({ serveStatic = true } = {}) {
   const app = express();
@@ -504,6 +536,68 @@ async function pmap(items, n, fn) {
       res.status(upstream.status);
       Readable.fromWeb(upstream.body).pipe(res);
     } catch (e) { console.error('[proxy]', target.slice(0, 80), e.message, '|', e.cause?.message || ''); res.status(502).send('proxy failed'); }
+  });
+
+  // ---------- OtakuDesu source (od_ prefix) ----------
+  const odHeaders = () => setHeaders({ Referer: `${OD_BASE}/` });
+  async function odGet(url) {
+    const r = await fetchText(url, { headers: odHeaders() });
+    if (r.status >= 400) throw new Error(`otakudesu ${r.status} for ${url}`);
+    return r.text;
+  }
+
+  app.get('/api/od/home', async (req, res) => {
+    try {
+      const page = parseInt(req.query.page || '1', 10);
+      const html = await odGet(page > 1 ? `${OD_BASE}/ongoing-anime/page/${page}/` : `${OD_BASE}/`);
+      const cards = parseOdHome(html);
+      if (!cards.length) throw new Error('empty catalog');
+      res.json({ cards, page, hasNext: cards.length >= 12 });
+    } catch (e) { res.status(502).json({ error: String(e.message || e) }); }
+  });
+
+  app.get('/api/od/search', async (req, res) => {
+    try {
+      const q = String(req.query.q || '').trim();
+      if (!q) return res.json({ cards: [] });
+      const html = await odGet(`${OD_BASE}/?s=${encodeURIComponent(q)}`);
+      const cards = parseOdSearch(html);
+      // episode-only results: resolve the first hit to its series card
+      if (cards.length && cards[0].isEpisodeHit) {
+        const epHtml = await odGet(cards[0].url);
+        const seriesUrl = parseOdSeriesFromEpisode(epHtml);
+        if (seriesUrl) {
+          const slug = seriesUrl.match(/\/anime\/([^/]+)\/?/)?.[1] || '';
+          const sh = await odGet(seriesUrl);
+          const s = parseOdSeries(sh, slug);
+          return res.json({ cards: [{ id: slug, slug, title: s.title, url: seriesUrl, poster: s.poster, episodeBadge: '', totalEpisodes: s.totalEpisodes }] });
+        }
+        return res.json({ cards: [] });
+      }
+      res.json({ cards });
+    } catch (e) { res.status(502).json({ error: String(e.message || e) }); }
+  });
+
+  app.get('/api/od/anime/:slug', async (req, res) => {
+    try {
+      const html = await odGet(`${OD_BASE}/anime/${encodeURIComponent(req.params.slug)}/`);
+      const series = parseOdSeries(html, req.params.slug);
+      if (!series.title || !series.episodes.length) throw new Error('parse failed');
+      res.json(series);
+    } catch (e) { res.status(502).json({ error: String(e.message || e) }); }
+  });
+
+  app.get('/api/od/watch/:slug', async (req, res) => {
+    try {
+      const url = req.query.url ? String(req.query.url) : '';
+      if (!/https:\/\/otakudesu\.blog\/episode\//.test(url)) return res.status(400).json({ error: 'bad episode url' });
+      const html = await odGet(url);
+      const data = await parseOdEpisode(fetchText, url, html);
+      if (!data.streams.length && !data.downloads.length) {
+        return res.status(502).json({ error: 'no streams', code: 'no_streams', url });
+      }
+      res.json(data);
+    } catch (e) { res.status(502).json({ error: String(e.message || e), code: 'fetch_failed' }); }
   });
 
   if (serveStatic) {

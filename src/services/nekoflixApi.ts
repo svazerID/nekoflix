@@ -66,11 +66,24 @@ export const nekoflixApi = {
       const cached = sessionStorage.getItem(CACHE_KEY);
       if (cached) return JSON.parse(cached);
     } catch {}
-    const pages = await Promise.all([1, 2, 3].map((p) => apiGet<{ cards: any[] }>(`/home?page=${p}`).catch(() => ({ cards: [] }))));
+    // primary: OtakuDesu backend; fallback: nontonanimeid backend
+    let pages: { cards: any[] }[];
+    try {
+      pages = await Promise.all([1, 2, 3].map((p) => apiGet<{ cards: any[] }>(`/od/home?page=${p}`).catch(() => ({ cards: [] }))));
+    } catch {
+      pages = [{ cards: [] }];
+    }
+    if (!pages.some((p) => p.cards.length)) {
+      pages = await Promise.all([1, 2, 3].map((p) => apiGet<{ cards: any[] }>(`/home?page=${p}`).catch(() => ({ cards: [] }))));
+      const slugs = [...new Set(pages.flatMap((p) => p.cards).map((c) => c.slug))].slice(0, 24);
+      const details = await Promise.all(slugs.map((slug) => apiGet<any>(`/anime/${slug}`).catch(() => null)));
+      const animes = dedupe(details.filter(Boolean).map(mapSeries));
+      if (!animes.length) throw new Error('katalog kosong');
+      try { sessionStorage.setItem(CACHE_KEY, JSON.stringify(animes)); } catch {}
+      return animes;
+    }
     const slugs = [...new Set(pages.flatMap((p) => p.cards).map((c) => c.slug))].slice(0, 24);
-    const details = await Promise.all(
-      slugs.map((slug) => apiGet<any>(`/anime/${slug}`).catch(() => null))
-    );
+    const details = await Promise.all(slugs.map((slug) => apiGet<any>(`/od/anime/${slug}`).catch(() => null)));
     const animes = dedupe(details.filter(Boolean).map(mapSeries));
     if (!animes.length) throw new Error('katalog kosong');
     try { sessionStorage.setItem(CACHE_KEY, JSON.stringify(animes)); } catch {}
@@ -84,7 +97,16 @@ export const nekoflixApi = {
     if (ep.videoUrl) return { videoUrl: ep.videoUrl, sources: [{ url: ep.videoUrl, label: 'Default', kind: 'mp4' }] };
     let raw: any;
     try {
-      raw = await apiGet<any>(`/watch/${anime.id}?url=${encodeURIComponent(ep.id)}`);
+      // primary: OtakuDesu chain (works even when the other origin is challenge-gated)
+      if (ep.id.includes('otakudesu.blog/episode/')) {
+        raw = await apiGet<any>(`/od/watch/${anime.id}?url=${encodeURIComponent(ep.id)}`);
+      } else {
+        try {
+          raw = await apiGet<any>(`/watch/${anime.id}?url=${encodeURIComponent(ep.id)}`);
+        } catch {
+          raw = null;
+        }
+      }
     } catch (e) {
       return { videoUrl: '', sources: [], error: 'Tidak bisa menghubungi server video.', errorCode: 'fetch_failed' };
     }

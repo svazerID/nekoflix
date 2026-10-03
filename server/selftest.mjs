@@ -1,5 +1,6 @@
 // Self-check for the pure scraping logic (no network): run `node server/index.mjs --selftest`
 import { parseCards, parseSeries, jsonVar, base64Scripts } from './index.mjs';
+import { parseOdSearch, parseOdHome, parseOdSeries, parseOdMirrors } from './otakudesu.mjs';
 
 const homeHtml = `<article class="animeseries post-1"><div class="sera">
 <a href="https://s13.nontonanimeid.boats/anime/test-anime/"><div class="limit">
@@ -37,5 +38,28 @@ console.assert(s.episodes.length === 2 && s.episodes[0].number === 1, 'episodes 
 const b64 = base64Scripts(`<script src="data:text/javascript;base64,${btoa('var kotakajax={"url":"https://x/wp-admin/admin-ajax.php","nonce":"abc123"}')}"></script>`);
 const ajax = jsonVar(b64.kotakajax, 'kotakajax');
 console.assert(ajax?.nonce === 'abc123', 'kotakajax nonce');
+
+// ---- otakudesu parsers ----
+const odSearch = parseOdSearch(`<ul class="chivsrc"><li style='list-style:none;'>
+<h2><a href="https://otakudesu.blog/anime/test-sub-indo/">Test Subtitle Indonesia</a></h2>
+<img src="https://otakudesu.blog/x.jpg" alt="Test">
+<div class="set"><b>Genres</b> : <a href="g" rel="tag">Action</a></div></li></ul>`);
+console.assert(odSearch.length === 1 && odSearch[0].slug === 'test-sub-indo', 'od search slug');
+
+const odSeries = parseOdSeries(`<h1>Test Anime Subtitle Indonesia</h1>
+<div class='fotoanime'><img src="https://otakudesu.blog/p.jpg">
+<div class="infozingle"><p><span><b>Judul</b>: Test Anime</span></p>
+<p><span><b>Japanese</b>: テスト</span></p><p><span><b>Skor</b>: 7.10</span></p>
+<p><span><b>Status</b>: Ongoing</span></p><p><span><b>Genre</b>: <a>Action</a>, <a>Drama</a></span></p></div></div>
+<div class="episodelist"><div class="smokelister"><span class="monktit">Test Anime Episode List <span>(x)</span></span></div>
+<ul><li><span><a href="https://otakudesu.blog/episode/test-episode-2-sub-indo/">Test Anime Episode 2 Subtitle Indonesia</a></span></li>
+<li><span><a href="https://otakudesu.blog/episode/test-episode-1-sub-indo/">Test Anime Episode 1 Subtitle Indonesia</a></span></li></ul></div>`, 'test-sub-indo');
+console.assert(odSeries.title === 'Test Anime', 'od series title');
+console.assert(odSeries.rating === '7.10', 'od series rating');
+console.assert(odSeries.episodes.length === 2 && odSeries.episodes[0].number === 1, 'od episodes sorted asc');
+
+const odMirror = parseOdMirrors(`<ul class="m480p"><span>480p</span>
+<li><a href="#" data-content="${btoa(JSON.stringify({ id: 42, i: 1, q: '480p' }))}">odcdn</a></li></ul>`);
+console.assert(odMirror.length === 1 && odMirror[0].serverName === 'odcdn' && odMirror[0].id === 42, 'od mirror decode');
 
 console.log('selftest OK');

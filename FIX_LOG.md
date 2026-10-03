@@ -1,5 +1,26 @@
 # FIX_LOG — Cloudflare deploy
 
+## Sumber data (Oktober 2026)
+
+**OtakuDesu (otakudesu.blog) ditambahkan sebagai sumber utama** — `server/otakudesu.mjs`,
+route `/api/od/home|search|anime|watch` di `server/index.mjs`. Rantai player
+(reverse-engineered dari situs live):
+
+1. Halaman episode: `.mirrorstream a[data-content]` = base64 `{id,i,q}` per mirror/kualitas.
+2. POST `admin-ajax action=aa1208d27f29ca340c92c66d1926f13f` → nonce.
+3. POST `admin-ajax action=2a3505c93b0035d3f455df82bf976b84` + `{id,i,q,nonce}` →
+   `{data: base64(<iframe src="https://desustream.net/...">)}`.
+4. GET halaman embed → `const videoURL = "https://cdn.odcloud.net/....mp4"`.
+5. MP4 diputar via `/api/proxy` (host `cdn.odcloud.net` + `desustream.net` ditambahkan ke ALLOWED_HOSTS).
+
+Search "naruto"-style mengembalikan entry episode saja → resolve episode pertama
+ke halaman series via anchor "See All Episodes". Proxy fallback: set
+`NEKOFLIX_PROXY=http://user:pass@host:port` (undici ProxyAgent, aktif kalau
+direct request kena 403/503 setelah retry). Catatan: proxy datacenter
+(proxy.maxwell.deals) justru di-block 403 oleh Cloudflare di kedua sumber situs —
+direct access lebih ANDAL; proxy hanya untuk jaringan yang direct-nya diblokir.
+
+
 ## Gejala
 Build CF sukses (`vite build` → `dist/`), deploy command selalu gagal.
 
