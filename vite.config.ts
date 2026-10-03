@@ -13,6 +13,8 @@ export default defineConfig(() => {
     server: {
       hmr: process.env.DISABLE_HMR !== 'true',
       watch: process.env.DISABLE_HMR === 'true' ? null : {},
+      // allow access via Cloudflare quick-tunnel public hostnames (they rotate)
+      allowedHosts: true,
       proxy: {
         // Scraping + stream proxy handled by the express backend in dev
         '/api': {

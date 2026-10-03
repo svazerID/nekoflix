@@ -1,5 +1,6 @@
 // NekoFlix scrape backend — parses s13.nontonanimeid.boats (WordPress theme) + kotakanimeid.link player chain.
 import express from 'express';
+import fs from 'fs';
 import path from 'path';
 import { Readable } from 'stream';
 import { fileURLToPath } from 'url';
@@ -8,20 +9,40 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const BASE = 'https://s13.nontonanimeid.boats';
 const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36';
 const PORT = process.env.PORT || 8787;
+// Cloudflare clearance cookies harvested by ~/workspace/nekoflix-cf/cf-solve.py
+// (cf-solve.py refreshes this file; backend picks up changes without restart).
+const CLEARANCE_FILE = process.env.NEKOFLIX_CLEARANCE || '/home/hatch/.nekoflix-clearance.json';
+let clearanceDomains = {};
+let clearanceMtime = 0;
+function clearanceFor(host) {
+  try {
+    const st = fs.statSync(CLEARANCE_FILE);
+    if (st.mtimeMs !== clearanceMtime) {
+      clearanceMtime = st.mtimeMs;
+      clearanceDomains = JSON.parse(fs.readFileSync(CLEARANCE_FILE, 'utf8')).domains || {};
+    }
+  } catch {}
+  return clearanceDomains[host] || '';
+}
 
 // ---------- tiny HTTP + cache ----------
 const cache = new Map(); // url -> { t, data }
 const TTL = 5 * 60 * 1000;
 async function fetchText(url, opts = {}) {
   const key = url + (opts.method === 'POST' ? String(opts.body || '') : '');
-  const hit = cache.get(key);
+  const hit = !opts.skipCache && cache.get(key);
   if (hit && Date.now() - hit.t < TTL) return hit.data;
   const headers = { 'User-Agent': UA, 'Accept-Language': 'id-ID,id;q=0.9,en;q=0.8', ...opts.headers };
+  try {
+    const host = new URL(url).hostname;
+    const jar = clearanceFor(host);
+    if (jar && !headers.Cookie) headers.Cookie = jar;
+  } catch {}
   if (opts.body && !opts.headers?.['Content-Type']) headers['Content-Type'] = 'application/x-www-form-urlencoded; charset=UTF-8';
   const res = await fetch(url, { method: opts.method || 'GET', headers, body: opts.body, redirect: 'manual' });
   const text = await res.text();
   const out = { status: res.status, text, headers: Object.fromEntries(res.headers) };
-  if (res.status < 400) cache.set(key, { t: Date.now(), data: out });
+  if (!opts.skipCache && res.status < 400) cache.set(key, { t: Date.now(), data: out });
   return out;
 }
 const setHeaders = (extra = {}) => ({
@@ -154,6 +175,70 @@ async function resolveStream(embedUrl, referer) {
   return file && !file.includes('blank.mp4') ? file.replaceAll('\\/', '/') : '';
 }
 
+// ---------- download mirror resolver (ported from the Go scraper's token flow) ----------
+// Resolves /out/ download gates via window.DL -> get-token.php -> get-download.php.
+// Token/challenge are single-use, so caching is skipped for these calls.
+async function resolveDownloadMirror(outUrl, referer) {
+  const none = { directUrl: '', quality: '' };
+  try {
+    const r = await fetchText(outUrl, { headers: setHeaders({ Referer: referer }) });
+    if (r.status >= 400) return none;
+    const dlM = r.text.match(/window\.DL\s*=\s*\{([^}]+)\};/);
+    if (!dlM) return none;
+    const block = '{' + dlM[1] + '}';
+    const isBlogger = block.includes('isBlogger: true');
+    const enc = match1(block, /encrypted:\s*["']([^"']+)["']/);
+    if (!enc) return none;
+    const title = match1(block, /title:\s*["']([^"']+)["']/);
+    const gate = match1(block, /gate:\s*([0-9]+)/);
+    const sig = match1(block, /sig:\s*["']([^"']+)["']/);
+    const u = new URL(outUrl);
+    const origin = `${u.protocol}//${u.host}`;
+    const targetRequestURL = isBlogger
+      ? `${origin}/video/get-download.php?mode=lokal&vid=${encodeURIComponent(enc)}&title=${encodeURIComponent(title)}&dl=yes&json=true`
+      : enc;
+    const t = await fetchText(`${origin}/video/get-token.php`, {
+      method: 'POST', skipCache: true,
+      body: JSON.stringify({ url: targetRequestURL }),
+      headers: setHeaders({ Referer: outUrl, 'Content-Type': 'application/json', 'X-Fingerprint': 'dummy-fingerprint', 'X-DL-Gate': gate, 'X-DL-Sig': sig }),
+    });
+    let token, timestamp, challenge;
+    try {
+      const j = JSON.parse(t.text);
+      ({ token, timestamp, challenge } = j);
+    } catch { return none; }
+    if (!token) return none;
+    const dlEndpoint = isBlogger ? targetRequestURL : `${origin}/video/get-download.php`;
+    const d = await fetchText(dlEndpoint, {
+      method: 'POST', skipCache: true,
+      body: JSON.stringify({ url: targetRequestURL, challenge }),
+      headers: setHeaders({ Referer: outUrl, 'Content-Type': 'application/json', 'X-Security-Token': token, 'X-Timestamp': timestamp, 'X-Fingerprint': 'dummy-fingerprint', 'X-Challenge': challenge }),
+    });
+    let resolvedPath = '', quality = '';
+    try {
+      const j = JSON.parse(d.text);
+      if (isBlogger) {
+        for (const q of ['1080p', 'HD', '720p', '480p', '360p']) {
+          const arr = j.links?.[q];
+          if (arr?.length) { resolvedPath = arr[0].url; quality = q; break; }
+        }
+      } else {
+        const arr = j.links?.download;
+        if (arr?.length) resolvedPath = arr[0].url;
+      }
+    } catch { return none; }
+    if (!resolvedPath) return none;
+    let finalUrl = resolvedPath.startsWith('/') ? origin + resolvedPath : resolvedPath;
+    try {
+      const hr = await fetch(finalUrl, { method: 'GET', headers: { 'User-Agent': UA, Referer: outUrl }, redirect: 'manual' });
+      const loc = hr.headers.get('location');
+      if (loc) finalUrl = new URL(loc, finalUrl).toString();
+      if (hr.body?.cancel) await hr.body.cancel();
+    } catch {}
+    return { directUrl: finalUrl, quality };
+  } catch { return none; }
+}
+
 async function parseEpisode(pageUrl, html) {
   const js = base64Scripts(html);
   const track = jsonVar(js.episodeToTrack, 'episodeToTrack') || {};
@@ -185,9 +270,17 @@ async function parseEpisode(pageUrl, html) {
   }
 
   const downloads = [];
+  const dlJobs = [];
   for (const m of html.matchAll(/<a href="([^"]*\/out\/[^"]*)"[^>]*>([\s\S]*?)<\/a>/g)) {
-    downloads.push({ serverName: stripTags(m[2]) || 'Download', outUrl: m[1] });
+    const outUrl = m[1];
+    const label = stripTags(m[2]) || 'Download';
+    dlJobs.push(
+      resolveDownloadMirror(outUrl, pageUrl)
+        .catch(() => ({ directUrl: '', quality: '' }))
+        .then(({ directUrl, quality }) => ({ serverName: label, outUrl, directUrl, quality }))
+    );
   }
+  for (const d of await Promise.all(dlJobs)) downloads.push(d);
   return {
     seriesId: track.seriesId, seriesTitle: track.seriesTitle, seriesUrl: track.seriesUrl,
     episodeNumber: track.episodeNumber, thumbnail: track.poster || match1(html, /property="og:image" content="([^"]+)"/),
@@ -202,14 +295,74 @@ export function buildApp({ serveStatic = true } = {}) {
   const app = express();
   app.use(express.json());
 
+  // ---------- WordPress REST API data source (bypasses the Cloudflare HTML challenge) ----------
+  // The site's HTML pages sit behind a Cloudflare managed challenge, but /wp-json/* is open.
+  // Series == WP category; episode == WP post in that category.
+  const WPAPI = `${BASE}/wp-json/wp/v2`;
+  async function wpGet(path) {
+    const r = await fetchText(`${WPAPI}${path}`, { headers: { Accept: 'application/json' } });
+    if (r.status >= 400) throw new Error(`wp api ${r.status} for ${path}`);
+    return JSON.parse(r.text);
+  }
+  const epNum = (slug, title) =>
+    parseInt(slug.match(/episode-(\d+)/i)?.[1] || String(title).match(/episode\s+(\d+)/i)?.[1] || '0', 10);
+  async function wpCatsByIds(ids) {
+    const uniq = [...new Set(ids)];
+    if (!uniq.length) return new Map();
+    const cats = await wpGet(`/categories?include=${uniq.join(',')}&per_page=100&_fields=id,slug,name,count`);
+    return new Map(cats.map((c) => [c.id, c]));
+  }
+  async function wpHome(page = 1) {
+    const posts = await wpGet(`/posts?per_page=20&page=${page}&orderby=date&order=desc&_fields=id,slug,title,link,date,categories`);
+    const cats = await wpCatsByIds(posts.flatMap((p) => p.categories || []));
+    const seen = new Set();
+    const cards = [];
+    for (const p of posts) {
+      const cat = cats.get((p.categories || [])[0]);
+      if (!cat || seen.has(cat.slug)) continue;
+      seen.add(cat.slug);
+      const n = epNum(p.slug, p.title?.rendered || '');
+      cards.push({
+        id: cat.slug, slug: cat.slug, title: cat.name,
+        url: `${BASE}/anime/${cat.slug}/`, poster: '',
+        episodeBadge: n ? `Episode ${n}` : '', totalEpisodes: String(cat.count || ''),
+      });
+    }
+    return { cards, page, hasNext: posts.length === 20 };
+  }
+  async function wpSearch(q) {
+    const cats = await wpGet(`/categories?search=${encodeURIComponent(q)}&per_page=20&_fields=id,slug,name,count`);
+    return {
+      cards: cats.map((cat) => ({
+        id: cat.slug, slug: cat.slug, title: cat.name,
+        url: `${BASE}/anime/${cat.slug}/`, poster: '',
+        episodeBadge: '', totalEpisodes: String(cat.count || ''),
+      })),
+    };
+  }
+  async function wpAnime(seriesSlug) {
+    const cats = await wpGet(`/categories?slug=${encodeURIComponent(seriesSlug)}&_fields=id,slug,name,count`);
+    if (!cats.length) throw new Error('series not found');
+    const cat = cats[0];
+    const posts = await wpGet(`/posts?categories=${cat.id}&per_page=100&orderby=date&order=asc&_fields=slug,title,link`);
+    const episodes = posts
+      .map((p) => ({ number: epNum(p.slug, p.title?.rendered || ''), url: p.link }))
+      .filter((e) => e.number > 0)
+      .sort((a, b) => a.number - b.number);
+    return {
+      id: cat.slug, slug: cat.slug, title: cat.name, japaneseTitle: '',
+      poster: '', genres: [], rating: '', type: '', status: '',
+      totalEpisodes: String(episodes.length || cat.count || ''), duration: '', season: '',
+      synopsis: '', episodes,
+    };
+  }
+
   app.get('/api/home', async (req, res) => {
     try {
       const page = parseInt(req.query.page || '1', 10);
-      const r = await fetchText(page > 1 ? `${BASE}/page/${page}/` : `${BASE}/`, { headers: setHeaders() });
-      if (r.status >= 400) throw new Error(`upstream ${r.status}`);
-      const cards = parseCards(r.text);
-      if (!cards.length) throw new Error('empty catalog');
-      res.json({ cards, page, hasNext: /\/page\/\d+\//.test(r.text) });
+      const data = await wpHome(page);
+      if (!data.cards.length) throw new Error('empty catalog');
+      res.json(data);
     } catch (e) { res.status(502).json({ error: String(e.message || e) }); }
   });
 
@@ -217,16 +370,13 @@ export function buildApp({ serveStatic = true } = {}) {
     try {
       const q = String(req.query.q || '').trim();
       if (!q) return res.json({ cards: [] });
-      const r = await fetchText(`${BASE}/?s=${encodeURIComponent(q)}`, { headers: setHeaders() });
-      res.json({ cards: parseCards(r.text) });
+      res.json(await wpSearch(q));
     } catch (e) { res.status(502).json({ error: String(e.message || e) }); }
   });
 
   app.get('/api/anime/:slug', async (req, res) => {
     try {
-      const r = await fetchText(`${BASE}/anime/${req.params.slug}/`, { headers: setHeaders() });
-      if (r.status >= 400) throw new Error(`upstream ${r.status}`);
-      const series = parseSeries(r.text, req.params.slug);
+      const series = await wpAnime(req.params.slug);
       if (!series.title || !series.episodes.length) throw new Error('parse failed');
       res.json(series);
     } catch (e) { res.status(502).json({ error: String(e.message || e) }); }
@@ -252,6 +402,8 @@ export function buildApp({ serveStatic = true } = {}) {
     try {
       // ponytail: no Referer on purpose — kotakanimeid CDN 403s self/foreign Referers, none = 200
       const headers = { 'User-Agent': UA, Accept: '*/*' };
+      const jar = clearanceFor(u.hostname);
+      if (jar) headers.Cookie = jar;
       if (req.headers.range) headers.Range = req.headers.range;
       // ponytail: upstream CF edge intermittently drops fresh connects; 3 tries covers it, dispatcher/keepalive if it gets worse
       let upstream;
