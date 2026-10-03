@@ -385,18 +385,6 @@ export default function App() {
               />
 
               <AnimeRow
-                title="Sedang Tayang Hari Ini"
-                subtitle="Anime ongoing sesuai jadwal rilis hari ini"
-                animes={todayOngoing}
-                onPlay={handlePlayAnime}
-                onOpenDetails={handleOpenDetails}
-                watchlist={watchlist}
-                onToggleWatchlist={handleToggleWatchlist}
-                favorites={favorites}
-                onToggleFavorite={handleToggleFavorite}
-              />
-
-              <AnimeRow
                 title="Aksi & Shounen Terhebat"
                 subtitle="Pertarungan epik, koreografi memukau, dan animasi kelas dunia"
                 animes={actionAnimes}
