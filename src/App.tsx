@@ -9,8 +9,6 @@ import { VideoPlayerPage } from './components/VideoPlayerPage';
 import { SearchAndBrowse } from './components/SearchAndBrowse';
 import { SchedulePage } from './components/SchedulePage';
 import { WatchlistPage } from './components/WatchlistPage';
-import { CloudflareDeployModal } from './components/CloudflareDeployModal';
-import { AddAnimeModal } from './components/AddAnimeModal';
 import { Footer } from './components/Footer';
 import { nekoflixApi } from './services/nekoflixApi';
 
@@ -74,8 +72,6 @@ export default function App() {
   const [downloads, setDownloads] = useState<DownloadItem[]>(() => storageService.getDownloads(activeProfile.id));
 
   // Secondary modals
-  const [isDeployModalOpen, setIsDeployModalOpen] = useState(false);
-  const [isAddAnimeModalOpen, setIsAddAnimeModalOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
 
   // Sync profile changes
@@ -148,13 +144,6 @@ export default function App() {
     const updated = storageService.removeDownload(activeProfile.id, downloadId);
     setDownloads(updated);
     showToast('Berkas unduhan dihapus');
-  };
-
-  const handleAddCustomAnime = (newAnime: Anime) => {
-    const updated = storageService.addCustomAnime(newAnime);
-    setAnimes(updated);
-    showToast(`Anime "${newAnime.title}" berhasil ditambahkan ke katalog!`);
-    navigateTo(`#/anime/${newAnime.id}`);
   };
 
   // Parse Current Route
@@ -286,8 +275,6 @@ export default function App() {
         setActiveProfile={handleProfileChange}
         isDark={isDark}
         toggleTheme={toggleTheme}
-        onOpenDeployModal={() => setIsDeployModalOpen(true)}
-        onOpenAddAnimeModal={() => setIsAddAnimeModalOpen(true)}
         watchlistCount={watchlist.length}
       />
 
@@ -551,25 +538,11 @@ export default function App() {
 
       {/* Footer */}
       <Footer
-        onOpenDeployModal={() => setIsDeployModalOpen(true)}
         onNavigateTab={(tab) => {
           if (tab === 'home') navigateTo('#/');
           else navigateTo(`#/${tab}`);
         }}
       />
-
-      {/* Cloudflare Deploy Modal */}
-      {isDeployModalOpen && (
-        <CloudflareDeployModal onClose={() => setIsDeployModalOpen(false)} />
-      )}
-
-      {/* Add Custom Anime CMS Modal */}
-      {isAddAnimeModalOpen && (
-        <AddAnimeModal
-          onClose={() => setIsAddAnimeModalOpen(false)}
-          onAddAnime={handleAddCustomAnime}
-        />
-      )}
 
       {/* Toast Notification */}
       {toastMessage && (

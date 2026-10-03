@@ -114,7 +114,7 @@ export const nekoflixApi = {
   },
 
   async resolveEpisode(anime: Anime, episodeNumber: number): Promise<{
-    videoUrl: string; sources: { url: string; label: string; kind: 'hls' | 'mp4' }[]; error?: string; errorCode?: string;
+    videoUrl: string; sources: { url: string; label: string; kind: 'hls' | 'mp4' }[]; downloadUrl?: string; error?: string; errorCode?: string;
   }> {
     const ep = anime.episodes.find((e) => e.episodeNumber === episodeNumber) || anime.episodes[0];
     if (ep.videoUrl) return { videoUrl: ep.videoUrl, sources: [{ url: ep.videoUrl, label: 'Default', kind: 'mp4' }] };
@@ -151,21 +151,12 @@ export const nekoflixApi = {
         });
       }
     }
-    // resolved download mirrors are direct mp4s — playable natively, good fallback
-    for (const d of raw.downloads || []) {
-      const du: string | undefined = d.directUrl || d.direct_url;
-      if (du && !du.includes('.m3u8') && !sources.some((s) => s.url === du)) {
-        sources.push({ url: `/api/proxy?url=${encodeURIComponent(du)}`, label: `${d.serverName || d.server_name || 'Download'}${d.quality ? ` ${d.quality}` : ''} (MP4)`, kind: 'mp4' });
-      } else if (d.outUrl || d.out_url) {
-        const ou = d.outUrl || d.out_url;
-        if (!sources.some((s) => s.url === ou)) {
-          sources.push({ url: ou, label: `${d.serverName || d.server_name || 'Download'} (tautan)`, kind: 'mp4' });
-        }
-      }
-    }
+    // download links are NOT stream servers — expose the first /out/ link separately
+    const firstDl = (raw.downloads || []).find((d: any) => (d.outUrl || d.out_url));
+    const downloadUrl = firstDl ? (firstDl.outUrl || firstDl.out_url) : '';
     if (!sources.length) {
-      return { videoUrl: '', sources: [], error: 'Tidak ada sumber video yang bisa diputar.', errorCode: 'no_playable' };
+      return { videoUrl: '', sources: [], downloadUrl, error: 'Tidak ada sumber video yang bisa diputar.', errorCode: 'no_playable' };
     }
-    return { videoUrl: sources[0].url, sources };
+    return { videoUrl: sources[0].url, sources, downloadUrl };
   },
 };

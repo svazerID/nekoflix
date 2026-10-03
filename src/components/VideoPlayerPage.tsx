@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect, useCallback } from 'react';
+import React, { useRef, useState, useEffect, useCallback, useMemo } from 'react';
 import {
   Play,
   Pause,
@@ -13,7 +13,7 @@ import {
   Subtitles,
   ListVideo,
   ArrowLeft,
-  Link as LinkIcon,
+  Download,
   Check,
 } from 'lucide-react';
 import { Anime, Episode } from '../types/anime';
@@ -61,10 +61,9 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({
   const [showEpisodesDrawer, setShowEpisodesDrawer] = useState(false);
   const [showSettingsDrawer, setShowSettingsDrawer] = useState(false);
   const [showSubtitleDrawer, setShowSubtitleDrawer] = useState(false);
-  const [showCustomUrlDrawer, setShowCustomUrlDrawer] = useState(false);
-  const [customVideoUrl, setCustomVideoUrl] = useState('');
   const [activeVideoSrc, setActiveVideoSrc] = useState(episode.videoUrl);
   const [sources, setSources] = useState<{ url: string; label: string; kind: 'hls' | 'mp4' }[]>([]);
+  const [downloadUrl, setDownloadUrl] = useState('');
   const [sourceIndex, setSourceIndex] = useState(0);
   const [resolving, setResolving] = useState(false);
   const [resolveError, setResolveError] = useState<string | null>(null);
@@ -98,10 +97,12 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({
     setResolving(true);
     setResolveError(null);
     setSources([]);
+    setDownloadUrl('');
     nekoflixApi.resolveEpisode(anime, episodeNumber)
-      .then(({ sources: list, error }) => {
+      .then(({ sources: list, downloadUrl: dUrl, error }) => {
         if (cancelled) return;
         setResolving(false);
+        setDownloadUrl(dUrl || '');
         if (error || !list.length) {
           setResolveError(error || 'Tidak ada sumber video.');
           return;
@@ -132,14 +133,20 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({
     setResolveError(null);
     setResolving(true);
     nekoflixApi.resolveEpisode(anime, episodeNumber)
-      .then(({ sources: list, error }) => {
+      .then(({ sources: list, downloadUrl: dUrl, error }) => {
         setResolving(false);
+        setDownloadUrl(dUrl || '');
         if (error || !list.length) { setResolveError(error || 'Tidak ada sumber video.'); return; }
         setSources(list);
         applySource(0, list);
       })
       .catch(() => { setResolving(false); setResolveError('Gagal memuat video. Coba lagi.'); });
   }, [anime, episodeNumber, applySource]);
+
+  // first /out/ download link for this episode (opens the file-host page)
+  const episodeDownloadUrl = useMemo(() => {
+    return downloadUrl || '';
+  }, [downloadUrl]);
 
   // Attach source — HLS via hls.js when the browser can't play m3u8 natively
   useEffect(() => {
@@ -443,49 +450,21 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({
         </div>
 
         <div className="flex items-center gap-3">
-          <button
-            onClick={() => setShowCustomUrlDrawer(!showCustomUrlDrawer)}
-            className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold bg-neutral-800/80 hover:bg-neutral-700 rounded-lg border border-neutral-700 transition-colors"
-            title="Uji URL Video Kustom"
-          >
-            <LinkIcon className="w-3.5 h-3.5 text-amber-400" />
-            <span className="hidden sm:inline">Uji URL Video</span>
-          </button>
+          {/* Download episode link (if any) */}
+          {episodeDownloadUrl && (
+            <a
+              href={episodeDownloadUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold bg-neutral-800/80 hover:bg-neutral-700 rounded-lg border border-neutral-700 transition-colors text-white"
+              title="Halaman unduhan episode"
+            >
+              <Download className="w-3.5 h-3.5 text-emerald-400" />
+              <span className="hidden sm:inline">Unduh Episode</span>
+            </a>
+          )}
         </div>
       </div>
-
-      {/* Custom Video URL Tester Drawer */}
-      {showCustomUrlDrawer && (
-        <div className="absolute top-16 right-6 z-40 w-80 bg-neutral-900 border border-neutral-700 rounded-lg p-4 shadow-2xl space-y-3">
-          <h4 className="text-xs font-bold text-white flex items-center justify-between">
-            <span>Uji Sumber Video MP4 / WebM</span>
-            <button
-              onClick={() => setShowCustomUrlDrawer(false)}
-              className="text-neutral-400 hover:text-white"
-            >
-              ×
-            </button>
-          </h4>
-          <input
-            type="url"
-            value={customVideoUrl}
-            onChange={(e) => setCustomVideoUrl(e.target.value)}
-            placeholder="https://domain.com/video.mp4"
-            className="w-full bg-neutral-950 border border-neutral-700 rounded px-2.5 py-1.5 text-xs text-white placeholder-neutral-500 focus:outline-none focus:border-red-500"
-          />
-          <button
-            onClick={() => {
-              if (customVideoUrl.trim()) {
-                setActiveVideoSrc(customVideoUrl.trim());
-                setShowCustomUrlDrawer(false);
-              }
-            }}
-            className="w-full py-1.5 bg-red-600 hover:bg-red-700 text-xs font-bold rounded text-white transition-colors"
-          >
-            Terapkan Sumber Video
-          </button>
-        </div>
-      )}
 
       {/* Bottom Bar Controls Overlay */}
       <div

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Search, Sun, Moon, ChevronDown, Bookmark, PlusCircle } from 'lucide-react';
+import { Search, Sun, Moon, ChevronDown, Bookmark } from 'lucide-react';
 import { UserProfile } from '../types/anime';
 
 interface NavbarProps {
@@ -11,8 +11,6 @@ interface NavbarProps {
   setActiveProfile: (profile: UserProfile) => void;
   isDark: boolean;
   toggleTheme: () => void;
-  onOpenDeployModal?: () => void;
-  onOpenAddAnimeModal: () => void;
   watchlistCount: number;
 }
 
@@ -25,7 +23,6 @@ export const Navbar: React.FC<NavbarProps> = ({
   setActiveProfile,
   isDark,
   toggleTheme,
-  onOpenAddAnimeModal,
   watchlistCount,
 }) => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -180,17 +177,6 @@ export const Navbar: React.FC<NavbarProps> = ({
                     >
                       <Bookmark className="w-4 h-4 text-neutral-400" />
                       <span>Daftar Saya & Favorit</span>
-                    </button>
-
-                    <button
-                      onClick={() => {
-                        onOpenAddAnimeModal();
-                        setProfileMenuOpen(false);
-                      }}
-                      className="w-full flex items-center gap-2.5 px-3.5 py-2.5 hover:bg-neutral-800/80 transition-colors text-left text-amber-300 hover:text-amber-200 cursor-pointer"
-                    >
-                      <PlusCircle className="w-4 h-4 text-amber-400" />
-                      <span>Kelola / Tambah Anime CMS</span>
                     </button>
                   </div>
                 </>
