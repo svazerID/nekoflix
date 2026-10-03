@@ -76,7 +76,8 @@ async function odPopular() {
   const results = await Promise.all(POPULAR_SEARCHES.map(async (aliases) => {
     for (const query of aliases) {
       const cards = parseOdSearch(await odGet(`${OD_BASE}/?s=${encodeURIComponent(query)}`));
-      if (cards.length) return cards[0];
+      const card = cards.find((item) => !item.isEpisodeHit) || cards[0];
+      if (card && !card.isEpisodeHit) return card;
     }
     return null;
   }));
