@@ -72,14 +72,29 @@ async function odSearch(url) {
   return json({ cards });
 }
 
+async function odTrending() {
+  const html = await fetchText('https://www.crunchyroll.com/id/videos/new', {
+    headers: { Accept: 'text/html,application/xhtml+xml', 'Accept-Language': 'id-ID,id;q=0.9,en;q=0.8' },
+  }).then((r) => {
+    if (r.status >= 400) throw new Error(`Crunchyroll ${r.status}`);
+    return r.text;
+  });
+  const titles = [...new Set([...html.matchAll(/(?:data-title|"title"|title)=?["']([^"']{2,100})["']/gi)].map((m) => m[1].replace(/\\u0026/g, '&').trim()).filter(Boolean))].slice(0, 20);
+  const results = await Promise.all(titles.map(async (title) => {
+    const cards = parseOdSearch(await odGet(`${OD_BASE}/?s=${encodeURIComponent(title)}`));
+    const card = cards.find((item) => !item.isEpisodeHit);
+    return card ? { ...card, title } : null;
+  }));
+  return json({ cards: results.filter(Boolean) });
+}
+
 async function odPopular() {
-  const results = await Promise.all(POPULAR_SEARCHES.map(async (aliases) => {
-    for (const query of aliases) {
-      const cards = parseOdSearch(await odGet(`${OD_BASE}/?s=${encodeURIComponent(query)}`));
-      const card = cards.find((item) => !item.isEpisodeHit) || cards[0];
-      if (card && !card.isEpisodeHit) return card;
-    }
-    return null;
+  const html = await fetchText('https://www.crunchyroll.com/id/videos/popular', { headers: { Accept: 'text/html,application/xhtml+xml' } }).then((r) => { if (r.status >= 400) throw new Error(`Crunchyroll ${r.status}`); return r.text; });
+  const titles = [...new Set([...html.matchAll(/(?:data-title|"title"|title)=?["']([^"']{2,100})["']/gi)].map((m) => m[1].replace(/\\u0026/g, '&').trim()).filter(Boolean))].slice(0, 20);
+  const results = await Promise.all(titles.map(async (title) => {
+    const cards = parseOdSearch(await odGet(`${OD_BASE}/?s=${encodeURIComponent(title)}`));
+    const card = cards.find((item) => !item.isEpisodeHit);
+    return card ? { ...card, title } : null;
   }));
   return json({ cards: results.filter(Boolean) });
 }
@@ -186,6 +201,7 @@ async function handleApi(req, url) {
     if (path === '/api/od/home') return await odHome(url);
     if (path === '/api/od/search') return await odSearch(url);
     if (path === '/api/od/popular') return await odPopular();
+    if (path === '/api/od/trending') return await odTrending();
     if (path === '/api/od/schedule') return await odSchedule();
     const odGenreM = path.match(/^\/api\/od\/genre\/([^/]+)$/);
     if (odGenreM) return await odGenre(decodeURIComponent(odGenreM[1]), url);

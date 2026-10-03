@@ -16,6 +16,7 @@ export default function App() {
   // App state — starts from cached/sample data, replaced by live scrape once loaded
   const [animes, setAnimes] = useState<Anime[]>(() => storageService.getAnimes());
   const [livePopular, setLivePopular] = useState<Anime[]>([]);
+  const [liveTrending, setLiveTrending] = useState<Anime[]>([]);
   const [liveSchedule, setLiveSchedule] = useState<Record<string, Anime[]>>({});
 
   useEffect(() => {
@@ -34,6 +35,11 @@ export default function App() {
   useEffect(() => {
     let cancelled = false;
     nekoflixApi.getPopular().then((items) => { if (!cancelled) setLivePopular(items); }).catch((e) => console.warn('Popular anime gagal dimuat:', e));
+    return () => { cancelled = true; };
+  }, []);
+  useEffect(() => {
+    let cancelled = false;
+    nekoflixApi.getTrending().then((items) => { if (!cancelled) setLiveTrending(items); }).catch((e) => console.warn('Trending anime gagal dimuat:', e));
     return () => { cancelled = true; };
   }, []);
   useEffect(() => {
@@ -229,7 +235,7 @@ export default function App() {
   }, [liveSchedule]);
 
   const actionAnimes = useMemo(() => {
-    return animes.filter((a) => a.genres.includes('Aksi'));
+    return animes.filter((a) => a.genres.some((genre) => ['Aksi', 'Action'].includes(genre)));
   }, [animes]);
 
   const fantasyAnimes = useMemo(() => {
@@ -373,9 +379,9 @@ export default function App() {
               />
 
               <AnimeRow
-                title="Trending Anime Hari Ini"
-                subtitle="Anime ongoing berdasarkan jadwal rilis OtakuDesu hari ini"
-                animes={todayOngoing}
+                title="Sedang Tren Sekarang"
+                subtitle="Tren terbaru Crunchyroll, ditautkan ke katalog OtakuDesu"
+                animes={liveTrending.length ? liveTrending : trendingAnimes}
                 onPlay={handlePlayAnime}
                 onOpenDetails={handleOpenDetails}
                 watchlist={watchlist}
@@ -386,7 +392,7 @@ export default function App() {
 
               <AnimeRow
                 title="Aksi & Shounen Terhebat"
-                subtitle="Pertarungan epik, koreografi memukau, dan animasi kelas dunia"
+                subtitle="Anime genre Action dari OtakuDesu"
                 animes={actionAnimes}
                 onPlay={handlePlayAnime}
                 onOpenDetails={handleOpenDetails}

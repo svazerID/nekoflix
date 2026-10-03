@@ -101,9 +101,13 @@ export const nekoflixApi = {
 
   async getPopular(): Promise<Anime[]> {
     const { cards } = await apiGet<{ cards: any[] }>('/od/popular');
-    const details = await Promise.all(
-      (cards || []).slice(0, 10).map((c: any) => apiGet<any>(`/od/anime/${c.slug}`).catch(() => null))
-    );
+    const details = await Promise.all((cards || []).slice(0, 10).map((c: any) => apiGet<any>(`/od/anime/${c.slug}`).catch(() => null)));
+    return dedupe(details.filter(Boolean).map(mapSeries));
+  },
+
+  async getTrending(): Promise<Anime[]> {
+    const { cards } = await apiGet<{ cards: any[] }>('/od/trending');
+    const details = await Promise.all((cards || []).slice(0, 10).map((c: any) => apiGet<any>(`/od/anime/${c.slug}`).catch(() => null)));
     return dedupe(details.filter(Boolean).map(mapSeries));
   },
 
