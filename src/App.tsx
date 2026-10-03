@@ -15,7 +15,8 @@ import { nekoflixApi } from './services/nekoflixApi';
 export default function App() {
   // App state — starts from cached/sample data, replaced by live scrape once loaded
   const [animes, setAnimes] = useState<Anime[]>(() => storageService.getAnimes());
-  const [liveLoaded, setLiveLoaded] = useState(false);
+  const [livePopular, setLivePopular] = useState<Anime[]>([]);
+  const [liveSchedule, setLiveSchedule] = useState<Record<string, Anime[]>>({});
 
   useEffect(() => {
     let cancelled = false;
@@ -28,6 +29,23 @@ export default function App() {
         }
       })
       .catch((e) => console.warn('Katalog live gagal, memakai data cache/sample:', e));
+    return () => { cancelled = true; };
+  }, []);
+  useEffect(() => {
+    let cancelled = false;
+    nekoflixApi.getPopular().then((items) => { if (!cancelled) setLivePopular(items); }).catch((e) => console.warn('Popular anime gagal dimuat:', e));
+    return () => { cancelled = true; };
+  }, []);
+  useEffect(() => {
+    let cancelled = false;
+    fetch('/api/od/schedule').then((r) => r.json()).then(async ({ days }) => {
+      const day = days?.find((d: { day: string }) => d.day === ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'][new Date().getDay()]);
+      if (!day) return;
+      const items = await Promise.all(day.items.slice(0, 10).map(async (item: { slug: string }) => {
+        try { return await nekoflixApi.getAnime(item.slug); } catch { return null; }
+      }));
+      if (!cancelled) setLiveSchedule({ [day.day]: items.filter((a): a is Anime => !!a) });
+    }).catch((e) => console.warn('Jadwal ongoing gagal dimuat:', e));
     return () => { cancelled = true; };
   }, []);
   const [activeProfile, setActiveProfile] = useState<UserProfile>(() => storageService.getActiveProfile());
@@ -196,21 +214,19 @@ export default function App() {
     return () => { cancelled = true; };
   }, [remoteForRoute, animes]);
 
-  // Featured Marquee Anime (Solo Leveling) — falls back to first live item
-  const featuredAnime = useMemo(() => {
-    return liveLoaded
-      ? animes.find((a) => a.featured) || animes[0]
-      : animes.find((a) => a.featured) || animes.find((a) => a.rankTop10 === 1) || animes[0];
-  }, [animes, liveLoaded]);
+  const featuredAnime = useMemo(() => animes.find((a) => a.featured) || livePopular[0] || animes[0], [animes, livePopular]);
 
-  // Rows Data
-  const top10Animes = useMemo(() => {
-    return [...animes].sort((a, b) => (a.rankTop10 || 99) - (b.rankTop10 || 99)).slice(0, 10);
-  }, [animes]);
+  // Crunchyroll supplies popularity order; resolve each title against OtakuDesu for in-app playback.
+  const top10Animes = useMemo(() => livePopular.slice(0, 10), [livePopular]);
 
   const trendingAnimes = useMemo(() => {
     return [...animes].sort((a, b) => b.scoreCount - a.scoreCount);
   }, [animes]);
+
+  const todayOngoing = useMemo(() => {
+    const today = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'][new Date().getDay()];
+    return liveSchedule[today] || [];
+  }, [liveSchedule]);
 
   const actionAnimes = useMemo(() => {
     return animes.filter((a) => a.genres.includes('Aksi'));
@@ -369,9 +385,9 @@ export default function App() {
               />
 
               <AnimeRow
-                title="Sedang Tayang (Ongoing)"
-                subtitle="Anime yang masih rilis episode terbaru setiap minggu"
-                animes={animes.filter((a) => a.status === 'Ongoing')}
+                title="Sedang Tayang Hari Ini"
+                subtitle="Anime ongoing sesuai jadwal rilis hari ini"
+                animes={todayOngoing}
                 onPlay={handlePlayAnime}
                 onOpenDetails={handleOpenDetails}
                 watchlist={watchlist}

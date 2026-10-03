@@ -10,6 +10,11 @@ const ALLOWED_HOSTS = /^(s\d+\.kotakanimeid\.link|cdn\d*\.kotakanimeid\.link|s13
 // ---------- tiny fetch + cache (per-isolate) ----------
 const cache = new Map();
 const TTL = 5 * 60 * 1000;
+const POPULAR_SEARCHES = [
+  ['Sousou no Frieren'], ['Golden Kamuy'], ['Enen no Shouboutai'], ['Fate/strange Fake'],
+  ['One Piece'], ['MF Ghost'], ['Jujutsu Kaisen'], ['Boku no Hero Academia', 'My Hero Academia'],
+  ['Shingeki no Kyojin', 'Attack on Titan'],
+];
 async function fetchText(url, opts = {}) {
   const key = url + (opts.method === 'POST' ? String(opts.body || '') : '');
   const hit = !opts.skipCache && cache.get(key);
@@ -65,6 +70,17 @@ async function odSearch(url) {
     return json({ cards: [] });
   }
   return json({ cards });
+}
+
+async function odPopular() {
+  const results = await Promise.all(POPULAR_SEARCHES.map(async (aliases) => {
+    for (const query of aliases) {
+      const cards = parseOdSearch(await odGet(`${OD_BASE}/?s=${encodeURIComponent(query)}`));
+      if (cards.length) return cards[0];
+    }
+    return null;
+  }));
+  return json({ cards: results.filter(Boolean) });
 }
 
 async function odAnime(slug) {
@@ -168,6 +184,7 @@ async function handleApi(req, url) {
   try {
     if (path === '/api/od/home') return await odHome(url);
     if (path === '/api/od/search') return await odSearch(url);
+    if (path === '/api/od/popular') return await odPopular();
     if (path === '/api/od/schedule') return await odSchedule();
     const odGenreM = path.match(/^\/api\/od\/genre\/([^/]+)$/);
     if (odGenreM) return await odGenre(decodeURIComponent(odGenreM[1]), url);

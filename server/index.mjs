@@ -578,6 +578,29 @@ async function pmap(items, n, fn) {
     } catch (e) { res.status(502).json({ error: String(e.message || e) }); }
   });
 
+  app.get('/api/od/popular', async (_req, res) => {
+    try {
+      const names = ['Sousou no Frieren', 'Golden Kamuy', 'Enen no Shouboutai', 'Fate/strange Fake', 'One Piece', 'MF Ghost', 'Jujutsu Kaisen', 'Boku no Hero Academia', 'Shingeki no Kyojin'];
+      const results = await Promise.all(names.map(async (q) => {
+        const cards = parseOdSearch(await odGet(`${OD_BASE}/?s=${encodeURIComponent(q)}`));
+        return cards[0] || null;
+      }));
+      res.json({ cards: results.filter(Boolean) });
+    } catch (e) { res.status(502).json({ error: String(e.message || e) }); }
+  });
+
+  app.get('/api/od/schedule', async (_req, res) => {
+    try {
+      const html = await odGet(`${OD_BASE}/jadwal-rilis/`);
+      const days = [];
+      for (const m of html.matchAll(/<h2>(Senin|Selasa|Rabu|Kamis|Jumat|Sabtu|Minggu|Random)<\/h2>\s*<ul>([\s\S]*?)<\/ul>/g)) {
+        const items = [...m[2].matchAll(/href="(https:\/\/otakudesu\.blog\/anime\/[^"]+)"[^>]*>([^<]+)<\/a>/g)].map((a) => ({ slug: a[1].match(/\/anime\/([^/]+)\/?/)?.[1] || '', title: a[2].trim(), url: a[1] }));
+        days.push({ day: m[1], items });
+      }
+      res.json({ days });
+    } catch (e) { res.status(502).json({ error: String(e.message || e) }); }
+  });
+
   app.get('/api/od/anime/:slug', async (req, res) => {
     try {
       const html = await odGet(`${OD_BASE}/anime/${encodeURIComponent(req.params.slug)}/`);

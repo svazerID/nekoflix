@@ -99,6 +99,14 @@ export const nekoflixApi = {
     return mapSeries(raw);
   },
 
+  async getPopular(): Promise<Anime[]> {
+    const { cards } = await apiGet<{ cards: any[] }>('/od/popular');
+    const details = await Promise.all(
+      (cards || []).slice(0, 10).map((c: any) => apiGet<any>(`/od/anime/${c.slug}`).catch(() => null))
+    );
+    return dedupe(details.filter(Boolean).map(mapSeries));
+  },
+
   async genreCards(genreSlug: string, page = 1): Promise<any[]> {
     const { cards } = await apiGet<{ cards: any[] }>(`/od/genre/${genreSlug}?page=${page}`);
     return cards || [];
