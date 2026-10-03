@@ -4,7 +4,7 @@ const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
 const cache = new Map();
 const TTL = 5 * 60 * 1000;
 function extractCrunchyTitles(html) {
-  const titles = [...html.matchAll(/### \[([^\]]+)\]\(https:\/\/www\.crunchyroll\.com\/id\/series\//g)].map((m) => m[1].replace(/\\\\#/g, '#').trim());
+  const titles = [...html.matchAll(/(?:### )?\[([^\]]+)\]\(https:\/\/www\.crunchyroll\.com\/id\/series\//g)].map((m) => m[1].replace(/\\\\#/g, '#').trim());
   return [...new Set(titles)].slice(0, 20);
 }
 const POPULAR_SEARCHES = [
