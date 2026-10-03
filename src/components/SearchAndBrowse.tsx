@@ -65,6 +65,15 @@ export const SearchAndBrowse: React.FC<SearchAndBrowseProps> = ({
   const [genreHasNext, setGenreHasNext] = useState(false);
 
   const query = searchQuery.trim();
+  // search & genre saling eksklusif: mengetik reset genre, memilih genre reset search
+  useEffect(() => {
+    if (query && selectedGenre !== 'Semua') setSelectedGenre('Semua');
+  }, [query]); // eslint-disable-line react-hooks/exhaustive-deps
+  const selectGenre = (genre: string) => {
+    setSelectedGenre(genre);
+    if (genre !== 'Semua' && searchQuery) setSearchQuery('');
+  };
+
   useEffect(() => {
     if (query.length < 3) { setRemoteAnimes([]); setRemoteLoading(false); return; }
     const localHit = animes.some((a) =>
@@ -116,10 +125,14 @@ export const SearchAndBrowse: React.FC<SearchAndBrowseProps> = ({
   const visible = useMemo(() => {
     // genre aktif = hasil server murni (tanpa sort/filter lokal)
     if (selectedGenre !== 'Semua') return genreAnimes;
-    // pencarian: gabung katalog + hasil server, urutan asli
+    // pencarian aktif: hasil server SAJA (hasil genre lokal tidak relevan; dedupe)
     if (query.length >= 3) {
       const seen = new Set<string>();
-      return [...animes, ...remoteAnimes].filter((a) => !seen.has(a.id) && seen.add(a.id));
+      const local = animes.filter((a) =>
+        a.title.toLowerCase().includes(query.toLowerCase()) ||
+        (a.japaneseTitle && a.japaneseTitle.toLowerCase().includes(query.toLowerCase()))
+      );
+      return [...local, ...remoteAnimes].filter((a) => !seen.has(a.id) && seen.add(a.id));
     }
     return animes;
   }, [selectedGenre, genreAnimes, query, animes, remoteAnimes]);
@@ -143,7 +156,7 @@ export const SearchAndBrowse: React.FC<SearchAndBrowseProps> = ({
         {GENRES.map((genre) => (
           <button
             key={genre}
-            onClick={() => setSelectedGenre(genre)}
+            onClick={() => selectGenre(genre)}
             className={`px-3.5 py-1.5 text-xs font-semibold rounded-lg transition-colors whitespace-nowrap shrink-0 ${
               selectedGenre === genre
                 ? 'bg-red-600 text-white shadow-sm'
