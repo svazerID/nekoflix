@@ -1,22 +1,28 @@
-import tailwindcss from '@tailwindcss/vite';
+import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import tailwindcss from '@tailwindcss/vite';
+import { buildApp } from './server/index.mjs';
 import path from 'path';
-import {defineConfig} from 'vite';
 
 export default defineConfig(() => {
-  return {
+  const config = {
     plugins: [react(), tailwindcss()],
     resolve: {
-      alias: {
-        '@': path.resolve(__dirname, '.'),
-      },
+      alias: { '@': path.resolve(__dirname, '.') },
     },
     server: {
-      // HMR is disabled in AI Studio via DISABLE_HMR env var.
-      // Do not modify—file watching is disabled to prevent flickering during agent edits.
       hmr: process.env.DISABLE_HMR !== 'true',
-      // Disable file watching when DISABLE_HMR is true to save CPU during agent edits.
       watch: process.env.DISABLE_HMR === 'true' ? null : {},
+      proxy: {
+        // Scraping + stream proxy handled by the express backend in dev
+        '/api': {
+          target: 'http://localhost:8787',
+          changeOrigin: true,
+        },
+      },
     },
   };
+  if (process.env.DISABLE_HMR === 'true') return config;
+  // Attach API routes only; Vite owns transformed modules and SPA fallback.
+  return { ...config, plugins: [...config.plugins, { name: 'nekoflix-backend', configureServer(srv) { srv.middlewares.use(buildApp({ serveStatic: false })); } }] };
 });

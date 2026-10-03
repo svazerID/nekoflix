@@ -18,6 +18,7 @@ import {
 } from 'lucide-react';
 import { Anime, Episode } from '../types/anime';
 import { storageService } from '../services/storageService';
+import { nekoflixApi } from '../services/nekoflixApi';
 
 interface VideoPlayerPageProps {
   anime: Anime;
@@ -71,9 +72,40 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({
     setCurrentTime(0);
     if (videoRef.current) {
       videoRef.current.currentTime = 0;
-      videoRef.current.play().catch(() => setIsPlaying(false));
+      if (episode.videoUrl) videoRef.current.play().catch(() => setIsPlaying(false));
     }
   }, [episode]);
+
+  // Resolve live stream URL from scrape backend when the episode has no direct source yet
+  useEffect(() => {
+    if (episode.videoUrl) return;
+    let cancelled = false;
+    nekoflixApi.resolveEpisode(anime, episodeNumber)
+      .then(({ videoUrl }) => { if (!cancelled && videoUrl) setActiveVideoSrc(videoUrl); })
+      .catch((e) => console.warn('Gagal resolve stream:', e));
+    return () => { cancelled = true; };
+  }, [anime, episodeNumber, episode.videoUrl]);
+
+  // Attach source — HLS via hls.js when the browser can't play m3u8 natively
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video || !activeVideoSrc) return;
+    if (activeVideoSrc.endsWith('.m3u8') && !video.canPlayType('application/vnd.apple.mpegurl')) {
+      let hls: { destroy: () => void } | null = null;
+      let cancelled = false;
+      import('hls.js').then(({ default: Hls }) => {
+        if (cancelled || !Hls.isSupported()) return;
+        const instance = new Hls();
+        instance.loadSource(activeVideoSrc);
+        instance.attachMedia(video);
+        instance.on(Hls.Events.MANIFEST_PARSED, () => video.play().catch(() => setIsPlaying(false)));
+        hls = instance;
+      });
+      return () => { cancelled = true; hls?.destroy(); };
+    }
+    video.src = activeVideoSrc;
+    video.play().catch(() => setIsPlaying(false));
+  }, [activeVideoSrc]);
 
   const formatTime = (secs: number) => {
     if (isNaN(secs) || secs < 0) return '00:00';

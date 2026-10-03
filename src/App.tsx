@@ -11,10 +11,26 @@ import { WatchlistPage } from './components/WatchlistPage';
 import { CloudflareDeployModal } from './components/CloudflareDeployModal';
 import { AddAnimeModal } from './components/AddAnimeModal';
 import { Footer } from './components/Footer';
+import { nekoflixApi } from './services/nekoflixApi';
 
 export default function App() {
-  // App state
+  // App state — starts from cached/sample data, replaced by live scrape once loaded
   const [animes, setAnimes] = useState<Anime[]>(() => storageService.getAnimes());
+  const [liveLoaded, setLiveLoaded] = useState(false);
+
+  useEffect(() => {
+    let cancelled = false;
+    nekoflixApi.getCatalog()
+      .then((live) => {
+        if (!cancelled && live.length) {
+          setAnimes(live);
+          storageService.saveAnimes(live);
+          setLiveLoaded(true);
+        }
+      })
+      .catch((e) => console.warn('Katalog live gagal, memakai data cache/sample:', e));
+    return () => { cancelled = true; };
+  }, []);
   const [activeProfile, setActiveProfile] = useState<UserProfile>(() => storageService.getActiveProfile());
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [isDark, setIsDark] = useState<boolean>(() => storageService.getTheme() === 'dark');
@@ -174,10 +190,12 @@ export default function App() {
     return null;
   }, [route, animes]);
 
-  // Featured Marquee Anime (Solo Leveling)
+  // Featured Marquee Anime (Solo Leveling) — falls back to first live item
   const featuredAnime = useMemo(() => {
-    return animes.find((a) => a.featured) || animes[0];
-  }, [animes]);
+    return liveLoaded
+      ? animes.find((a) => a.featured) || animes[0]
+      : animes.find((a) => a.featured) || animes.find((a) => a.rankTop10 === 1) || animes[0];
+  }, [animes, liveLoaded]);
 
   // Rows Data
   const top10Animes = useMemo(() => {
