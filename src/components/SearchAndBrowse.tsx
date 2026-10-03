@@ -1,6 +1,7 @@
-import React, { useState, useMemo } from 'react';
-import { Search, Filter, SlidersHorizontal, ArrowUpDown, X } from 'lucide-react';
+import React, { useState, useMemo, useEffect } from 'react';
+import { Search, Filter, SlidersHorizontal, ArrowUpDown, X, Loader2 } from 'lucide-react';
 import { Anime } from '../types/anime';
+import { nekoflixApi } from '../services/nekoflixApi';
 import { AnimeCard } from './AnimeCard';
 
 interface SearchAndBrowseProps {
@@ -42,9 +43,35 @@ export const SearchAndBrowse: React.FC<SearchAndBrowseProps> = ({
   const [selectedGenre, setSelectedGenre] = useState('Semua');
   const [selectedStatus, setSelectedStatus] = useState<'All' | 'Ongoing' | 'Tamat'>('All');
   const [sortBy, setSortBy] = useState<'popular' | 'rating' | 'newest' | 'title'>('popular');
+  // server-side search for titles outside the loaded catalog (katalog = 24 terbaru saja)
+  const [remoteAnimes, setRemoteAnimes] = useState<Anime[]>([]);
+  const [remoteLoading, setRemoteLoading] = useState(false);
+
+  const query = searchQuery.trim();
+  useEffect(() => {
+    if (query.length < 3) { setRemoteAnimes([]); setRemoteLoading(false); return; }
+    const localHit = animes.some((a) =>
+      a.title.toLowerCase().includes(query.toLowerCase()) ||
+      (a.japaneseTitle && a.japaneseTitle.toLowerCase().includes(query.toLowerCase()))
+    );
+    if (localHit) { setRemoteAnimes([]); setRemoteLoading(false); return; }
+    let cancelled = false;
+    setRemoteLoading(true);
+    const t = window.setTimeout(() => {
+      nekoflixApi.searchRemote(query)
+        .then((res) => { if (!cancelled) { setRemoteAnimes(res); setRemoteLoading(false); } })
+        .catch(() => { if (!cancelled) { setRemoteAnimes([]); setRemoteLoading(false); } });
+    }, 500); // debounce
+    return () => { cancelled = true; window.clearTimeout(t); };
+  }, [query, animes]);
+
+  const allAnimes = useMemo(() => {
+    const seen = new Set<string>();
+    return [...animes, ...remoteAnimes].filter((a) => !seen.has(a.id) && seen.add(a.id));
+  }, [animes, remoteAnimes]);
 
   const filteredAnimes = useMemo(() => {
-    return animes
+    return allAnimes
       .filter((anime) => {
         // Query match
         const matchesQuery =
@@ -157,8 +184,9 @@ export const SearchAndBrowse: React.FC<SearchAndBrowseProps> = ({
       </div>
 
       {/* Results Count Banner */}
-      <div className="text-xs text-neutral-400 font-mono tabular-nums">
+      <div className="text-xs text-neutral-400 font-mono tabular-nums flex items-center gap-2">
         Menampilkan {filteredAnimes.length} tayangan {searchQuery ? `untuk "${searchQuery}"` : ''}
+        {remoteLoading && <Loader2 className="w-3.5 h-3.5 animate-spin text-red-400" />}
       </div>
 
       {/* Grid of Results */}
@@ -182,9 +210,13 @@ export const SearchAndBrowse: React.FC<SearchAndBrowseProps> = ({
           <div className="w-12 h-12 mx-auto rounded-full bg-neutral-900 flex items-center justify-center text-neutral-500">
             <Search className="w-6 h-6" />
           </div>
-          <h4 className="text-base font-bold text-white">Tidak ada anime yang cocok</h4>
+          <h4 className="text-base font-bold text-white">
+            {remoteLoading ? 'Mencari di server…' : 'Tidak ada anime yang cocok'}
+          </h4>
           <p className="text-xs text-neutral-400 max-w-sm mx-auto">
-            Coba gunakan kata kunci yang lebih umum atau atur ulang filter genre di atas.
+            {remoteLoading
+              ? 'Hasil dari server akan muncul di sini.'
+              : 'Coba gunakan kata kunci yang lebih umum atau atur ulang filter genre di atas.'}
           </p>
         </div>
       )}

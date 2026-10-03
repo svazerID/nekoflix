@@ -90,6 +90,15 @@ export const nekoflixApi = {
     return animes;
   },
 
+  async searchRemote(q: string): Promise<Anime[]> {
+    const { cards } = await apiGet<{ cards: any[] }>(`/od/search?q=${encodeURIComponent(q)}`);
+    // each card is a series slug -> fetch details
+    const details = await Promise.all(
+      (cards || []).slice(0, 12).map((c: any) => apiGet<any>(`/od/anime/${c.slug}`).catch(() => null))
+    );
+    return details.filter(Boolean).map(mapSeries);
+  },
+
   async resolveEpisode(anime: Anime, episodeNumber: number): Promise<{
     videoUrl: string; sources: { url: string; label: string; kind: 'hls' | 'mp4' }[]; error?: string; errorCode?: string;
   }> {
