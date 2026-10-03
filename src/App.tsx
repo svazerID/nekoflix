@@ -373,9 +373,9 @@ export default function App() {
               />
 
               <AnimeRow
-                title="Sedang Tren Sekarang"
-                subtitle="Tayangan paling sering diperbincangkan minggu ini"
-                animes={trendingAnimes}
+                title="Trending Anime Hari Ini"
+                subtitle="Anime ongoing berdasarkan jadwal rilis OtakuDesu hari ini"
+                animes={todayOngoing}
                 onPlay={handlePlayAnime}
                 onOpenDetails={handleOpenDetails}
                 watchlist={watchlist}
