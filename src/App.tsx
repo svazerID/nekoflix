@@ -176,10 +176,25 @@ export default function App() {
   // Find targeted anime if in detail or watch route
   const currentAnime = useMemo(() => {
     if (route.type === 'anime' || route.type === 'watch') {
-      return animes.find((a) => a.id === route.animeId) || animes[0];
+      return animes.find((a) => a.id === route.animeId) || null;
     }
     return null;
   }, [route, animes]);
+
+  // anime shown on detail/watch routes: local catalog first, live fetch fallback
+  const [remoteAnime, setRemoteAnime] = useState<Anime | null>(null);
+  const activeAnime = currentAnime || remoteAnime;
+  const remoteForRoute = route.type === 'anime' || route.type === 'watch' ? route.animeId : null;
+  useEffect(() => {
+    // only needed when the local catalog doesn't have the id
+    if (!remoteForRoute || animes.some((a) => a.id === remoteForRoute)) { setRemoteAnime(null); return; }
+    let cancelled = false;
+    setRemoteAnime(null);
+    nekoflixApi.getAnime(remoteForRoute)
+      .then((a) => { if (!cancelled) setRemoteAnime(a); })
+      .catch(() => { if (!cancelled) setRemoteAnime(null); });
+    return () => { cancelled = true; };
+  }, [remoteForRoute, animes]);
 
   // Featured Marquee Anime (Solo Leveling) — falls back to first live item
   const featuredAnime = useMemo(() => {
@@ -231,19 +246,19 @@ export default function App() {
   }, [route.type]);
 
   // If in dedicated Video Player Route -> Render ONLY the Video Player Page on its own URL!
-  if (route.type === 'watch' && currentAnime) {
+  if (route.type === 'watch' && activeAnime) {
     return (
       <div className="min-h-screen bg-black text-white">
         <VideoPlayerPage
-          anime={currentAnime}
+          anime={activeAnime}
           episodeNumber={route.episodeNumber || 1}
           onBack={() => {
             // Return to anime details or home
-            navigateTo(`#/anime/${currentAnime.id}`);
+            navigateTo(`#/anime/${activeAnime.id}`);
             setWatchHistory(storageService.getWatchHistory(activeProfile.id));
           }}
           onSelectEpisode={(epNum) => {
-            navigateTo(`#/watch/${currentAnime.id}/${epNum}`);
+            navigateTo(`#/watch/${activeAnime.id}/${epNum}`);
           }}
           activeProfileId={activeProfile.id}
         />
@@ -281,14 +296,14 @@ export default function App() {
       {/* Main Content Area based on Dedicated URL Route */}
       <main className="flex-1">
         {/* Dedicated Anime Detail Page Route (#/anime/:id) */}
-        {route.type === 'anime' && currentAnime && (
+        {route.type === 'anime' && activeAnime && (
           <AnimeDetailPage
-            anime={currentAnime}
+            anime={activeAnime}
             onBack={() => navigateTo('#/')}
             onPlay={handlePlayAnime}
-            isInWatchlist={watchlist.includes(currentAnime.id)}
+            isInWatchlist={watchlist.includes(activeAnime.id)}
             onToggleWatchlist={handleToggleWatchlist}
-            isFavorite={favorites.includes(currentAnime.id)}
+            isFavorite={favorites.includes(activeAnime.id)}
             onToggleFavorite={handleToggleFavorite}
             onStartDownload={handleStartDownload}
             allAnimes={animes}
