@@ -4,9 +4,7 @@ const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
 const cache = new Map();
 const TTL = 5 * 60 * 1000;
 function extractCrunchyTitles(html) {
-  const titles = [...html.matchAll(/<h[23][^>]*>\s*<a[^>]*>([\s\S]*?)<\/a>\s*<\/h[23]>/gi)]
-    .map((m) => m[1].replace(/<[^>]*>/g, '').replace(/&amp;/g, '&').replace(/&#0*39;|&apos;/g, "'").replace(/&quot;/g, '"').replace(/&#x([\da-f]+);/gi, (_, n) => String.fromCodePoint(parseInt(n, 16))).replace(/&#(\d+);/g, (_, n) => String.fromCodePoint(Number(n))).trim())
-    .filter(Boolean);
+  const titles = [...html.matchAll(/### \[([^\]]+)\]\(https:\/\/www\.crunchyroll\.com\/id\/series\//g)].map((m) => m[1].replace(/\\\\#/g, '#').trim());
   return [...new Set(titles)].slice(0, 20);
 }
 const POPULAR_SEARCHES = [
@@ -67,7 +65,11 @@ async function odSearch(url) {
 
 
 async function odTrending() {
-  const r = await fetchText('https://www.crunchyroll.com/id/videos/new', { headers: { Accept: 'text/html,application/xhtml+xml' } });
+  let r = await fetchText('https://www.crunchyroll.com/id/videos/new', { headers: { Accept: 'text/html,application/xhtml+xml' } });
+  if (r.status >= 400) {
+    const alternate = await fetchText('https://r.jina.ai/https://www.crunchyroll.com/id/videos/new', { skipCache: true });
+    if (alternate.status < 400) r = alternate;
+  }
   if (r.status >= 400) throw new Error(`Crunchyroll ${r.status}`);
   const titles = extractCrunchyTitles(r.text);
   const results = await Promise.all(titles.map(async (title) => {
