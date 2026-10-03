@@ -1,0 +1,149 @@
+// Cloudflare Worker backend — same API surface as server/index.mjs (Express) but Workers-native.
+// Serves the OtakuDesu source routes + media proxy; static assets (dist/) via [assets] binding.
+// Reuses the pure parsers from otakudesu.mjs (no Node APIs — atob/URLSearchParams are Workers globals).
+
+import { parseOdSearch, parseOdHome, parseOdSeries, parseOdEpisode, parseOdSeriesFromEpisode, OD_BASE } from './server/otakudesu.mjs';
+
+const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36';
+const ALLOWED_HOSTS = /^(s\d+\.kotakanimeid\.link|cdn\d*\.kotakanimeid\.link|s13\.nontonanimeid\.boats|i0\.wp\.com|cdn\.odcloud\.net|desustream\.net)$/;
+
+// ---------- tiny fetch + cache (per-isolate) ----------
+const cache = new Map();
+const TTL = 5 * 60 * 1000;
+async function fetchText(url, opts = {}) {
+  const key = url + (opts.method === 'POST' ? String(opts.body || '') : '');
+  const hit = !opts.skipCache && cache.get(key);
+  if (hit && Date.now() - hit.t < TTL) return hit.data;
+  const headers = { 'User-Agent': UA, 'Accept-Language': 'id-ID,id;q=0.9,en;q=0.8', ...opts.headers };
+  if (opts.body && !opts.headers?.['Content-Type']) headers['Content-Type'] = 'application/x-www-form-urlencoded; charset=UTF-8';
+  // ponytail: 3 tries on 503, no proxy (Workers egress IPs are CF's own — proxy pointless here)
+  let res;
+  for (let i = 1; ; i++) {
+    res = await fetch(url, { method: opts.method || 'GET', headers, body: opts.body, redirect: 'manual' });
+    if (res.status !== 503 || i >= 3) break;
+    await new Promise((r) => setTimeout(r, 800 * i));
+  }
+  const text = await res.text();
+  const out = { status: res.status, text, headers: Object.fromEntries(res.headers) };
+  if (!opts.skipCache && res.status < 400) cache.set(key, { t: Date.now(), data: out });
+  return out;
+}
+
+const json = (data, status = 200) => new Response(JSON.stringify(data), { status, headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' } });
+const match1 = (s, re) => { const m = s.match(re); return m ? m[1] : ''; };
+
+// ---------- otakudesu routes ----------
+const odHeaders = () => ({ Referer: `${OD_BASE}/`, 'Sec-Fetch-Dest': 'document', 'Sec-Fetch-Mode': 'navigate' });
+async function odGet(url) {
+  const r = await fetchText(url, { headers: odHeaders() });
+  if (r.status >= 400) throw new Error(`otakudesu ${r.status} for ${url}`);
+  return r.text;
+}
+
+async function odHome(url) {
+  const page = parseInt(url.searchParams.get('page') || '1', 10);
+  const html = await odGet(page > 1 ? `${OD_BASE}/ongoing-anime/page/${page}/` : `${OD_BASE}/`);
+  const cards = parseOdHome(html);
+  if (!cards.length) throw new Error('empty catalog');
+  return json({ cards, page, hasNext: cards.length >= 12 });
+}
+
+async function odSearch(url) {
+  const q = (url.searchParams.get('q') || '').trim();
+  if (!q) return json({ cards: [] });
+  const html = await odGet(`${OD_BASE}/?s=${encodeURIComponent(q)}`);
+  const cards = parseOdSearch(html);
+  // episode-only results: resolve the first hit to its series card
+  if (cards.length && cards[0].isEpisodeHit) {
+    const epHtml = await odGet(cards[0].url);
+    const seriesUrl = parseOdSeriesFromEpisode(epHtml);
+    if (seriesUrl) {
+      const slug = seriesUrl.match(/\/anime\/([^/]+)\/?/)?.[1] || '';
+      const s = parseOdSeries(await odGet(seriesUrl), slug);
+      return json({ cards: [{ id: slug, slug, title: s.title, url: seriesUrl, poster: s.poster, episodeBadge: '', totalEpisodes: s.totalEpisodes }] });
+    }
+    return json({ cards: [] });
+  }
+  return json({ cards });
+}
+
+async function odAnime(slug) {
+  const html = await odGet(`${OD_BASE}/anime/${encodeURIComponent(slug)}/`);
+  const series = parseOdSeries(html, slug);
+  if (!series.title || !series.episodes.length) throw new Error('parse failed');
+  return json(series);
+}
+
+async function odWatch(slug, url) {
+  const epUrl = url.searchParams.get('url') || '';
+  if (!/^https:\/\/otakudesu\.blog\/episode\//.test(epUrl)) return json({ error: 'bad episode url' }, 400);
+  const html = await odGet(epUrl);
+  const data = await parseOdEpisode(fetchText, epUrl, html);
+  if (!data.streams.length && !data.downloads.length) return json({ error: 'no streams', code: 'no_streams', url: epUrl }, 502);
+  return json(data);
+}
+
+// ---------- media proxy ----------
+function proxyUrl(u, base) {
+  return `/api/proxy?url=${encodeURIComponent(new URL(u, base).toString())}`;
+}
+
+async function mediaProxy(url) {
+  const target = url.searchParams.get('url') || '';
+  let u;
+  try { u = new URL(target); } catch { return new Response('bad url', { status: 400 }); }
+  if (!/^https?:$/.test(u.protocol) || !ALLOWED_HOSTS.test(u.hostname)) return new Response('host not allowed', { status: 403 });
+  const headers = { 'User-Agent': UA, Accept: '*/*' };
+  if (/^s\d+\.kotakanimeid\.link$/.test(u.hostname)) headers.Referer = 'https://s13.nontonanimeid.boats/';
+  let upstream;
+  for (let i = 1; ; i++) {
+    try { upstream = await fetch(target, { headers, redirect: 'follow' }); break; }
+    catch (e) {
+      if (i >= 3) return new Response('proxy failed', { status: 502 });
+      await new Promise((r) => setTimeout(r, 800 * i));
+    }
+  }
+  const ct = upstream.headers.get('content-type') || '';
+  const passthrough = { 'Content-Type': ct, 'Accept-Ranges': upstream.headers.get('accept-ranges') || 'bytes', 'Cache-Control': upstream.headers.get('cache-control') || 'no-store', 'Access-Control-Allow-Origin': '*' };
+  if (upstream.headers.get('content-range')) passthrough['Content-Range'] = upstream.headers.get('content-range');
+  if (upstream.headers.get('content-length')) passthrough['Content-Length'] = upstream.headers.get('content-length');
+
+  if (/mpegurl|m3u8/i.test(ct)) {
+    const body = (await upstream.text())
+      .split('\n')
+      .map((line) => {
+        const t = line.trim();
+        if (!t || t.startsWith('#EXT-X-KEY')) return t ? line.replace(/URI="(.*?)"/, (_s, uri) => `URI="${proxyUrl(uri, u)}"`) : line;
+        if (t.startsWith('#')) return line;
+        return proxyUrl(t, u);
+      })
+      .join('\n');
+    return new Response(body, { status: upstream.status, headers: passthrough });
+  }
+  return new Response(upstream.body, { status: upstream.status, headers: passthrough });
+}
+
+// ---------- router ----------
+async function handleApi(req, url) {
+  const path = url.pathname;
+  try {
+    if (path === '/api/od/home') return await odHome(url);
+    if (path === '/api/od/search') return await odSearch(url);
+    const odAnimeM = path.match(/^\/api\/od\/anime\/([^/]+)$/);
+    if (odAnimeM) return await odAnime(decodeURIComponent(odAnimeM[1]));
+    const odWatchM = path.match(/^\/api\/od\/watch\/([^/]+)$/);
+    if (odWatchM) return await odWatch(odWatchM[1], url);
+    if (path === '/api/proxy') return await mediaProxy(url);
+    return json({ error: `unknown api route: ${path}` }, 404);
+  } catch (e) {
+    return json({ error: String(e.message || e) }, 502);
+  }
+}
+
+export default {
+  async fetch(req, env) {
+    const url = new URL(req.url);
+    if (url.pathname.startsWith('/api/')) return handleApi(req, url);
+    return env.ASSETS.fetch(req);
+  },
+};

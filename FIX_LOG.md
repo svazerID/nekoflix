@@ -1,5 +1,18 @@
 # FIX_LOG — Cloudflare deploy
 
+## Production placeholder — AKAR MASALAH (Oktober 2026)
+
+**Gejala:** deploy ke Workers/Pages berulang kali sukses, tapi situs selalu placeholder.
+
+**Akar:** `wrangler.toml` tanpa `main` + `[assets]` tanpa binding = Worker murni file-server
+static. Backend Express (`server/index.mjs`) tidak pernah ikut terdeploy, semua `/api/*`
+balik `index.html` (SPA fallback) → frontend hidup, data placeholder. Bukan masalah build.
+
+**Fix:** port backend ke Workers-native `worker.mjs` (sama API-nya: `/api/od/*` + `/api/proxy`),
+`wrangler.toml` pakai `main = "worker.mjs"` + `binding = "ASSETS"`. Route `/api/*` ditangani
+Worker, sisanya assets. Node-backend (`server/index.mjs`) tetap ada untuk dev/VPS.
+Tes: `node server/worker-selftest.mjs` (siklus penuh katalog→watch→proxy hijau).
+
 ## Sumber data (Oktober 2026)
 
 **OtakuDesu (otakudesu.blog) ditambahkan sebagai sumber utama** — `server/otakudesu.mjs`,

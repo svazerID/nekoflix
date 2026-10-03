@@ -1,8 +1,9 @@
 name = "nekoflix"
 compatibility_date = "2024-09-23"
+main = "worker.mjs"
 
-# Static Vite build served as a Worker with assets.
-# Deploy: npm run build && npx wrangler deploy
+# Worker handles /api/* (OtakuDesu backend + media proxy); everything else serves the Vite build.
 [assets]
 directory = "./dist"
+binding = "ASSETS"
 not_found_handling = "single-page-application"
