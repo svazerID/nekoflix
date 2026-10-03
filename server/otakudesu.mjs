@@ -175,13 +175,37 @@ export async function resolveOdMirror(fetchText, mirror, referer) {
     const iframeHtml = atob(match1(r.text, /"data":"([A-Za-z0-9+/=]+)"/));
     const embedUrl = match1(iframeHtml, /src="([^"]+)"/);
     if (!embedUrl) return none;
+    const ref = `${OD_BASE}/`;
 
-    // embed page: desustream hosts put the mp4 in `const videoURL = "..."` (odcdn/odstream)
-    const e = await fetchText(embedUrl, { headers: { Referer: `${OD_BASE}/` } });
-    const direct = match1(e.text, /const\s+videoURL\s*=\s*"([^"]+)"/)
-      || match1(e.text, /"file"\s*:\s*"([^"]+)"/)
-      || match1(e.text, /https:\/\/[^"'\s]+\.(?:mp4|m3u8)/);
-    return { embedUrl, directUrl: direct || '' };
+    // 1) desustream (odcdn/odstream): mp4 in `const videoURL = "..."`
+    if (/desustream\.net/.test(embedUrl)) {
+      const e = await fetchText(embedUrl, { headers: { Referer: ref } });
+      const direct = match1(e.text, /const\s+videoURL\s*=\s*"([^"]+)"/)
+        || match1(e.text, /"file"\s*:\s*"([^"]+)"/)
+        || match1(e.text, /https:\/\/[^"'\s]+\.(?:mp4|m3u8)/);
+      return { embedUrl, directUrl: direct || '' };
+    }
+
+    // 2) upbolt/filedon-style hosts: POST /dl (op=embed) -> jwplayer sources (HLS)
+    const em = embedUrl.match(/^https:\/\/(upbolt\.[a-z]+|filedon\.co)\/e\/([a-z0-9]+)/i);
+    if (em) {
+      const host = em[1], code = em[2];
+      const dl = await fetchText(`https://${host}/dl`, {
+        method: 'POST', skipCache: true,
+        body: new URLSearchParams({ op: 'embed', file_code: code, auto: '1', referer: '' }).toString(),
+        headers: { Referer: embedUrl },
+      });
+      const direct = match1(dl.text, /sources:\s*\[\{file:"([^"]+)"/)
+        || match1(dl.text, /"file"\s*:\s*"([^"]+)"/);
+      return { embedUrl, directUrl: direct || '' };
+    }
+
+    // 3) anything else: try a plain GET for an mp4/m3u8 in the embed page
+    try {
+      const e = await fetchText(embedUrl, { headers: { Referer: ref } });
+      const direct = match1(e.text, /https:\/\/[^"'\s]+\.(?:mp4|m3u8)/);
+      return { embedUrl, directUrl: direct || '' };
+    } catch { return { embedUrl, directUrl: '' }; }
   } catch { return none; }
 }
 
