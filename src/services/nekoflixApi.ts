@@ -7,7 +7,7 @@ const CACHE_KEY = 'nekoflix_live_animes_v1';
 const KNOWN_GENRE_MAP: Record<string, string> = {
   Action: 'Aksi', Adventure: 'Petualangan', Comedy: 'Komedi', Drama: 'Drama',
   Fantasy: 'Fantasi', Mystery: 'Misteri', Romance: 'Romansa', 'Slice of Life': 'Slice of Life',
-  Supernatural: 'Supernatural', Horror: 'Horor', Sci-Fi: 'Sci-Fi', Sports: 'Olahraga',
+  Supernatural: 'Supernatural', Horror: 'Horor', 'Sci-Fi': 'Sci-Fi', Sports: 'Olahraga',
 };
 
 async function apiGet<T>(path: string): Promise<T> {
