@@ -1,0 +1,8 @@
+name = "nekoflix-anime-streaming"
+compatibility_date = "2024-09-23"
+pages_build_output_dir = "dist"
+
+# Konfigurasi Cloudflare Pages
+# Untuk deploy jalankan:
+# 1. npm run build
+# 2. npx wrangler pages deploy dist

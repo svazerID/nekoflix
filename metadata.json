@@ -1,0 +1,6 @@
+{
+  "name": "NekoFlix Anime Streaming",
+  "description": "Platform streaming anime bergaya UI Netflix dengan penjelajahan katalog, pencarian instan, video player interaktif, subtitle multi-bahasa, dan pengelolaan watchlist.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
