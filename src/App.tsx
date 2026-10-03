@@ -7,6 +7,7 @@ import { AnimeRow } from './components/AnimeRow';
 import { AnimeDetailPage } from './components/AnimeDetailPage';
 import { VideoPlayerPage } from './components/VideoPlayerPage';
 import { SearchAndBrowse } from './components/SearchAndBrowse';
+import { SchedulePage } from './components/SchedulePage';
 import { WatchlistPage } from './components/WatchlistPage';
 import { CloudflareDeployModal } from './components/CloudflareDeployModal';
 import { AddAnimeModal } from './components/AddAnimeModal';
@@ -179,6 +180,7 @@ export default function App() {
     if (parts[0] === 'popular') return { type: 'popular' };
     if (parts[0] === 'watchlist') return { type: 'watchlist' };
     if (parts[0] === 'browse') return { type: 'browse' };
+    if (parts[0] === 'jadwal') return { type: 'jadwal' };
     return { type: 'home' };
   }, [currentHash]);
 
@@ -235,6 +237,7 @@ export default function App() {
     if (route.type === 'popular') return 'popular';
     if (route.type === 'watchlist') return 'watchlist';
     if (route.type === 'browse') return 'browse';
+    if (route.type === 'jadwal') return 'jadwal';
     return 'home';
   }, [route.type]);
 
@@ -524,6 +527,18 @@ export default function App() {
             animes={animes}
             searchQuery={searchQuery}
             setSearchQuery={setSearchQuery}
+            onPlay={handlePlayAnime}
+            onOpenDetails={handleOpenDetails}
+            watchlist={watchlist}
+            onToggleWatchlist={handleToggleWatchlist}
+            favorites={favorites}
+            onToggleFavorite={handleToggleFavorite}
+          />
+        )}
+
+        {/* Release Schedule Route (#/jadwal) */}
+        {route.type === 'jadwal' && (
+          <SchedulePage
             onPlay={handlePlayAnime}
             onOpenDetails={handleOpenDetails}
             watchlist={watchlist}

@@ -1,5 +1,6 @@
 // Live catalog from the NekoFlix scrape backend (server/index.mjs). sessionStorage cache per session.
 import { Anime, Episode } from '../types/anime';
+import { GENRE_MAP } from '../components/SearchAndBrowse';
 
 const API = '/api';
 const CACHE_KEY = 'nekoflix_live_animes_v1';
@@ -36,7 +37,10 @@ function mapSeries(raw: any): Anime {
     description: raw.synopsis || 'Sinopsis belum tersedia.',
     posterUrl: raw.poster || '',
     bannerUrl: raw.poster || '',
-    genres: (raw.genres || []).map((g: string) => KNOWN_GENRE_MAP[g] || g),
+    genres: (raw.genres || []).map((g: string) => {
+      const slug = g.toLowerCase().replace(/\s+/g, '-');
+      return GENRE_MAP[slug] || KNOWN_GENRE_MAP[g] || g;
+    }),
     rating: parseFloat(raw.rating) || 7.5,
     scoreCount: 1200,
     year,
@@ -88,6 +92,11 @@ export const nekoflixApi = {
     if (!animes.length) throw new Error('katalog kosong');
     try { sessionStorage.setItem(CACHE_KEY, JSON.stringify(animes)); } catch {}
     return animes;
+  },
+
+  async getAnime(slug: string): Promise<Anime> {
+    const raw = await apiGet<any>(`/od/anime/${slug}`);
+    return mapSeries(raw);
   },
 
   async searchRemote(q: string): Promise<Anime[]> {

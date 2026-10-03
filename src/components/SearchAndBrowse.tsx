@@ -16,18 +16,20 @@ interface SearchAndBrowseProps {
   onToggleFavorite: (id: string) => void;
 }
 
-const GENRES = [
-  'Semua',
-  'Aksi',
-  'Fantasi',
-  'Supernatural',
-  'Sci-Fi',
-  'Komedi',
-  'Drama',
-  'Petualangan',
-  'Slice of Life',
-  'Misteri',
-];
+// Genre OtakuDesu (otakudesu.blog/genre-list) — key = slug Inggris, value = label ID
+export const GENRE_MAP: Record<string, string> = {
+  action: 'Aksi', adventure: 'Petualangan', comedy: 'Komedi', drama: 'Drama',
+  fantasy: 'Fantasi', mystery: 'Misteri', romance: 'Romansa', 'slice-of-life': 'Slice of Life',
+  supernatural: 'Supernatural', horror: 'Horor', 'sci-fi': 'Sci-Fi', sports: 'Olahraga',
+  ecchi: 'Ecchi', game: 'Game', harem: 'Harem', historical: 'Historis', josei: 'Josei',
+  magic: 'Sihir', 'martial-arts': 'Beladiri', mecha: 'Mecha', military: 'Militer',
+  music: 'Musik', parody: 'Parodi', police: 'Polisi', psychological: 'Psikologis',
+  samurai: 'Samurai', school: 'Sekolah', seinen: 'Seinen', shoujo: 'Shoujo',
+  'shoujo-ai': 'Shoujo Ai', shounen: 'Shounen', space: 'Luar Angkasa',
+  demons: 'Iblis', 'super-power': 'Super Power', thriller: 'Thriller', vampire: 'Vampir',
+};
+
+const GENRES = ['Semua', ...Object.values(GENRE_MAP)];
 
 export const SearchAndBrowse: React.FC<SearchAndBrowseProps> = ({
   animes,

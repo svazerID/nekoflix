@@ -46,6 +46,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     { id: 'movies', label: 'Film & Spesial' },
     { id: 'popular', label: 'Populer & Baru' },
     { id: 'watchlist', label: `Daftar Saya ${watchlistCount > 0 ? `(${watchlistCount})` : ''}` },
+    { id: 'jadwal', label: 'Jadwal Rilis' },
     { id: 'browse', label: 'Jelajahi Genre' },
   ];
 

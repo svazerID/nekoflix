@@ -83,6 +83,22 @@ async function odWatch(slug, url) {
   return json(data);
 }
 
+// weekly release schedule (jadwal-rilis page: per-day <ul> of ongoing anime)
+async function odSchedule() {
+  const html = await odGet(`${OD_BASE}/jadwal-rilis/`);
+  const days = [];
+  for (const m of html.matchAll(/<h2>(Senin|Selasa|Rabu|Kamis|Jumat|Sabtu|Minggu|Random)<\/h2>\s*<ul>([\s\S]*?)<\/ul>/g)) {
+    const items = [];
+    for (const a of m[2].matchAll(/href="(https:\/\/otakudesu\.blog\/anime\/[^"]+)"[^>]*>([^<]+)<\/a>/g)) {
+      const slug = a[1].match(/\/anime\/([^/]+)\/?/)?.[1] || '';
+      items.push({ slug, title: a[2].trim(), url: a[1] });
+    }
+    days.push({ day: m[1], items });
+  }
+  if (!days.length) throw new Error('parse failed');
+  return json({ days });
+}
+
 // ---------- media proxy ----------
 function proxyUrl(u, base) {
   return `/api/proxy?url=${encodeURIComponent(new URL(u, base).toString())}`;
@@ -134,6 +150,7 @@ async function handleApi(req, url) {
   try {
     if (path === '/api/od/home') return await odHome(url);
     if (path === '/api/od/search') return await odSearch(url);
+    if (path === '/api/od/schedule') return await odSchedule();
     const odAnimeM = path.match(/^\/api\/od\/anime\/([^/]+)$/);
     if (odAnimeM) return await odAnime(decodeURIComponent(odAnimeM[1]));
     const odWatchM = path.match(/^\/api\/od\/watch\/([^/]+)$/);
