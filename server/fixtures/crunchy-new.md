@@ -1,3 +1,92 @@
+Title: Koleksi Anime Terbesar di Dunia - Crunchyroll
+
+URL Source: https://www.crunchyroll.com/id/videos/new
+
+Published Time: Tue, 15 Sep 2026 08:58:00 GMT
+
+Markdown Content:
+[](https://www.crunchyroll.com/id/discover)
+
+[Baru](https://www.crunchyroll.com/id/videos/new)[Populer](https://www.crunchyroll.com/id/videos/popular)[Simulcast](https://www.crunchyroll.com/id/simulcast)
+
+Kategori
+
+*   [Populer](https://www.crunchyroll.com/id/videos/popular)
+*   [Baru](https://www.crunchyroll.com/id/videos/new)
+*   [Telusuri Semua (A-Z)](https://www.crunchyroll.com/id/videos/alphabetical)
+*   [Musim Simulcast](https://www.crunchyroll.com/id/simulcasts/seasons/fall-2026)
+*   [Kalender Rilis](https://www.crunchyroll.com/simulcastcalendar)
+*   [Video Musik & Konser](https://www.crunchyroll.com/id/music)
+
+Genre
+*   [Aksi](https://www.crunchyroll.com/id/videos/action)
+*   [Petualangan](https://www.crunchyroll.com/id/videos/adventure)
+*   [Komedi](https://www.crunchyroll.com/id/videos/comedy)
+*   [Drama](https://www.crunchyroll.com/id/videos/drama)
+*   [Fantasi](https://www.crunchyroll.com/id/videos/fantasy)
+*   [Musik](https://www.crunchyroll.com/id/videos/music)
+*   [Romansa](https://www.crunchyroll.com/id/videos/romance)
+*   [Fiksi Ilmiah](https://www.crunchyroll.com/id/videos/sci-fi)
+*   [Seinen](https://www.crunchyroll.com/id/videos/seinen)
+*   [Shoujo](https://www.crunchyroll.com/id/videos/shojo)
+*   [Shounen](https://www.crunchyroll.com/id/videos/shonen)
+*   [Penggalan kehidupan](https://www.crunchyroll.com/id/videos/slice-of-life)
+*   [Olahraga](https://www.crunchyroll.com/id/videos/sports)
+*   [Supernatural](https://www.crunchyroll.com/id/videos/supernatural)
+*   [Thriller](https://www.crunchyroll.com/id/videos/thriller)
+
+*   [Baru](https://www.crunchyroll.com/id/videos/new)
+*   [Populer](https://www.crunchyroll.com/id/videos/popular)
+*   [Telusuri Semua (A-Z)](https://www.crunchyroll.com/id/videos/alphabetical)
+*   [Musim Simulcast](https://www.crunchyroll.com/id/simulcasts/seasons/fall-2026)
+*   [Kalender Rilis](https://www.crunchyroll.com/simulcastcalendar)
+*   Kategori
+    *   [Aksi](https://www.crunchyroll.com/id/videos/action)
+    *   [Petualangan](https://www.crunchyroll.com/id/videos/adventure)
+    *   [Komedi](https://www.crunchyroll.com/id/videos/comedy)
+    *   [Drama](https://www.crunchyroll.com/id/videos/drama)
+    *   [Fantasi](https://www.crunchyroll.com/id/videos/fantasy)
+    *   [Musik](https://www.crunchyroll.com/id/videos/music)
+    *   [Romansa](https://www.crunchyroll.com/id/videos/romance)
+    *   [Fiksi Ilmiah](https://www.crunchyroll.com/id/videos/sci-fi)
+    *   [Seinen](https://www.crunchyroll.com/id/videos/seinen)
+    *   [Shoujo](https://www.crunchyroll.com/id/videos/shojo)
+    *   [Shounen](https://www.crunchyroll.com/id/videos/shonen)
+    *   [Penggalan kehidupan](https://www.crunchyroll.com/id/videos/slice-of-life)
+    *   [Olahraga](https://www.crunchyroll.com/id/videos/sports)
+    *   [Supernatural](https://www.crunchyroll.com/id/videos/supernatural)
+    *   [Thriller](https://www.crunchyroll.com/id/videos/thriller)
+
+*   [Manga](https://www.crunchyroll.com/manga)
+*   [Game](https://www.crunchyroll.com/id/games/index.html)
+*   [Toko](https://www.crunchyroll.com/store/?utm_source=web)
+*   Berita
+    *   [Semua Berita](https://www.crunchyroll.com/news)
+    *   [Penghargaan Anime](https://www.crunchyroll.com/animeawards)
+    *   [Acara & Pengalaman](https://www.crunchyrollexpo.com/)
+
+*   [Video Musik & Konser](https://www.crunchyroll.com/id/music)
+
+[Manga](https://www.crunchyroll.com/manga)[Game](https://www.crunchyroll.com/id/games/index.html)[Toko](https://www.crunchyroll.com/store/?utm_source=web)
+
+Berita
+
+*   [Semua Berita](https://www.crunchyroll.com/news)
+*   [Penghargaan Anime](https://www.crunchyroll.com/animeawards)
+*   [Acara & Pengalaman](https://www.crunchyrollexpo.com/)
+
+[Coba gratis Premium](https://www.crunchyroll.com/premium?referrer=newweb_organic_header&return_url=https%3A%2F%2Fwww.crunchyroll.com%2Fid%2Fvideos%2Fnew#plans)
+
+### [Uji Coba Gratis 7 Hari Akses Premium mencakup anime tanpa batas, tanpa iklan, dan episode baru segera setelah tayang di Jepang. Coba sekarang!](https://www.crunchyroll.com/premium?referrer=newweb_header_modal&return_url=https%3A%2F%2Fwww.crunchyroll.com%2Fid%2Fvideos%2Fnew#plans)
+
+[](https://www.crunchyroll.com/id/search)
+
+[](https://www.crunchyroll.com/id/watchlist)
+
+[Buat Akun Gabung gratis atau gabung Premium!](https://sso.crunchyroll.com/authorize?prompt=register&client_id=noaihdevm_6iyg0a8l0q&redirect_uri=https%3A%2F%2Fwww.crunchyroll.com%2Fcallback&response_type=cookie&state=%2Fvideos%2Fnew)[Masuk Sudah gabung Crunchyroll? Selamat datang kembali.](https://sso.crunchyroll.com/authorize?client_id=noaihdevm_6iyg0a8l0q&redirect_uri=https%3A%2F%2Fwww.crunchyroll.com%2Fcallback&response_type=cookie&state=%2Fvideos%2Fnew)[Kartu Hadiah Punya kartu hadiah? Tukarkan di sini.](https://www.crunchyroll.com/id/redeem)
+
+[Uji Coba Gratis 7 Hari](https://www.crunchyroll.com/premium?referrer=newweb_organic_acct_menu&return_url=https%3A%2F%2Fwww.crunchyroll.com%2Fid%2Fvideos%2Fnew#plans)
+
 ## Kami Telah Memperbarui Ketentuan Kami
 
 Kami telah memperbarui [Ketentuan Penggunaan](https://www.crunchyroll.com/tos) kami untuk menggunakan Crunchyroll. Silakan tinjau ketentuan terbaru kami. Dengan melanjutkan, kamu menyetujui ketentuan terbaru.
@@ -6,12 +95,12 @@ Lanjutkan
 
 # Anime Baru Ditambahkan
 
-* Terbaru Terbaru
-* Saring
+*   Terbaru Terbaru
+*   Saring
 
 ## 24 Jam Terakhir
 
-[](https://www.crunchyroll.com/id/series/GT00385867/magic-repo-man-dumped-by-my-party-ill-cash-in-with-a-cute-support-fairy-to-become-the-strongest)
+[![Image 1](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720,blur=50/display/keyart/T00385867-base_asset_2x3-en-US)![Image 2: Magic Repo Man: Dumped by My Party, I’ll Cash In With a Cute Support Fairy to Become the Strongest!](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/display/keyart/T00385867-base_asset_2x3-en-US)](https://www.crunchyroll.com/id/series/GT00385867/magic-repo-man-dumped-by-my-party-ill-cash-in-with-a-cute-support-fairy-to-become-the-strongest)
 
 ### [Magic Repo Man: Dumped by My Party, I’ll Cash In With a Cute Support Fairy to Become the Strongest!](https://www.crunchyroll.com/id/series/GT00385867/magic-repo-man-dumped-by-my-party-ill-cash-in-with-a-cute-support-fairy-to-become-the-strongest)
 
@@ -19,11 +108,11 @@ Lanjutkan
 
 Dengan Subtitle
 
-[](https://www.crunchyroll.com/id/series/GT00385867/magic-repo-man-dumped-by-my-party-ill-cash-in-with-a-cute-support-fairy-to-become-the-strongest) [](https://www.crunchyroll.com/id/series/GT00385867/magic-repo-man-dumped-by-my-party-ill-cash-in-with-a-cute-support-fairy-to-become-the-strongest)
+[![Image 3](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720,blur=50/display/keyart/T00385867-base_asset_2x3-en-US)![Image 4: Magic Repo Man: Dumped by My Party, I’ll Cash In With a Cute Support Fairy to Become the Strongest!](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/display/keyart/T00385867-base_asset_2x3-en-US)](https://www.crunchyroll.com/id/series/GT00385867/magic-repo-man-dumped-by-my-party-ill-cash-in-with-a-cute-support-fairy-to-become-the-strongest)[](https://www.crunchyroll.com/id/series/GT00385867/magic-repo-man-dumped-by-my-party-ill-cash-in-with-a-cute-support-fairy-to-become-the-strongest)
 
 ### [Magic Repo Man: Dumped by My Party, I’ll Cash In With a Cute Support Fairy to Become the Strongest!](https://www.crunchyroll.com/id/series/GT00385867/magic-repo-man-dumped-by-my-party-ill-cash-in-with-a-cute-support-fairy-to-become-the-strongest)
 
-4\.6
+4.6
 
 (561)
 
@@ -31,7 +120,7 @@ Dengan Subtitle
 
 In a world where magical Gifts determine your destiny, Lent’s rare ability lets him lend his magic points to others. He forms an adventuring party called the Skypiercers with his friends, helping them become powerful heroes, only to be later cast aside as dead weight. Furious, Lent awakens the true power of his Gift: Forced Collection, the power to repossess magic. His revenge starts now.
 
-[](https://www.crunchyroll.com/id/series/GT00378066/hanaori-san-still-wants-to-fight-in-the-next-life)
+[![Image 5](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720,blur=50/display/keyart/T00378066-base_asset_2x3-en-US)![Image 6: Hanaori-san Still Wants to Fight in the Next Life](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/display/keyart/T00378066-base_asset_2x3-en-US)](https://www.crunchyroll.com/id/series/GT00378066/hanaori-san-still-wants-to-fight-in-the-next-life)
 
 ### [Hanaori-san Still Wants to Fight in the Next Life](https://www.crunchyroll.com/id/series/GT00378066/hanaori-san-still-wants-to-fight-in-the-next-life)
 
@@ -39,11 +128,11 @@ In a world where magical Gifts determine your destiny, Lent’s rare ability let
 
 Sub | Dub
 
-[](https://www.crunchyroll.com/id/series/GT00378066/hanaori-san-still-wants-to-fight-in-the-next-life) [](https://www.crunchyroll.com/id/series/GT00378066/hanaori-san-still-wants-to-fight-in-the-next-life)
+[![Image 7](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720,blur=50/display/keyart/T00378066-base_asset_2x3-en-US)![Image 8: Hanaori-san Still Wants to Fight in the Next Life](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/display/keyart/T00378066-base_asset_2x3-en-US)](https://www.crunchyroll.com/id/series/GT00378066/hanaori-san-still-wants-to-fight-in-the-next-life)[](https://www.crunchyroll.com/id/series/GT00378066/hanaori-san-still-wants-to-fight-in-the-next-life)
 
 ### [Hanaori-san Still Wants to Fight in the Next Life](https://www.crunchyroll.com/id/series/GT00378066/hanaori-san-still-wants-to-fight-in-the-next-life)
 
-4\.6
+4.6
 
 (10.6k)
 
@@ -51,7 +140,7 @@ Sub | Dub
 
 Once the Demon King, now a shut-in NEET—Ryusei Narukami’s second life is anything but peaceful! When Meteor Hanaori, the Hero who once defeated him, suddenly returns as a normal high school girl, his world is thrown into chaos. Determined to change, Ryusei reenters society as a teacher and ends up teaching at her school! Their explosive reunion reignites the past—and sparks an unexpected love!
 
-[](https://www.crunchyroll.com/id/series/GT00378118/the-dukes-son-claims-he-wont-love-me-yet-showers-me-with-adoration)
+[![Image 9](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720,blur=50/display/keyart/T00378118-base_asset_2x3-en-US)![Image 10: The Duke's Son Claims He Won't Love Me, Yet Showers Me with Adoration](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/display/keyart/T00378118-base_asset_2x3-en-US)](https://www.crunchyroll.com/id/series/GT00378118/the-dukes-son-claims-he-wont-love-me-yet-showers-me-with-adoration)
 
 ### [The Duke's Son Claims He Won't Love Me, Yet Showers Me with Adoration](https://www.crunchyroll.com/id/series/GT00378118/the-dukes-son-claims-he-wont-love-me-yet-showers-me-with-adoration)
 
@@ -59,11 +148,11 @@ Once the Demon King, now a shut-in NEET—Ryusei Narukami’s second life is any
 
 Sub | Dub
 
-[](https://www.crunchyroll.com/id/series/GT00378118/the-dukes-son-claims-he-wont-love-me-yet-showers-me-with-adoration) [](https://www.crunchyroll.com/id/series/GT00378118/the-dukes-son-claims-he-wont-love-me-yet-showers-me-with-adoration)
+[![Image 11](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720,blur=50/display/keyart/T00378118-base_asset_2x3-en-US)![Image 12: The Duke's Son Claims He Won't Love Me, Yet Showers Me with Adoration](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/display/keyart/T00378118-base_asset_2x3-en-US)](https://www.crunchyroll.com/id/series/GT00378118/the-dukes-son-claims-he-wont-love-me-yet-showers-me-with-adoration)[](https://www.crunchyroll.com/id/series/GT00378118/the-dukes-son-claims-he-wont-love-me-yet-showers-me-with-adoration)
 
 ### [The Duke's Son Claims He Won't Love Me, Yet Showers Me with Adoration](https://www.crunchyroll.com/id/series/GT00378118/the-dukes-son-claims-he-wont-love-me-yet-showers-me-with-adoration)
 
-4\.6
+4.6
 
 (10.9k)
 
@@ -71,7 +160,7 @@ Sub | Dub
 
 An arranged marriage. Two complete strangers. One adorable romance! When cheerful noblewoman Elsa is suddenly wed to the reserved duke-to-be Julius, neither expects their political marriage to spark something more. As awkward misunderstandings, sweet gestures, and growing feelings pile up, these newlyweds discover that falling in love might be the easiest—and hardest—part of married life.
 
-[](https://www.crunchyroll.com/id/series/GT00384003/magical-explorer)
+[![Image 13](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720,blur=50/display/keyart/T00384003-base_asset_2x3-en-US)![Image 14: Magical Explorer](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/display/keyart/T00384003-base_asset_2x3-en-US)](https://www.crunchyroll.com/id/series/GT00384003/magical-explorer)
 
 ### [Magical Explorer](https://www.crunchyroll.com/id/series/GT00384003/magical-explorer)
 
@@ -79,11 +168,11 @@ An arranged marriage. Two complete strangers. One adorable romance! When cheerfu
 
 Sub | Dub
 
-[](https://www.crunchyroll.com/id/series/GT00384003/magical-explorer) [](https://www.crunchyroll.com/id/series/GT00384003/magical-explorer)
+[![Image 15](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720,blur=50/display/keyart/T00384003-base_asset_2x3-en-US)![Image 16: Magical Explorer](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/display/keyart/T00384003-base_asset_2x3-en-US)](https://www.crunchyroll.com/id/series/GT00384003/magical-explorer)[](https://www.crunchyroll.com/id/series/GT00384003/magical-explorer)
 
 ### [Magical Explorer](https://www.crunchyroll.com/id/series/GT00384003/magical-explorer)
 
-4\.7
+4.7
 
 (849)
 
@@ -91,7 +180,7 @@ Sub | Dub
 
 Reborn in his favorite bishojo game, Kousuke gets the worst role possible: the forgettable sidekick. But armed with his knowledge of the game and this world’s largest mana pool, he might even surpass the hero! Now Kousuke must rewrite his fate and battle his way toward the heroines’ happy endings!
 
-[](https://www.crunchyroll.com/id/series/GT00378078/jaadugar-a-witch-in-mongolia)
+[![Image 17](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720,blur=50/display/keyart/T00378078-base_asset_2x3-en-US)![Image 18: Jaadugar: A Witch in Mongolia](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/display/keyart/T00378078-base_asset_2x3-en-US)](https://www.crunchyroll.com/id/series/GT00378078/jaadugar-a-witch-in-mongolia)
 
 ### [Jaadugar: A Witch in Mongolia](https://www.crunchyroll.com/id/series/GT00378078/jaadugar-a-witch-in-mongolia)
 
@@ -99,11 +188,11 @@ Reborn in his favorite bishojo game, Kousuke gets the worst role possible: the f
 
 Sub | Dub
 
-[](https://www.crunchyroll.com/id/series/GT00378078/jaadugar-a-witch-in-mongolia) [](https://www.crunchyroll.com/id/series/GT00378078/jaadugar-a-witch-in-mongolia)
+[![Image 19](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720,blur=50/display/keyart/T00378078-base_asset_2x3-en-US)![Image 20: Jaadugar: A Witch in Mongolia](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/display/keyart/T00378078-base_asset_2x3-en-US)](https://www.crunchyroll.com/id/series/GT00378078/jaadugar-a-witch-in-mongolia)[](https://www.crunchyroll.com/id/series/GT00378078/jaadugar-a-witch-in-mongolia)
 
 ### [Jaadugar: A Witch in Mongolia](https://www.crunchyroll.com/id/series/GT00378078/jaadugar-a-witch-in-mongolia)
 
-4\.5
+4.5
 
 (8.4k)
 
@@ -111,7 +200,7 @@ Sub | Dub
 
 After losing her mother and her homeland, Sitara’s despair transforms into determination with the power of knowledge. New possibilities unfold when a family of scholars takes her in, deepening her education. Meanwhile, Genghis Khan’s Mongol Empire conquers nation after nation, nearing Sitara’s new home. After the Fourth Prince of the empire takes her captive, a flame of revenge is ignited.
 
-[](https://www.crunchyroll.com/id/series/GT00365619/vertex-force)
+[![Image 21](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720,blur=50/display/keyart/T00365619-base_asset_2x3-en-US)![Image 22: VERTEX FORCE](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/display/keyart/T00365619-base_asset_2x3-en-US)](https://www.crunchyroll.com/id/series/GT00365619/vertex-force)
 
 ### [VERTEX FORCE](https://www.crunchyroll.com/id/series/GT00365619/vertex-force)
 
@@ -119,11 +208,11 @@ After losing her mother and her homeland, Sitara’s despair transforms into det
 
 Dengan Subtitle
 
-[](https://www.crunchyroll.com/id/series/GT00365619/vertex-force) [](https://www.crunchyroll.com/id/series/GT00365619/vertex-force)
+[![Image 23](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720,blur=50/display/keyart/T00365619-base_asset_2x3-en-US)![Image 24: VERTEX FORCE](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/display/keyart/T00365619-base_asset_2x3-en-US)](https://www.crunchyroll.com/id/series/GT00365619/vertex-force)[](https://www.crunchyroll.com/id/series/GT00365619/vertex-force)
 
 ### [VERTEX FORCE](https://www.crunchyroll.com/id/series/GT00365619/vertex-force)
 
-3\.9
+3.9
 
 (234)
 
@@ -131,7 +220,7 @@ Dengan Subtitle
 
 Akira Todo has always lived in the shadow of his sister, Haruka, who secretly wields their father’s mysterious “Engine.” But when a mysterious enemy comes for his family, Akira is forced into a battle that threatens the entire world. He may have inherited none of his father’s power, but now he must find a way to fight back. Or risk losing everything he cares about.
 
-[](https://www.crunchyroll.com/id/series/GT00371630/daemons-of-the-shadow-realm)
+[![Image 25](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720,blur=50/display/keyart/T00371630-base_asset_2x3-en-US)![Image 26: Daemons of the Shadow Realm](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/display/keyart/T00371630-base_asset_2x3-en-US)](https://www.crunchyroll.com/id/series/GT00371630/daemons-of-the-shadow-realm)
 
 ### [Daemons of the Shadow Realm](https://www.crunchyroll.com/id/series/GT00371630/daemons-of-the-shadow-realm)
 
@@ -139,11 +228,11 @@ Akira Todo has always lived in the shadow of his sister, Haruka, who secretly wi
 
 Sub | Dub
 
-[](https://www.crunchyroll.com/id/series/GT00371630/daemons-of-the-shadow-realm) [](https://www.crunchyroll.com/id/series/GT00371630/daemons-of-the-shadow-realm)
+[![Image 27](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720,blur=50/display/keyart/T00371630-base_asset_2x3-en-US)![Image 28: Daemons of the Shadow Realm](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/display/keyart/T00371630-base_asset_2x3-en-US)](https://www.crunchyroll.com/id/series/GT00371630/daemons-of-the-shadow-realm)[](https://www.crunchyroll.com/id/series/GT00371630/daemons-of-the-shadow-realm)
 
 ### [Daemons of the Shadow Realm](https://www.crunchyroll.com/id/series/GT00371630/daemons-of-the-shadow-realm)
 
-4\.8
+4.8
 
 (71.1k)
 
@@ -151,19 +240,19 @@ Sub | Dub
 
 Yuru, a young hunter who lives in a small village deep in the mountains, hunts wild game and leads a humble life with Asa, his younger twin sister. Their peaceful lives are torn apart when a dragon’s roar echoes across the sky. What secrets lurk within their village? What fate awaits them? Enter a breathtaking mystical fantasy as exciting Daemon battles intertwine the mysterious and supernatural.
 
-[](https://www.crunchyroll.com/id/series/GT00383996/im-looking-for-a-zombie)
+[![Image 29](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720,blur=50/display/keyart/T00383996-base_asset_2x3-en-US)![Image 30: #I'm Looking for a Zombie](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/display/keyart/T00383996-base_asset_2x3-en-US)](https://www.crunchyroll.com/id/series/GT00383996/im-looking-for-a-zombie)
 
-### [\#I'm Looking for a Zombie](https://www.crunchyroll.com/id/series/GT00383996/im-looking-for-a-zombie)
+### [#I'm Looking for a Zombie](https://www.crunchyroll.com/id/series/GT00383996/im-looking-for-a-zombie)
 
 8 jam yang lalu
 
 Sub | Dub
 
-[](https://www.crunchyroll.com/id/series/GT00383996/im-looking-for-a-zombie) [](https://www.crunchyroll.com/id/series/GT00383996/im-looking-for-a-zombie)
+[![Image 31](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720,blur=50/display/keyart/T00383996-base_asset_2x3-en-US)![Image 32: #I'm Looking for a Zombie](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/display/keyart/T00383996-base_asset_2x3-en-US)](https://www.crunchyroll.com/id/series/GT00383996/im-looking-for-a-zombie)[](https://www.crunchyroll.com/id/series/GT00383996/im-looking-for-a-zombie)
 
-### [\#I'm Looking for a Zombie](https://www.crunchyroll.com/id/series/GT00383996/im-looking-for-a-zombie)
+### [#I'm Looking for a Zombie](https://www.crunchyroll.com/id/series/GT00383996/im-looking-for-a-zombie)
 
-4\.4
+4.4
 
 (365)
 
@@ -171,7 +260,7 @@ Sub | Dub
 
 It may be a ruined city ravaged by zombies, but to Aki and her friends, it’s amazing! Having grown up only hearing stories of the old world and the mysterious outbreak that wiped out humanity, she sets off with her childhood friends in search of her missing father. Things quickly become a fight for survival outside the safety of their small village, yet they’ve never felt more alive.
 
-[](https://www.crunchyroll.com/id/series/GRE50KV36/black-clover)
+[![Image 33](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720,blur=50/display/keyart/T00002115-base_asset_2x3-en-US)![Image 34: Black Clover](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/display/keyart/T00002115-base_asset_2x3-en-US)](https://www.crunchyroll.com/id/series/GRE50KV36/black-clover)
 
 ### [Black Clover](https://www.crunchyroll.com/id/series/GRE50KV36/black-clover)
 
@@ -179,11 +268,11 @@ It may be a ruined city ravaged by zombies, but to Aki and her friends, it’s a
 
 Sub | Dub
 
-[](https://www.crunchyroll.com/id/series/GRE50KV36/black-clover) [](https://www.crunchyroll.com/id/series/GRE50KV36/black-clover)
+[![Image 35](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720,blur=50/display/keyart/T00002115-base_asset_2x3-en-US)![Image 36: Black Clover](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/display/keyart/T00002115-base_asset_2x3-en-US)](https://www.crunchyroll.com/id/series/GRE50KV36/black-clover)[](https://www.crunchyroll.com/id/series/GRE50KV36/black-clover)
 
 ### [Black Clover](https://www.crunchyroll.com/id/series/GRE50KV36/black-clover)
 
-4\.8
+4.8
 
 (335.9k)
 
@@ -191,7 +280,7 @@ Sub | Dub
 
 Asta and Yuno are two orphans who want the same thing: to become the Wizard King. Locked in a friendly rivalry, they work hard towards their goal. While Yuno excels at magic, Asta has a problem uncommon in this world: he has no powers! But, on the day they receive their grimoires, they surprise everyone. To reach their goal, they’ll each find their own path to greatness—with or without magic.
 
-[](https://www.crunchyroll.com/id/series/GT00361955/a-wild-last-boss-appeared)
+[![Image 37](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720,blur=50/display/keyart/T00361955-base_asset_2x3-en-US)![Image 38: A Wild Last Boss Appeared!](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/display/keyart/T00361955-base_asset_2x3-en-US)](https://www.crunchyroll.com/id/series/GT00361955/a-wild-last-boss-appeared)
 
 ### [A Wild Last Boss Appeared!](https://www.crunchyroll.com/id/series/GT00361955/a-wild-last-boss-appeared)
 
@@ -199,11 +288,11 @@ Asta and Yuno are two orphans who want the same thing: to become the Wizard King
 
 Sub | Dub
 
-[](https://www.crunchyroll.com/id/series/GT00361955/a-wild-last-boss-appeared) [](https://www.crunchyroll.com/id/series/GT00361955/a-wild-last-boss-appeared)
+[![Image 39](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720,blur=50/display/keyart/T00361955-base_asset_2x3-en-US)![Image 40: A Wild Last Boss Appeared!](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/display/keyart/T00361955-base_asset_2x3-en-US)](https://www.crunchyroll.com/id/series/GT00361955/a-wild-last-boss-appeared)[](https://www.crunchyroll.com/id/series/GT00361955/a-wild-last-boss-appeared)
 
 ### [A Wild Last Boss Appeared!](https://www.crunchyroll.com/id/series/GT00361955/a-wild-last-boss-appeared)
 
-4\.7
+4.7
 
 (29.7k)
 
@@ -211,7 +300,7 @@ Sub | Dub
 
 An MMO gamer awakens as the Black-Winged Tyrant, Lufas Maphaahl, rising from her sealed fate—only to find this is very real. Her defeat 200 years ago unleashed monsters of death, and the legend is one of terror. Now, trapped in the body of history’s most feared conqueror, he must survive a world that wants her dead…and uncover why he’s here.
 
-[](https://www.crunchyroll.com/id/series/GT00377907/black-torch)
+[![Image 41](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720,blur=50/display/keyart/T00377907-base_asset_2x3-en-US)![Image 42: BLACK TORCH](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/display/keyart/T00377907-base_asset_2x3-en-US)](https://www.crunchyroll.com/id/series/GT00377907/black-torch)
 
 ### [BLACK TORCH](https://www.crunchyroll.com/id/series/GT00377907/black-torch)
 
@@ -219,11 +308,11 @@ An MMO gamer awakens as the Black-Winged Tyrant, Lufas Maphaahl, rising from her
 
 Sub | Dub
 
-[](https://www.crunchyroll.com/id/series/GT00377907/black-torch) [](https://www.crunchyroll.com/id/series/GT00377907/black-torch)
+[![Image 43](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720,blur=50/display/keyart/T00377907-base_asset_2x3-en-US)![Image 44: BLACK TORCH](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/display/keyart/T00377907-base_asset_2x3-en-US)](https://www.crunchyroll.com/id/series/GT00377907/black-torch)[](https://www.crunchyroll.com/id/series/GT00377907/black-torch)
 
 ### [BLACK TORCH](https://www.crunchyroll.com/id/series/GT00377907/black-torch)
 
-4\.6
+4.6
 
 (41.6k)
 
@@ -231,7 +320,7 @@ Sub | Dub
 
 Jiro Azuma is no average high schooler. A descendant of ninjas and trained in the ancient warrior art of the shinobi, Jiro is also able to talk with animals. After a mysterious encounter with an injured cat named Rago, Jiro discovers the feline is actually the legendary Black Star of Doom! Joined by the Bureau of Espionage, they fight off swarms of mononoke lying in wait to exploit Rago’s powers.
 
-[](https://www.crunchyroll.com/id/series/GT00384007/romelia-war-chronicle)
+[![Image 45](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720,blur=50/display/keyart/T00384007-base_asset_2x3-en-US)![Image 46: Romelia War Chronicle](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/display/keyart/T00384007-base_asset_2x3-en-US)](https://www.crunchyroll.com/id/series/GT00384007/romelia-war-chronicle)
 
 ### [Romelia War Chronicle](https://www.crunchyroll.com/id/series/GT00384007/romelia-war-chronicle)
 
@@ -239,11 +328,11 @@ Jiro Azuma is no average high schooler. A descendant of ninjas and trained in th
 
 Dengan Subtitle
 
-[](https://www.crunchyroll.com/id/series/GT00384007/romelia-war-chronicle) [](https://www.crunchyroll.com/id/series/GT00384007/romelia-war-chronicle)
+[![Image 47](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720,blur=50/display/keyart/T00384007-base_asset_2x3-en-US)![Image 48: Romelia War Chronicle](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/display/keyart/T00384007-base_asset_2x3-en-US)](https://www.crunchyroll.com/id/series/GT00384007/romelia-war-chronicle)[](https://www.crunchyroll.com/id/series/GT00384007/romelia-war-chronicle)
 
 ### [Romelia War Chronicle](https://www.crunchyroll.com/id/series/GT00384007/romelia-war-chronicle)
 
-4\.8
+4.8
 
 (1k)
 
@@ -251,7 +340,7 @@ Dengan Subtitle
 
 Victory over the Demon King should have been Romelia’s triumph. Instead, her fiance, Prince Henri, breaks off their engagement and sends her home in disgrace to a province in ruins. With no aid in sight, Romelia vows to raise an army, rebuild the ruined towns, and restore a struggling kingdom as new conflicts arise. The war may be over, but her story’s just begun.
 
-[](https://www.crunchyroll.com/id/series/GT00371633/a-tale-of-the-secret-saint)
+[![Image 49](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720,blur=50/display/keyart/T00371633-base_asset_2x3-en-US)![Image 50: A Tale of the Secret Saint](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/display/keyart/T00371633-base_asset_2x3-en-US)](https://www.crunchyroll.com/id/series/GT00371633/a-tale-of-the-secret-saint)
 
 ### [A Tale of the Secret Saint](https://www.crunchyroll.com/id/series/GT00371633/a-tale-of-the-secret-saint)
 
@@ -259,11 +348,11 @@ Victory over the Demon King should have been Romelia’s triumph. Instead, her f
 
 Dengan Subtitle
 
-[](https://www.crunchyroll.com/id/series/GT00371633/a-tale-of-the-secret-saint) [](https://www.crunchyroll.com/id/series/GT00371633/a-tale-of-the-secret-saint)
+[![Image 51](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720,blur=50/display/keyart/T00371633-base_asset_2x3-en-US)![Image 52: A Tale of the Secret Saint](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/display/keyart/T00371633-base_asset_2x3-en-US)](https://www.crunchyroll.com/id/series/GT00371633/a-tale-of-the-secret-saint)[](https://www.crunchyroll.com/id/series/GT00371633/a-tale-of-the-secret-saint)
 
 ### [A Tale of the Secret Saint](https://www.crunchyroll.com/id/series/GT00371633/a-tale-of-the-secret-saint)
 
-4\.8
+4.8
 
 (996)
 
@@ -271,7 +360,7 @@ Dengan Subtitle
 
 Fia always dreamed of being a great knight, despite her lack of talent as a swordswoman. Then, a brush with death in battle awakens memories of her past life as the legendary Saint who defeated the Demon King. Her powers return, but so do the enemies who killed her once before. Fia vows to conceal her true identity to survive. But how can a knight resist using her powers to help those in need?
 
-[](https://www.crunchyroll.com/id/series/G6JQVM3ER/detective-conan)
+[![Image 53](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720,blur=50/catalog/crunchyroll/e020049e32a1bbe61c7781c4f5d6aa70.jpg)![Image 54: Detective Conan](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/catalog/crunchyroll/e020049e32a1bbe61c7781c4f5d6aa70.jpg)](https://www.crunchyroll.com/id/series/G6JQVM3ER/detective-conan)
 
 ### [Detective Conan](https://www.crunchyroll.com/id/series/G6JQVM3ER/detective-conan)
 
@@ -279,11 +368,11 @@ Fia always dreamed of being a great knight, despite her lack of talent as a swor
 
 Dengan Subtitle
 
-[](https://www.crunchyroll.com/id/series/G6JQVM3ER/detective-conan) [](https://www.crunchyroll.com/id/series/G6JQVM3ER/detective-conan)
+[![Image 55](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720,blur=50/catalog/crunchyroll/e020049e32a1bbe61c7781c4f5d6aa70.jpg)![Image 56: Detective Conan](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/catalog/crunchyroll/e020049e32a1bbe61c7781c4f5d6aa70.jpg)](https://www.crunchyroll.com/id/series/G6JQVM3ER/detective-conan)[](https://www.crunchyroll.com/id/series/G6JQVM3ER/detective-conan)
 
 ### [Detective Conan](https://www.crunchyroll.com/id/series/G6JQVM3ER/detective-conan)
 
-4\.7
+4.7
 
 (12.4k)
 
@@ -291,7 +380,7 @@ Dengan Subtitle
 
 The son of a world famous mystery writer, Shinichi Kudo, has achieved his own notoriety by assisting the local police as a student detective. He has always been able to solve the most difficult of criminal cases using his wits and power of reason.
 
-[](https://www.crunchyroll.com/id/series/GG5H5XQ7D/kaiju-no-8)
+[![Image 57](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720,blur=50/display/keyart/T00263870-base_asset_2x3-en-US)![Image 58: Kaiju No. 8](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/display/keyart/T00263870-base_asset_2x3-en-US)](https://www.crunchyroll.com/id/series/GG5H5XQ7D/kaiju-no-8)
 
 ### [Kaiju No. 8](https://www.crunchyroll.com/id/series/GG5H5XQ7D/kaiju-no-8)
 
@@ -299,11 +388,11 @@ The son of a world famous mystery writer, Shinichi Kudo, has achieved his own no
 
 Sub | Dub
 
-[](https://www.crunchyroll.com/id/series/GG5H5XQ7D/kaiju-no-8) [](https://www.crunchyroll.com/id/series/GG5H5XQ7D/kaiju-no-8)
+[![Image 59](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720,blur=50/display/keyart/T00263870-base_asset_2x3-en-US)![Image 60: Kaiju No. 8](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/display/keyart/T00263870-base_asset_2x3-en-US)](https://www.crunchyroll.com/id/series/GG5H5XQ7D/kaiju-no-8)[](https://www.crunchyroll.com/id/series/GG5H5XQ7D/kaiju-no-8)
 
 ### [Kaiju No. 8](https://www.crunchyroll.com/id/series/GG5H5XQ7D/kaiju-no-8)
 
-4\.9
+4.9
 
 (368.9k)
 
@@ -311,7 +400,7 @@ Sub | Dub
 
 In a world plagued by creatures known as Kaiju, Kafka Hibino aspired to enlist in The Defense Force. He makes a promise to enlist with his childhood friend, Mina Ashiro. Soon, life takes them in separate ways. While employed cleaning up after Kaiju battles, Kafka meets Reno Ichikawa. Reno’s determination to join The Defense Force reawakens Kafka’s promise to join Mina and protect humanity.
 
-[](https://www.crunchyroll.com/id/series/G6793XKZY/ascendance-of-a-bookworm)
+[![Image 61](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720,blur=50/display/keyart/T00170475-base_asset_2x3-en-US)![Image 62: Ascendance of a Bookworm](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/display/keyart/T00170475-base_asset_2x3-en-US)](https://www.crunchyroll.com/id/series/G6793XKZY/ascendance-of-a-bookworm)
 
 ### [Ascendance of a Bookworm](https://www.crunchyroll.com/id/series/G6793XKZY/ascendance-of-a-bookworm)
 
@@ -319,11 +408,11 @@ In a world plagued by creatures known as Kaiju, Kafka Hibino aspired to enlist i
 
 Sub | Dub
 
-[](https://www.crunchyroll.com/id/series/G6793XKZY/ascendance-of-a-bookworm) [](https://www.crunchyroll.com/id/series/G6793XKZY/ascendance-of-a-bookworm)
+[![Image 63](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720,blur=50/display/keyart/T00170475-base_asset_2x3-en-US)![Image 64: Ascendance of a Bookworm](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/display/keyart/T00170475-base_asset_2x3-en-US)](https://www.crunchyroll.com/id/series/G6793XKZY/ascendance-of-a-bookworm)[](https://www.crunchyroll.com/id/series/G6793XKZY/ascendance-of-a-bookworm)
 
 ### [Ascendance of a Bookworm](https://www.crunchyroll.com/id/series/G6793XKZY/ascendance-of-a-bookworm)
 
-4\.8
+4.8
 
 (64.2k)
 
@@ -331,7 +420,7 @@ Sub | Dub
 
 Reborn in a world without books, a passionate bookworm decides to create her own.
 
-[](https://www.crunchyroll.com/id/series/GT00374493/rilakkuma)
+[![Image 65](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720,blur=50/display/keyart/T00374493-base_asset_2x3-en-US)![Image 66: RILAKKUMA](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/display/keyart/T00374493-base_asset_2x3-en-US)](https://www.crunchyroll.com/id/series/GT00374493/rilakkuma)
 
 ### [RILAKKUMA](https://www.crunchyroll.com/id/series/GT00374493/rilakkuma)
 
@@ -339,11 +428,11 @@ Reborn in a world without books, a passionate bookworm decides to create her own
 
 Sub | Dub
 
-[](https://www.crunchyroll.com/id/series/GT00374493/rilakkuma) [](https://www.crunchyroll.com/id/series/GT00374493/rilakkuma)
+[![Image 67](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720,blur=50/display/keyart/T00374493-base_asset_2x3-en-US)![Image 68: RILAKKUMA](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/display/keyart/T00374493-base_asset_2x3-en-US)](https://www.crunchyroll.com/id/series/GT00374493/rilakkuma)[](https://www.crunchyroll.com/id/series/GT00374493/rilakkuma)
 
 ### [RILAKKUMA](https://www.crunchyroll.com/id/series/GT00374493/rilakkuma)
 
-3\.9
+3.9
 
 (1.4k)
 
@@ -351,7 +440,7 @@ Sub | Dub
 
 Everyday life gets a cozy twist with the laid-back Rilakkuma. Gentle moments of friendship, change, and small joys unfold, turning ordinary moments into something quietly magical—one soft, comforting day at a time.
 
-[](https://www.crunchyroll.com/id/series/GT00383995/keroro)
+[![Image 69](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720,blur=50/display/keyart/T00383995-base_asset_2x3-en-US)![Image 70: KERORO☆](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/display/keyart/T00383995-base_asset_2x3-en-US)](https://www.crunchyroll.com/id/series/GT00383995/keroro)
 
 ### [KERORO☆](https://www.crunchyroll.com/id/series/GT00383995/keroro)
 
@@ -359,11 +448,11 @@ Everyday life gets a cozy twist with the laid-back Rilakkuma. Gentle moments of 
 
 Dengan Subtitle
 
-[](https://www.crunchyroll.com/id/series/GT00383995/keroro) [](https://www.crunchyroll.com/id/series/GT00383995/keroro)
+[![Image 71](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720,blur=50/display/keyart/T00383995-base_asset_2x3-en-US)![Image 72: KERORO☆](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/display/keyart/T00383995-base_asset_2x3-en-US)](https://www.crunchyroll.com/id/series/GT00383995/keroro)[](https://www.crunchyroll.com/id/series/GT00383995/keroro)
 
 ### [KERORO☆](https://www.crunchyroll.com/id/series/GT00383995/keroro)
 
-4\.2
+4.2
 
 (169)
 
@@ -373,17 +462,17 @@ Sergeant Keroro comes to conquer Earth, only to get captured and stuck living wi
 
 ## Minggu Lalu
 
-[](https://www.crunchyroll.com/id/series/G4PH0WJPQ/crunchyroll-presents-the-anime-effect)
+[![Image 73](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720,blur=50/display/keyart/T00334200-base_asset_2x3-en-US)![Image 74: Crunchyroll Presents: The Anime Effect](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/display/keyart/T00334200-base_asset_2x3-en-US)](https://www.crunchyroll.com/id/series/G4PH0WJPQ/crunchyroll-presents-the-anime-effect)
 
 ### [Crunchyroll Presents: The Anime Effect](https://www.crunchyroll.com/id/series/G4PH0WJPQ/crunchyroll-presents-the-anime-effect)
 
 1 hari yang lalu
 
-[](https://www.crunchyroll.com/id/series/G4PH0WJPQ/crunchyroll-presents-the-anime-effect) [](https://www.crunchyroll.com/id/series/G4PH0WJPQ/crunchyroll-presents-the-anime-effect)
+[![Image 75](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720,blur=50/display/keyart/T00334200-base_asset_2x3-en-US)![Image 76: Crunchyroll Presents: The Anime Effect](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/display/keyart/T00334200-base_asset_2x3-en-US)](https://www.crunchyroll.com/id/series/G4PH0WJPQ/crunchyroll-presents-the-anime-effect)[](https://www.crunchyroll.com/id/series/G4PH0WJPQ/crunchyroll-presents-the-anime-effect)
 
 ### [Crunchyroll Presents: The Anime Effect](https://www.crunchyroll.com/id/series/G4PH0WJPQ/crunchyroll-presents-the-anime-effect)
 
-1\.7
+1.7
 
 (4.6k)
 
@@ -391,7 +480,7 @@ Sergeant Keroro comes to conquer Earth, only to get captured and stuck living wi
 
 The Anime Effect is Crunchyroll’s award-winning weekly anime podcast, hosted by Nicholas Friedman, LeAlec Murray, and Leah President. Get the latest anime news, reviews, recommendations, interviews, and deep dives into how anime shapes gaming, music, sports, and pop culture. Discover what to watch, what fans are talking about, and what power anime holds.
 
-[](https://www.crunchyroll.com/id/series/GT00371926/please-excuse-my-younger-brothers)
+[![Image 77](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720,blur=50/display/keyart/T00371926-base_asset_2x3-en-US)![Image 78: Please Excuse My Younger Brothers](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/display/keyart/T00371926-base_asset_2x3-en-US)](https://www.crunchyroll.com/id/series/GT00371926/please-excuse-my-younger-brothers)
 
 ### [Please Excuse My Younger Brothers](https://www.crunchyroll.com/id/series/GT00371926/please-excuse-my-younger-brothers)
 
@@ -399,11 +488,11 @@ The Anime Effect is Crunchyroll’s award-winning weekly anime podcast, hosted b
 
 Dengan Subtitle
 
-[](https://www.crunchyroll.com/id/series/GT00371926/please-excuse-my-younger-brothers) [](https://www.crunchyroll.com/id/series/GT00371926/please-excuse-my-younger-brothers)
+[![Image 79](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720,blur=50/display/keyart/T00371926-base_asset_2x3-en-US)![Image 80: Please Excuse My Younger Brothers](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/display/keyart/T00371926-base_asset_2x3-en-US)](https://www.crunchyroll.com/id/series/GT00371926/please-excuse-my-younger-brothers)[](https://www.crunchyroll.com/id/series/GT00371926/please-excuse-my-younger-brothers)
 
 ### [Please Excuse My Younger Brothers](https://www.crunchyroll.com/id/series/GT00371926/please-excuse-my-younger-brothers)
 
-4\.7
+4.7
 
 (8k)
 
@@ -411,7 +500,7 @@ Dengan Subtitle
 
 High school sophomore Ito was excited for a new dad when her mom remarried, but she may have gained more than she bargained for when she found four younger stepbrothers waiting at home. There’s blunt but secretly caring Gen, calm Raku, reclusive Syu, and cheerful little Rui. Now, Ito must go from the quiet of being an only child to learning how to be the eldest sister of a lively household.
 
-[](https://www.crunchyroll.com/id/series/GQWH0M19X/the-elusive-samurai)
+[![Image 81](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720,blur=50/display/keyart/T00343169-base_asset_2x3-en-US)![Image 82: The Elusive Samurai](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/display/keyart/T00343169-base_asset_2x3-en-US)](https://www.crunchyroll.com/id/series/GQWH0M19X/the-elusive-samurai)
 
 ### [The Elusive Samurai](https://www.crunchyroll.com/id/series/GQWH0M19X/the-elusive-samurai)
 
@@ -419,11 +508,11 @@ High school sophomore Ito was excited for a new dad when her mom remarried, but 
 
 Sub | Dub
 
-[](https://www.crunchyroll.com/id/series/GQWH0M19X/the-elusive-samurai) [](https://www.crunchyroll.com/id/series/GQWH0M19X/the-elusive-samurai)
+[![Image 83](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720,blur=50/display/keyart/T00343169-base_asset_2x3-en-US)![Image 84: The Elusive Samurai](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/display/keyart/T00343169-base_asset_2x3-en-US)](https://www.crunchyroll.com/id/series/GQWH0M19X/the-elusive-samurai)[](https://www.crunchyroll.com/id/series/GQWH0M19X/the-elusive-samurai)
 
 ### [The Elusive Samurai](https://www.crunchyroll.com/id/series/GQWH0M19X/the-elusive-samurai)
 
-4\.8
+4.8
 
 (31.1k)
 
@@ -431,7 +520,7 @@ Sub | Dub
 
 In the year 1333, the Kamakura shogunate government comes crumbling down. A trusted vassal, Ashikaga Takauji, betrays the shogunate and organizes a rebellion. Hojo Tokiyuki, the rightful heir, escapes the massacre with a Shinto priest named Suwa Yorisige to Kamakura. On the run and fighting to stay alive, Tokiyuki sets in motion his plan to reclaim his birthright.
 
-[](https://www.crunchyroll.com/id/series/GP5HJ84D2/tougen-anki)
+[![Image 85](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720,blur=50/display/keyart/T00354838-base_asset_2x3-en-US)![Image 86: TOUGEN ANKI](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/display/keyart/T00354838-base_asset_2x3-en-US)](https://www.crunchyroll.com/id/series/GP5HJ84D2/tougen-anki)
 
 ### [TOUGEN ANKI](https://www.crunchyroll.com/id/series/GP5HJ84D2/tougen-anki)
 
@@ -439,11 +528,11 @@ In the year 1333, the Kamakura shogunate government comes crumbling down. A trus
 
 Sub | Dub
 
-[](https://www.crunchyroll.com/id/series/GP5HJ84D2/tougen-anki) [](https://www.crunchyroll.com/id/series/GP5HJ84D2/tougen-anki)
+[![Image 87](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720,blur=50/display/keyart/T00354838-base_asset_2x3-en-US)![Image 88: TOUGEN ANKI](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/display/keyart/T00354838-base_asset_2x3-en-US)](https://www.crunchyroll.com/id/series/GP5HJ84D2/tougen-anki)[](https://www.crunchyroll.com/id/series/GP5HJ84D2/tougen-anki)
 
 ### [TOUGEN ANKI](https://www.crunchyroll.com/id/series/GP5HJ84D2/tougen-anki)
 
-4\.5
+4.5
 
 (53.5k)
 
@@ -451,7 +540,7 @@ Sub | Dub
 
 In a world where the Oni and Momotaro have been locked in conflict for generations, Shiki Ichinose is just a regular high school dropout. That changes when a mysterious man attacks him and his father, and Shiki discovers that he is an Oni. Now dragged into a dark and bloody secret war, Shiki must master his powers in order to exact his revenge.
 
-[](https://www.crunchyroll.com/id/series/GT00365568/hana-kimi)
+[![Image 89](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720,blur=50/display/keyart/T00365568-base_asset_2x3-en-US)![Image 90: Hana-Kimi](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/display/keyart/T00365568-base_asset_2x3-en-US)](https://www.crunchyroll.com/id/series/GT00365568/hana-kimi)
 
 ### [Hana-Kimi](https://www.crunchyroll.com/id/series/GT00365568/hana-kimi)
 
@@ -459,11 +548,11 @@ In a world where the Oni and Momotaro have been locked in conflict for generatio
 
 Sub | Dub
 
-[](https://www.crunchyroll.com/id/series/GT00365568/hana-kimi) [](https://www.crunchyroll.com/id/series/GT00365568/hana-kimi)
+[![Image 91](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720,blur=50/display/keyart/T00365568-base_asset_2x3-en-US)![Image 92: Hana-Kimi](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/display/keyart/T00365568-base_asset_2x3-en-US)](https://www.crunchyroll.com/id/series/GT00365568/hana-kimi)[](https://www.crunchyroll.com/id/series/GT00365568/hana-kimi)
 
 ### [Hana-Kimi](https://www.crunchyroll.com/id/series/GT00365568/hana-kimi)
 
-4\.5
+4.5
 
 (22.9k)
 
@@ -471,7 +560,7 @@ Sub | Dub
 
 Mizuki Ashiya is on a mission: disguise herself as a boy and enroll in a male boarding school to meet her idol, high jump star Izumi Sano. But after successfully infiltrating the school, she discovers he’s suddenly quit the sport! Now Mizuki must dodge suspicion, protect her cover, and somehow reach the boy she came all this way for—all while surviving the chaos of an all-boys dorm!
 
-[](https://www.crunchyroll.com/id/series/GT00371872/the-drops-of-god)
+[![Image 93](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720,blur=50/display/keyart/T00371872-base_asset_2x3-en-US)![Image 94: The Drops of God](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/display/keyart/T00371872-base_asset_2x3-en-US)](https://www.crunchyroll.com/id/series/GT00371872/the-drops-of-god)
 
 ### [The Drops of God](https://www.crunchyroll.com/id/series/GT00371872/the-drops-of-god)
 
@@ -479,11 +568,11 @@ Mizuki Ashiya is on a mission: disguise herself as a boy and enroll in a male bo
 
 Sub | Dub
 
-[](https://www.crunchyroll.com/id/series/GT00371872/the-drops-of-god) [](https://www.crunchyroll.com/id/series/GT00371872/the-drops-of-god)
+[![Image 95](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720,blur=50/display/keyart/T00371872-base_asset_2x3-en-US)![Image 96: The Drops of God](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/display/keyart/T00371872-base_asset_2x3-en-US)](https://www.crunchyroll.com/id/series/GT00371872/the-drops-of-god)[](https://www.crunchyroll.com/id/series/GT00371872/the-drops-of-god)
 
 ### [The Drops of God](https://www.crunchyroll.com/id/series/GT00371872/the-drops-of-god)
 
-3\.6
+3.6
 
 (1.9k)
 
@@ -491,7 +580,7 @@ Sub | Dub
 
 When world-renowned wine critic Yutaka Kanzaki passes away, he leaves behind an enviable collection. The will promises his estate to whoever correctly guesses the brand and year of the 12 greatest wines he selected, and the legendary wine that stands atop them all, “Drops of God.” The challengers are Yutaka’s son, Shizuku Kanzaki, and a young critic, Issei Tomine, who was adopted by Yutaka.
 
-[](https://www.crunchyroll.com/id/series/GYZJ43JMR/that-time-i-got-reincarnated-as-a-slime)
+[![Image 97](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720,blur=50/display/keyart/T00050707-base_asset_2x3-en-US)![Image 98: That Time I Got Reincarnated as a Slime](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/display/keyart/T00050707-base_asset_2x3-en-US)](https://www.crunchyroll.com/id/series/GYZJ43JMR/that-time-i-got-reincarnated-as-a-slime)
 
 ### [That Time I Got Reincarnated as a Slime](https://www.crunchyroll.com/id/series/GYZJ43JMR/that-time-i-got-reincarnated-as-a-slime)
 
@@ -499,11 +588,11 @@ When world-renowned wine critic Yutaka Kanzaki passes away, he leaves behind an 
 
 Sub | Dub
 
-[](https://www.crunchyroll.com/id/series/GYZJ43JMR/that-time-i-got-reincarnated-as-a-slime) [](https://www.crunchyroll.com/id/series/GYZJ43JMR/that-time-i-got-reincarnated-as-a-slime)
+[![Image 99](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720,blur=50/display/keyart/T00050707-base_asset_2x3-en-US)![Image 100: That Time I Got Reincarnated as a Slime](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/display/keyart/T00050707-base_asset_2x3-en-US)](https://www.crunchyroll.com/id/series/GYZJ43JMR/that-time-i-got-reincarnated-as-a-slime)[](https://www.crunchyroll.com/id/series/GYZJ43JMR/that-time-i-got-reincarnated-as-a-slime)
 
 ### [That Time I Got Reincarnated as a Slime](https://www.crunchyroll.com/id/series/GYZJ43JMR/that-time-i-got-reincarnated-as-a-slime)
 
-4\.8
+4.8
 
 (371.9k)
 
@@ -511,7 +600,7 @@ Sub | Dub
 
 Corporate worker Mikami Satoru is stabbed by a random killer, and is reborn to an alternate world. But he turns out to be reborn a slime! Thrown into this new world with the name Rimuru, he begins his quest to create a world that’s welcoming to all races.
 
-[](https://www.crunchyroll.com/id/series/G3KHEVDJ7/the-apothecary-diaries)
+[![Image 101](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720,blur=50/display/keyart/T00325113-base_asset_2x3-en-US)![Image 102: The Apothecary Diaries](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/display/keyart/T00325113-base_asset_2x3-en-US)](https://www.crunchyroll.com/id/series/G3KHEVDJ7/the-apothecary-diaries)
 
 ### [The Apothecary Diaries](https://www.crunchyroll.com/id/series/G3KHEVDJ7/the-apothecary-diaries)
 
@@ -519,11 +608,11 @@ Corporate worker Mikami Satoru is stabbed by a random killer, and is reborn to a
 
 Sub | Dub
 
-[](https://www.crunchyroll.com/id/series/G3KHEVDJ7/the-apothecary-diaries) [](https://www.crunchyroll.com/id/series/G3KHEVDJ7/the-apothecary-diaries)
+[![Image 103](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720,blur=50/display/keyart/T00325113-base_asset_2x3-en-US)![Image 104: The Apothecary Diaries](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/display/keyart/T00325113-base_asset_2x3-en-US)](https://www.crunchyroll.com/id/series/G3KHEVDJ7/the-apothecary-diaries)[](https://www.crunchyroll.com/id/series/G3KHEVDJ7/the-apothecary-diaries)
 
 ### [The Apothecary Diaries](https://www.crunchyroll.com/id/series/G3KHEVDJ7/the-apothecary-diaries)
 
-4\.9
+4.9
 
 (422.2k)
 
@@ -531,7 +620,7 @@ Sub | Dub
 
 Maomao lived a peaceful life with her apothecary father. Until one day, she’s sold as a lowly servant to the emperor’s palace. But she wasn’t meant for a compliant life among royalty. So when imperial heirs fall ill, she decides to step in and find a cure! This catches the eye of Jinshi, a handsome palace official who promotes her. Now, she’s making a name for herself solving medical mysteries!
 
-[](https://www.crunchyroll.com/id/series/GT00371671/i-became-a-legend-after-my-10-year-long-last-stand)
+[![Image 105](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720,blur=50/display/keyart/T00371671-base_asset_2x3-en-US)![Image 106: I Became a Legend after My 10 Year-Long Last Stand](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/display/keyart/T00371671-base_asset_2x3-en-US)](https://www.crunchyroll.com/id/series/GT00371671/i-became-a-legend-after-my-10-year-long-last-stand)
 
 ### [I Became a Legend after My 10 Year-Long Last Stand](https://www.crunchyroll.com/id/series/GT00371671/i-became-a-legend-after-my-10-year-long-last-stand)
 
@@ -539,11 +628,11 @@ Maomao lived a peaceful life with her apothecary father. Until one day, she’s 
 
 Sub | Dub
 
-[](https://www.crunchyroll.com/id/series/GT00371671/i-became-a-legend-after-my-10-year-long-last-stand) [](https://www.crunchyroll.com/id/series/GT00371671/i-became-a-legend-after-my-10-year-long-last-stand)
+[![Image 107](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720,blur=50/display/keyart/T00371671-base_asset_2x3-en-US)![Image 108: I Became a Legend after My 10 Year-Long Last Stand](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/display/keyart/T00371671-base_asset_2x3-en-US)](https://www.crunchyroll.com/id/series/GT00371671/i-became-a-legend-after-my-10-year-long-last-stand)[](https://www.crunchyroll.com/id/series/GT00371671/i-became-a-legend-after-my-10-year-long-last-stand)
 
 ### [I Became a Legend after My 10 Year-Long Last Stand](https://www.crunchyroll.com/id/series/GT00371671/i-became-a-legend-after-my-10-year-long-last-stand)
 
-4\.4
+4.4
 
 (19.8k)
 
@@ -551,7 +640,7 @@ Sub | Dub
 
 Luck, an S-rank mage in the hero’s party, makes a last stand against the Demon King to save his companions. When he finally returns victorious, ten years have passed, and the world praises him as a legendary hero who died in battle. Unable to reclaim his former life, Luck conceals his identity and begins again as “Lock,” an F-rank adventurer forging a future in a world that moved on without him.
 
-[](https://www.crunchyroll.com/id/series/GP5HJ8E81/link-click)
+[![Image 109](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720,blur=50/display/keyart/T00113899-base_asset_2x3-en-US)![Image 110: LINK CLICK](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/display/keyart/T00113899-base_asset_2x3-en-US)](https://www.crunchyroll.com/id/series/GP5HJ8E81/link-click)
 
 ### [LINK CLICK](https://www.crunchyroll.com/id/series/GP5HJ8E81/link-click)
 
@@ -559,11 +648,11 @@ Luck, an S-rank mage in the hero’s party, makes a last stand against the Demon
 
 Sub | Dub
 
-[](https://www.crunchyroll.com/id/series/GP5HJ8E81/link-click) [](https://www.crunchyroll.com/id/series/GP5HJ8E81/link-click)
+[![Image 111](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720,blur=50/display/keyart/T00113899-base_asset_2x3-en-US)![Image 112: LINK CLICK](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/display/keyart/T00113899-base_asset_2x3-en-US)](https://www.crunchyroll.com/id/series/GP5HJ8E81/link-click)[](https://www.crunchyroll.com/id/series/GP5HJ8E81/link-click)
 
 ### [LINK CLICK](https://www.crunchyroll.com/id/series/GP5HJ8E81/link-click)
 
-4\.8
+4.8
 
 (52.2k)
 
@@ -571,7 +660,7 @@ Sub | Dub
 
 Using superpowers to enter their clientele’s photos one by one, Cheng Xiaoshi and Lu Guang take their work seriously at "Time Photo Studio," a small photography shop set in the backdrop of a modern metropolis. Each job can be full of danger, but nothing is more important than fulfilling every order, no matter the scale…or peril involved!
 
-[](https://www.crunchyroll.com/id/series/GT00378081/kaiju-girl-caramelise)
+[![Image 113](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720,blur=50/display/keyart/T00378081-base_asset_2x3-en-US)![Image 114: KAIJU GIRL CARAMELISE](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/display/keyart/T00378081-base_asset_2x3-en-US)](https://www.crunchyroll.com/id/series/GT00378081/kaiju-girl-caramelise)
 
 ### [KAIJU GIRL CARAMELISE](https://www.crunchyroll.com/id/series/GT00378081/kaiju-girl-caramelise)
 
@@ -579,11 +668,11 @@ Using superpowers to enter their clientele’s photos one by one, Cheng Xiaoshi 
 
 Sub | Dub
 
-[](https://www.crunchyroll.com/id/series/GT00378081/kaiju-girl-caramelise) [](https://www.crunchyroll.com/id/series/GT00378081/kaiju-girl-caramelise)
+[![Image 115](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720,blur=50/display/keyart/T00378081-base_asset_2x3-en-US)![Image 116: KAIJU GIRL CARAMELISE](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/display/keyart/T00378081-base_asset_2x3-en-US)](https://www.crunchyroll.com/id/series/GT00378081/kaiju-girl-caramelise)[](https://www.crunchyroll.com/id/series/GT00378081/kaiju-girl-caramelise)
 
 ### [KAIJU GIRL CARAMELISE](https://www.crunchyroll.com/id/series/GT00378081/kaiju-girl-caramelise)
 
-4\.8
+4.8
 
 (18.6k)
 
@@ -591,7 +680,7 @@ Sub | Dub
 
 Kuroe Akaishi just wants a normal high school life—but that’s impossible with a rare condition that turns her into a giant kaiju whenever her emotions spike! Things get even worse when she falls for Arata Minami, the most popular boy in class. Now every blush, heartbeat, and crush could trigger a monster transformation. Can Kuroe survive high school love before it destroys everything around her?!
 
-[](https://www.crunchyroll.com/id/series/GT00378018/the-exiled-heavy-knight-knows-how-to-game-the-system)
+[![Image 117](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720,blur=50/display/keyart/T00378018-base_asset_2x3-en-US)![Image 118: The Exiled Heavy Knight Knows How to Game the System](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/display/keyart/T00378018-base_asset_2x3-en-US)](https://www.crunchyroll.com/id/series/GT00378018/the-exiled-heavy-knight-knows-how-to-game-the-system)
 
 ### [The Exiled Heavy Knight Knows How to Game the System](https://www.crunchyroll.com/id/series/GT00378018/the-exiled-heavy-knight-knows-how-to-game-the-system)
 
@@ -599,11 +688,11 @@ Kuroe Akaishi just wants a normal high school life—but that’s impossible wit
 
 Sub | Dub
 
-[](https://www.crunchyroll.com/id/series/GT00378018/the-exiled-heavy-knight-knows-how-to-game-the-system) [](https://www.crunchyroll.com/id/series/GT00378018/the-exiled-heavy-knight-knows-how-to-game-the-system)
+[![Image 119](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720,blur=50/display/keyart/T00378018-base_asset_2x3-en-US)![Image 120: The Exiled Heavy Knight Knows How to Game the System](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/display/keyart/T00378018-base_asset_2x3-en-US)](https://www.crunchyroll.com/id/series/GT00378018/the-exiled-heavy-knight-knows-how-to-game-the-system)[](https://www.crunchyroll.com/id/series/GT00378018/the-exiled-heavy-knight-knows-how-to-game-the-system)
 
 ### [The Exiled Heavy Knight Knows How to Game the System](https://www.crunchyroll.com/id/series/GT00378018/the-exiled-heavy-knight-knows-how-to-game-the-system)
 
-4\.5
+4.5
 
 (52.2k)
 
@@ -611,7 +700,7 @@ Sub | Dub
 
 Born into a prestigious family of master swordsmen, Elymas Edvaughn’s future shatters when he awakens the so-called “defective” Heavy Knight class. Disowned and cast out, he regains memories of another life—and realizes this world mirrors a VR game he once mastered. Armed with knowledge no one else possesses, he sets out to rewrite his fate and prove the strength of the “weakest” class.
 
-[](https://www.crunchyroll.com/id/series/GT00378116/smoking-behind-the-supermarket-with-you)
+[![Image 121](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720,blur=50/display/keyart/T00378116-base_asset_2x3-en-US)![Image 122: Smoking Behind the Supermarket with You](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/display/keyart/T00378116-base_asset_2x3-en-US)](https://www.crunchyroll.com/id/series/GT00378116/smoking-behind-the-supermarket-with-you)
 
 ### [Smoking Behind the Supermarket with You](https://www.crunchyroll.com/id/series/GT00378116/smoking-behind-the-supermarket-with-you)
 
@@ -619,11 +708,11 @@ Born into a prestigious family of master swordsmen, Elymas Edvaughn’s future s
 
 Sub | Dub
 
-[](https://www.crunchyroll.com/id/series/GT00378116/smoking-behind-the-supermarket-with-you) [](https://www.crunchyroll.com/id/series/GT00378116/smoking-behind-the-supermarket-with-you)
+[![Image 123](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720,blur=50/display/keyart/T00378116-base_asset_2x3-en-US)![Image 124: Smoking Behind the Supermarket with You](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/display/keyart/T00378116-base_asset_2x3-en-US)](https://www.crunchyroll.com/id/series/GT00378116/smoking-behind-the-supermarket-with-you)[](https://www.crunchyroll.com/id/series/GT00378116/smoking-behind-the-supermarket-with-you)
 
 ### [Smoking Behind the Supermarket with You](https://www.crunchyroll.com/id/series/GT00378116/smoking-behind-the-supermarket-with-you)
 
-4\.9
+4.9
 
 (112.8k)
 
@@ -631,7 +720,7 @@ Sub | Dub
 
 Sasaki is an overworked salaryman drifting through the corporate grind, sustained by cigarettes and the cheerful service and smile of Yamada, the clerk at his favorite supermarket. But one night after a grueling shift, he arrives late to find Yamada nowhere to be seen. With nowhere left to smoke, his spirits sink—until a pierced young woman calls out to him: “You can smoke here.”
 
-[](https://www.crunchyroll.com/id/series/GT00365607/an-adventurers-daily-grind-at-age-29)
+[![Image 125](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720,blur=50/display/keyart/T00365607-base_asset_2x3-en-US)![Image 126: An Adventurer's Daily Grind at Age 29](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/display/keyart/T00365607-base_asset_2x3-en-US)](https://www.crunchyroll.com/id/series/GT00365607/an-adventurers-daily-grind-at-age-29)
 
 ### [An Adventurer's Daily Grind at Age 29](https://www.crunchyroll.com/id/series/GT00365607/an-adventurers-daily-grind-at-age-29)
 
@@ -639,11 +728,11 @@ Sasaki is an overworked salaryman drifting through the corporate grind, sustaine
 
 Sub | Dub
 
-[](https://www.crunchyroll.com/id/series/GT00365607/an-adventurers-daily-grind-at-age-29) [](https://www.crunchyroll.com/id/series/GT00365607/an-adventurers-daily-grind-at-age-29)
+[![Image 127](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720,blur=50/display/keyart/T00365607-base_asset_2x3-en-US)![Image 128: An Adventurer's Daily Grind at Age 29](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/display/keyart/T00365607-base_asset_2x3-en-US)](https://www.crunchyroll.com/id/series/GT00365607/an-adventurers-daily-grind-at-age-29)[](https://www.crunchyroll.com/id/series/GT00365607/an-adventurers-daily-grind-at-age-29)
 
 ### [An Adventurer's Daily Grind at Age 29](https://www.crunchyroll.com/id/series/GT00365607/an-adventurers-daily-grind-at-age-29)
 
-4\.1
+4.1
 
 (15.8k)
 
@@ -651,7 +740,7 @@ Sub | Dub
 
 Born and raised in the slums, 29-year-old adventurer Hajime Shinonome now lives a quiet life in Komai Village. But his peaceful days take a turn when he discovers Lirui, an abandoned young girl, being attacked by a slime. Moved by her desperation and reminded of his own past, he takes her back to the village. Hajime and Lirui begin a new chapter filled with unexpected challenges and gentle days!
 
-[](https://www.crunchyroll.com/id/series/GYQWNXPZY/fire-force)
+[![Image 129](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720,blur=50/display/keyart/T00059009-base_asset_2x3-en-US)![Image 130: Fire Force](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/display/keyart/T00059009-base_asset_2x3-en-US)](https://www.crunchyroll.com/id/series/GYQWNXPZY/fire-force)
 
 ### [Fire Force](https://www.crunchyroll.com/id/series/GYQWNXPZY/fire-force)
 
@@ -659,11 +748,11 @@ Born and raised in the slums, 29-year-old adventurer Hajime Shinonome now lives 
 
 Sub | Dub
 
-[](https://www.crunchyroll.com/id/series/GYQWNXPZY/fire-force) [](https://www.crunchyroll.com/id/series/GYQWNXPZY/fire-force)
+[![Image 131](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720,blur=50/display/keyart/T00059009-base_asset_2x3-en-US)![Image 132: Fire Force](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/display/keyart/T00059009-base_asset_2x3-en-US)](https://www.crunchyroll.com/id/series/GYQWNXPZY/fire-force)[](https://www.crunchyroll.com/id/series/GYQWNXPZY/fire-force)
 
 ### [Fire Force](https://www.crunchyroll.com/id/series/GYQWNXPZY/fire-force)
 
-4\.7
+4.7
 
 (165.2k)
 
@@ -671,7 +760,7 @@ Sub | Dub
 
 Tokyo is burning, and citizens are mysteriously suffering from spontaneous human combustion throughout the city! Responsible for snuffing out this inferno is the Fire Force, and Shinra is ready to join their fight. Now, as part of Company 8, he’ll use his devil’s footprints to help keep the city from turning to ash! But his past and a burning secret behind the scenes could set everything ablaze.
 
-[](https://www.crunchyroll.com/id/series/GT00378115/from-overshadowed-to-overpowered-second-reincarnation-of-a-talentless-sage)
+[![Image 133](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720,blur=50/display/keyart/T00378115-base_asset_2x3-en-US)![Image 134: From Overshadowed to Overpowered: Second Reincarnation of a Talentless Sage](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/display/keyart/T00378115-base_asset_2x3-en-US)](https://www.crunchyroll.com/id/series/GT00378115/from-overshadowed-to-overpowered-second-reincarnation-of-a-talentless-sage)
 
 ### [From Overshadowed to Overpowered: Second Reincarnation of a Talentless Sage](https://www.crunchyroll.com/id/series/GT00378115/from-overshadowed-to-overpowered-second-reincarnation-of-a-talentless-sage)
 
@@ -679,11 +768,11 @@ Tokyo is burning, and citizens are mysteriously suffering from spontaneous human
 
 Sub | Dub
 
-[](https://www.crunchyroll.com/id/series/GT00378115/from-overshadowed-to-overpowered-second-reincarnation-of-a-talentless-sage) [](https://www.crunchyroll.com/id/series/GT00378115/from-overshadowed-to-overpowered-second-reincarnation-of-a-talentless-sage)
+[![Image 135](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720,blur=50/display/keyart/T00378115-base_asset_2x3-en-US)![Image 136: From Overshadowed to Overpowered: Second Reincarnation of a Talentless Sage](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/display/keyart/T00378115-base_asset_2x3-en-US)](https://www.crunchyroll.com/id/series/GT00378115/from-overshadowed-to-overpowered-second-reincarnation-of-a-talentless-sage)[](https://www.crunchyroll.com/id/series/GT00378115/from-overshadowed-to-overpowered-second-reincarnation-of-a-talentless-sage)
 
 ### [From Overshadowed to Overpowered: Second Reincarnation of a Talentless Sage](https://www.crunchyroll.com/id/series/GT00378115/from-overshadowed-to-overpowered-second-reincarnation-of-a-talentless-sage)
 
-4\.4
+4.4
 
 (27.8k)
 
@@ -691,7 +780,7 @@ Sub | Dub
 
 The great sage Ephtal dies in despair after failing to reach the peak of magic—but 400 years later, he’s reborn with all his memories and power intact! In a world where magic has decayed and ancient spells are treated as miracles, Ephtal storms into a prestigious magic academy to reclaim the true art of sorcery. As his power shakes the world, long-forgotten legends begin to awaken!
 
-[](https://www.crunchyroll.com/id/series/G6NQ5DWZ6/my-hero-academia)
+[![Image 137](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720,blur=50/display/keyart/T00002328-base_asset_2x3-en-US)![Image 138: My Hero Academia](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/display/keyart/T00002328-base_asset_2x3-en-US)](https://www.crunchyroll.com/id/series/G6NQ5DWZ6/my-hero-academia)
 
 ### [My Hero Academia](https://www.crunchyroll.com/id/series/G6NQ5DWZ6/my-hero-academia)
 
@@ -699,11 +788,11 @@ The great sage Ephtal dies in despair after failing to reach the peak of magic�
 
 Sub | Dub
 
-[](https://www.crunchyroll.com/id/series/G6NQ5DWZ6/my-hero-academia) [](https://www.crunchyroll.com/id/series/G6NQ5DWZ6/my-hero-academia)
+[![Image 139](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720,blur=50/display/keyart/T00002328-base_asset_2x3-en-US)![Image 140: My Hero Academia](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/display/keyart/T00002328-base_asset_2x3-en-US)](https://www.crunchyroll.com/id/series/G6NQ5DWZ6/my-hero-academia)[](https://www.crunchyroll.com/id/series/G6NQ5DWZ6/my-hero-academia)
 
 ### [My Hero Academia](https://www.crunchyroll.com/id/series/G6NQ5DWZ6/my-hero-academia)
 
-4\.7
+4.7
 
 (471.9k)
 
@@ -711,7 +800,7 @@ Sub | Dub
 
 Izuku has dreamt of being a hero all his life—a lofty goal for anyone, but especially challenging for a kid with no superpowers. That’s right, in a world where eighty percent of the population has some kind of super-powered "quirk," Izuku was unlucky enough to be born completely normal. But that’s not enough to stop him from enrolling in one of the world’s most prestigious hero academies.
 
-[](https://www.crunchyroll.com/id/series/G9VHN91DJ/the-angel-next-door-spoils-me-rotten)
+[![Image 141](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720,blur=50/display/keyart/T00258455-base_asset_2x3-en-US)![Image 142: The Angel Next Door Spoils Me Rotten](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/display/keyart/T00258455-base_asset_2x3-en-US)](https://www.crunchyroll.com/id/series/G9VHN91DJ/the-angel-next-door-spoils-me-rotten)
 
 ### [The Angel Next Door Spoils Me Rotten](https://www.crunchyroll.com/id/series/G9VHN91DJ/the-angel-next-door-spoils-me-rotten)
 
@@ -719,11 +808,11 @@ Izuku has dreamt of being a hero all his life—a lofty goal for anyone, but esp
 
 Sub | Dub
 
-[](https://www.crunchyroll.com/id/series/G9VHN91DJ/the-angel-next-door-spoils-me-rotten) [](https://www.crunchyroll.com/id/series/G9VHN91DJ/the-angel-next-door-spoils-me-rotten)
+[![Image 143](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720,blur=50/display/keyart/T00258455-base_asset_2x3-en-US)![Image 144: The Angel Next Door Spoils Me Rotten](https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/display/keyart/T00258455-base_asset_2x3-en-US)](https://www.crunchyroll.com/id/series/G9VHN91DJ/the-angel-next-door-spoils-me-rotten)[](https://www.crunchyroll.com/id/series/G9VHN91DJ/the-angel-next-door-spoils-me-rotten)
 
 ### [The Angel Next Door Spoils Me Rotten](https://www.crunchyroll.com/id/series/G9VHN91DJ/the-angel-next-door-spoils-me-rotten)
 
-4\.8
+4.8
 
 (131.5k)
 
@@ -737,68 +826,70 @@ After a kind gesture and seeing how untidy her neighbor and classmate is, Mahiru
 
 Selamat datang di Crunchyroll, destinasi utamamu untuk streaming hiburan anime terbaik.
 
-* [](https://www.youtube.com/user/crunchyroll/)
-* [](https://www.facebook.com/Crunchyroll/)
-* [](https://www.instagram.com/crunchyroll/)
-* [](https://x.com/crunchyroll/)
-* [](https://www.tiktok.com/@crunchyroll)
-* [](https://bsky.app/profile/crunchyroll.com)
+*   [](https://www.youtube.com/user/crunchyroll/)
+*   [](https://www.facebook.com/Crunchyroll/)
+*   [](https://www.instagram.com/crunchyroll/)
+*   [](https://x.com/crunchyroll/)
+*   [](https://www.tiktok.com/@crunchyroll)
+*   [](https://bsky.app/profile/crunchyroll.com)
 
 Bahasa Indonesia Bahasa Indonesia
 
 ## Jelajahi
 
-* [Telusuri Populer](https://www.crunchyroll.com/id/videos/popular)
-* [Telusuri Simulcast](https://www.crunchyroll.com/id/simulcasts/seasons/fall-2026)
-* [Kalender Rilis](https://www.crunchyroll.com/simulcastcalendar)
-* [Berita](https://www.crunchyroll.com/news)
-* [Toko](https://www.crunchyroll.com/store/?utm_source=web)
-* [Game](https://www.crunchyroll.com/id/games/index.html)
+*   [Telusuri Populer](https://www.crunchyroll.com/id/videos/popular)
+*   [Telusuri Simulcast](https://www.crunchyroll.com/id/simulcasts/seasons/fall-2026)
+*   [Kalender Rilis](https://www.crunchyroll.com/simulcastcalendar)
+*   [Berita](https://www.crunchyroll.com/news)
+*   [Toko](https://www.crunchyroll.com/store/?utm_source=web)
+*   [Game](https://www.crunchyroll.com/id/games/index.html)
 
 ## Sumber Daya
 
-* [Tentang](https://www.crunchyroll.com/about/index.html)
-* [Dapatkan Aplikasi](https://www.crunchyroll.com/devices)
-* [Pekerjaan](https://www.crunchyroll.com/about/jobs/index.html)
-* [Pusat Bantuan](https://help.crunchyroll.com/hc/id)
-* [Pertanyaan Iklan](mailto:advertising@crunchyroll.com)
-* [Pertanyaan Pers](mailto:pr@crunchyroll.com)
+*   [Tentang](https://www.crunchyroll.com/about/index.html)
+*   [Dapatkan Aplikasi](https://www.crunchyroll.com/devices)
+*   [Pekerjaan](https://www.crunchyroll.com/about/jobs/index.html)
+*   [Pusat Bantuan](https://help.crunchyroll.com/hc/id)
+*   [Pertanyaan Iklan](mailto:advertising@crunchyroll.com)
+*   [Pertanyaan Pers](mailto:pr@crunchyroll.com)
 
 ## Akun
 
-* [Mulai Uji Coba Gratis](https://www.crunchyroll.com/premium?referrer=newweb_organic_footer&return_url=https%3A%2F%2Fwww.crunchyroll.com%2Fid%2Fvideos%2Fnew%3Fsrsltid%3DAU7gw4XKO1I792M7sl4q5kS98M6_3qK10ccbcm2rPFA2637bRpLGAWGc)
-* [Buat Akun](https://sso.crunchyroll.com/authorize?prompt=register&client_id=noaihdevm_6iyg0a8l0q&redirect_uri=https%3A%2F%2Fwww.crunchyroll.com%2Fcallback&response_type=cookie&state=%2Fvideos%2Fnew%3Fsrsltid%3DAU7gw4XKO1I792M7sl4q5kS98M6_3qK10ccbcm2rPFA2637bRpLGAWGc)
-* [Masuk](https://sso.crunchyroll.com/authorize?client_id=noaihdevm_6iyg0a8l0q&redirect_uri=https%3A%2F%2Fwww.crunchyroll.com%2Fcallback&response_type=cookie&state=%2Fvideos%2Fnew%3Fsrsltid%3DAU7gw4XKO1I792M7sl4q5kS98M6_3qK10ccbcm2rPFA2637bRpLGAWGc)
-* [Tukar Kartu Hadiah](https://www.crunchyroll.com/id/redeem)
+*   [Mulai Uji Coba Gratis](https://www.crunchyroll.com/premium?referrer=newweb_organic_footer&return_url=https%3A%2F%2Fwww.crunchyroll.com%2Fid%2Fvideos%2Fnew#plans)
+*   [Buat Akun](https://sso.crunchyroll.com/authorize?prompt=register&client_id=noaihdevm_6iyg0a8l0q&redirect_uri=https%3A%2F%2Fwww.crunchyroll.com%2Fcallback&response_type=cookie&state=%2Fvideos%2Fnew)
+*   [Masuk](https://sso.crunchyroll.com/authorize?client_id=noaihdevm_6iyg0a8l0q&redirect_uri=https%3A%2F%2Fwww.crunchyroll.com%2Fcallback&response_type=cookie&state=%2Fvideos%2Fnew)
+*   [Tukar Kartu Hadiah](https://www.crunchyroll.com/id/redeem)
 
-* [Ketentuan Penggunaan](https://www.crunchyroll.com/tos)
-* [Kebijakan Privasi](https://www.crunchyroll.com/privacy/index.html)
-* Alat Persetujuan Cookie
-* [Jangan Jual atau Bagikan Informasi Pribadi Saya](https://privacyportal-cdn.onetrust.com/dsarwebform/d19e506f-1a64-463d-94e4-914dd635817d/b9eb997c-9ede-451b-8fd4-29891782a928.html)
+![Image 145](https://www.crunchyroll.com/build/assets/img/footer/footer-bg.webp)
 
-Close unsupported
+*   [Ketentuan Penggunaan](https://www.crunchyroll.com/tos)
+*   [Kebijakan Privasi](https://www.crunchyroll.com/privacy/index.html)
+*   Alat Persetujuan Cookie
+*   [Jangan Jual atau Bagikan Informasi Pribadi Saya](https://privacyportal-cdn.onetrust.com/dsarwebform/d19e506f-1a64-463d-94e4-914dd635817d/b9eb997c-9ede-451b-8fd4-29891782a928.html)
+
+![Image 146: Close unsupported](https://www.crunchyroll.com/build/assets/img/browsers/close-x.png)
 
 ### Update your web browser!
 
 Oh no! It looks like you’re using a web browser we don’t support! Please consider updating your internet browser to unlock thousands of anime titles!
 
-* [Get Chrome Get Chrome](https://www.google.com/chrome/)
-* [Get Firefox Get Firefox](https://www.mozilla.org/firefox/)
-* [Get Safari Get Safari](https://www.apple.com/safari/)
-* [Get Edge Get Edge](https://www.microsoft.com/edge/)
+*   [![Image 147: Get Chrome](https://www.crunchyroll.com/build/assets/img/browsers/chrome.png)Get Chrome](https://www.google.com/chrome/)
+*   [![Image 148: Get Firefox](https://www.crunchyroll.com/build/assets/img/browsers/firefox.png)Get Firefox](https://www.mozilla.org/firefox/)
+*   [![Image 149: Get Safari](https://www.crunchyroll.com/build/assets/img/browsers/safari.png)Get Safari](https://www.apple.com/safari/)
+*   [![Image 150: Get Edge](https://www.crunchyroll.com/build/assets/img/browsers/edge.png)Get Edge](https://www.microsoft.com/edge/)
 
-Our site uses cookies and other technologies to run this site, improve its operation and to deliver ads and other marketing materials to you.  To learn more about how we use cookies, please see our [Privacy Policy](https://www.crunchyroll.com/privacy/index.html) .To manage the cookies this site uses, please click here.
+Our site uses cookies and other technologies to run this site, improve its operation and to deliver ads and other marketing materials to you. To learn more about how we use cookies, please see our [Privacy Policy](https://www.crunchyroll.com/privacy/index.html).To manage the cookies this site uses, please click[here.](https://www.crunchyroll.com/id/videos/new#)
 
 OK
 
-Company Logo
+![Image 151: Company Logo](https://cdn.cookielaw.org/logos/d19e506f-1a64-463d-94e4-914dd635817d/fc2ad08c-3f17-484b-80e4-bcefde3a0c45/2a47a575-b15e-44a1-8f30-e06cf5bf1c5c/sonypictures_typeonly-reverse.png)
 
 ## Privacy Preference Center
 
+When you visit our website, we store cookies on your browser to collect information. The information collected might relate to you, your preferences or your device, and is mostly used to make the site work as you expect it to and to provide a more personalized web experience. However, you can choose not to allow certain types of cookies, which may impact your experience of the site and the services we are able to offer. Click on the different category headings to find out more and change our default settings according to your preference. You cannot opt-out of our Strictly Necessary Cookies as they are deployed in order to ensure the proper functioning of our website (such as prompting the cookie banner and remembering your settings, to log into your account, to redirect you when you log out, etc.). For subdomains, please check your cookie preferences to ensure your selection options have not changed. For more information about the First and Third Party Cookies used please follow this link.
 [More information](https://www.crunchyroll.com/privacy/index.html)
 
 Allow All
-
 ### Manage Consent Preferences
 
 #### Strictly Necessary Cookies
@@ -811,7 +902,7 @@ View Vendor Details
 
 #### Functional Cookies
 
-Functional Cookies
+- [x] Functional Cookies
 
 These cookies enable the website to provide enhanced functionality and personalisation. They may be set by us or by third party providers whose services we have added to our pages. If you do not allow these cookies then some or all of these services may not function properly.
 
@@ -819,7 +910,7 @@ View Vendor Details
 
 #### Performance Cookies
 
-Performance Cookies
+- [x] Performance Cookies
 
 These cookies allow us to count visits and traffic sources so we can measure and improve the performance of our site. They help us to know which pages are the most and least popular and see how visitors move around the site.
 
@@ -827,7 +918,7 @@ View Vendor Details
 
 #### Targeting Cookies
 
-Targeting Cookies
+- [x] Targeting Cookies
 
 These cookies may be set through our site by our partners. They may be used by those companies to build a profile of your interests and show you relevant adverts on other sites, limit how often you see the same ads on our sites and allow us to display and deliver content related your interests. If you do not allow these cookies, you may experience less relevant advertising and content.
 
@@ -835,18 +926,52 @@ View Vendor Details
 
 ### Vendors List
 
-Clear * checkbox label label
+Clear
+*   - [x] checkbox label label
 
 Apply Cancel
 
 Consent Leg.Interest
 
-checkbox label label
+- [x] checkbox label label
 
-checkbox label label
+- [x] checkbox label label
 
-checkbox label label
+- [x] checkbox label label
 
 Confirm My Choices
 
-[Powered by Onetrust](https://www.onetrust.com/solutions/consent-and-preferences/)
+[![Image 152: Powered by Onetrust](https://cdn.cookielaw.org/logos/static/powered_by_logo.svg)](https://www.onetrust.com/solutions/consent-and-preferences/)
+
+![Image 153](https://www.crunchyroll.com/build/assets/img/auth_modal/auth-hime.png)
+## Masuk atau Buat Akun
+
+Masuk untuk menambahkan acara dan film ke daftar tontonmu, sesuaikan preferensimu, dan lainnya! Baru di sini? Buat akun Crunchyroll.
+
+[Masuk](https://sso.crunchyroll.com/authorize?client_id=noaihdevm_6iyg0a8l0q&redirect_uri=https%3A%2F%2Fwww.crunchyroll.com%2Fcallback&response_type=cookie&state=%2Fvideos%2Fnew)[Buat Akun](https://sso.crunchyroll.com/authorize?prompt=register&client_id=noaihdevm_6iyg0a8l0q&redirect_uri=https%3A%2F%2Fwww.crunchyroll.com%2Fcallback&response_type=cookie&state=%2Fvideos%2Fnew)
+
+## Harap Verifikasi Alamat Email Anda untuk Melanjutkan
+
+Kemudian Anda bisa menikmati Crunchyroll sepenuhnya.
+
+Kirim Email Verifikasi Lakukan Nanti
+
+## Silakan Buat Nama Pengguna untuk Melanjutkan
+
+Kemudian Anda bisa menikmati Crunchyroll sepenuhnya.
+
+[Buat Nama Pengguna](https://www.crunchyroll.com/id/profiles/manage/)Lakukan Nanti
+
+![Image 154](https://www.crunchyroll.com/build/assets/img/userMigration/migration-lrx.png)
+
+## Dapatkan Crunchyroll di Layar Besarmu
+
+Unduh aplikasi Crunchyroll di perangkat TV, streaming, atau konsol gamemu untuk kembali menonton semua acara favoritmu!
+
+[Ketersediaan Perangkat](https://www.crunchyroll.com/id/account/devices)[Buka Beranda](https://www.crunchyroll.com/id/discover)
+
+## Buat PIN Baru
+
+Apakah Anda ingin membuat PIN profil baru untuk akses lebih mudah nanti?
+
+[Ya, Ayo!](https://www.crunchyroll.com/id/account/pin)Tidak, Terima Kasih
