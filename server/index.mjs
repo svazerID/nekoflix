@@ -446,11 +446,16 @@ async function pmap(items, n, fn) {
     try {
       const url = req.query.url ? String(req.query.url) : `${BASE}/${req.params.slug}/`;
       const r = await fetchText(url, { headers: setHeaders() });
-      if (r.status >= 400) throw new Error(`upstream ${r.status}`);
+      if (r.status >= 400) {
+        const blocked = r.status === 403 && /challenge|just a moment/i.test(r.text);
+        return res.status(502).json({ error: `upstream ${r.status}`, code: blocked ? 'upstream_blocked' : 'upstream_error', url });
+      }
       const data = await parseEpisode(url, r.text);
-      if (!data.streams.length && !data.downloads.length) throw new Error('no streams');
+      if (!data.streams.length && !data.downloads.length) {
+        return res.status(502).json({ error: 'no streams', code: 'no_streams', url });
+      }
       res.json(data);
-    } catch (e) { res.status(502).json({ error: String(e.message || e) }); }
+    } catch (e) { res.status(502).json({ error: String(e.message || e), code: 'fetch_failed' }); }
   });
 
   // Media proxy: CDN 403s foreign Origin/Referer; playlists rewritten to stay on our origin.

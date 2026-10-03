@@ -77,16 +77,40 @@ export const nekoflixApi = {
     return animes;
   },
 
-  async resolveEpisode(anime: Anime, episodeNumber: number): Promise<{ videoUrl: string; streams: any[] }> {
+  async resolveEpisode(anime: Anime, episodeNumber: number): Promise<{
+    videoUrl: string; sources: { url: string; label: string; kind: 'hls' | 'mp4' }[]; error?: string; errorCode?: string;
+  }> {
     const ep = anime.episodes.find((e) => e.episodeNumber === episodeNumber) || anime.episodes[0];
-    if (ep.videoUrl) return { videoUrl: ep.videoUrl, streams: [] };
-    const raw = await apiGet<any>(`/watch/${anime.slug}?url=${encodeURIComponent(ep.id)}`);
-    const streams = raw.streams || [];
-    // only m3u8 direct streams are playable; /go/dl/ links are download-gates (403 outside their token flow)
-    const playable = streams.filter((s: any) => s.directStream?.includes('.m3u8'));
-    const videoUrl = playable.length
-      ? `/api/proxy?url=${encodeURIComponent(playable[0].directStream)}`
-      : '';
-    return { videoUrl, streams };
+    if (ep.videoUrl) return { videoUrl: ep.videoUrl, sources: [{ url: ep.videoUrl, label: 'Default', kind: 'mp4' }] };
+    let raw: any;
+    try {
+      raw = await apiGet<any>(`/watch/${anime.id}?url=${encodeURIComponent(ep.id)}`);
+    } catch (e) {
+      return { videoUrl: '', sources: [], error: 'Tidak bisa menghubungi server video.', errorCode: 'fetch_failed' };
+    }
+    if (raw.code === 'upstream_blocked') {
+      return { videoUrl: '', sources: [], error: 'Server video sedang sibuk (proteksi aktif). Coba lagi nanti.', errorCode: 'upstream_blocked' };
+    }
+    if (raw.error) {
+      return { videoUrl: '', sources: [], error: 'Video belum tersedia untuk episode ini.', errorCode: raw.code || 'no_streams' };
+    }
+    const sources: { url: string; label: string; kind: 'hls' | 'mp4' }[] = [];
+    for (const s of raw.streams || []) {
+      if (s.directStream?.includes('.m3u8')) {
+        sources.push({ url: `/api/proxy?url=${encodeURIComponent(s.directStream)}`, label: `${s.serverName || 'Server'} (HLS)`, kind: 'hls' });
+      }
+    }
+    // resolved download mirrors are direct mp4s — playable natively, good fallback
+    for (const d of raw.downloads || []) {
+      if (d.directUrl && !sources.some((s) => s.url === d.directUrl)) {
+        sources.push({ url: d.directUrl, label: `${d.serverName || 'Download'}${d.quality ? ` ${d.quality}` : ''} (MP4)`, kind: 'mp4' });
+      } else if (d.outUrl && !sources.some((s) => s.url === d.outUrl)) {
+        sources.push({ url: d.outUrl, label: `${d.serverName || 'Download'} (tautan)`, kind: 'mp4' });
+      }
+    }
+    if (!sources.length) {
+      return { videoUrl: '', sources: [], error: 'Tidak ada sumber video yang bisa diputar.', errorCode: 'no_playable' };
+    }
+    return { videoUrl: sources[0].url, sources };
   },
 };

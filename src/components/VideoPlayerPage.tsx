@@ -64,8 +64,19 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({
   const [showCustomUrlDrawer, setShowCustomUrlDrawer] = useState(false);
   const [customVideoUrl, setCustomVideoUrl] = useState('');
   const [activeVideoSrc, setActiveVideoSrc] = useState(episode.videoUrl);
+  const [sources, setSources] = useState<{ url: string; label: string; kind: 'hls' | 'mp4' }[]>([]);
+  const [sourceIndex, setSourceIndex] = useState(0);
+  const [resolving, setResolving] = useState(false);
+  const [resolveError, setResolveError] = useState<string | null>(null);
 
   const controlsTimeoutRef = useRef<number | null>(null);
+
+  const applySource = useCallback((idx: number, list: { url: string; label: string; kind: 'hls' | 'mp4' }[]) => {
+    if (idx >= list.length) return;
+    setSourceIndex(idx);
+    setResolveError(null);
+    setActiveVideoSrc(list[idx].url);
+  }, []);
 
   useEffect(() => {
     setActiveVideoSrc(episode.videoUrl);
@@ -78,13 +89,57 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({
 
   // Resolve live stream URL from scrape backend when the episode has no direct source yet
   useEffect(() => {
-    if (episode.videoUrl) return;
+    if (episode.videoUrl) {
+      setSources([{ url: episode.videoUrl, label: 'Default', kind: 'mp4' }]);
+      setSourceIndex(0);
+      return;
+    }
     let cancelled = false;
+    setResolving(true);
+    setResolveError(null);
+    setSources([]);
     nekoflixApi.resolveEpisode(anime, episodeNumber)
-      .then(({ videoUrl }) => { if (!cancelled && videoUrl) setActiveVideoSrc(videoUrl); })
-      .catch((e) => console.warn('Gagal resolve stream:', e));
+      .then(({ sources: list, error }) => {
+        if (cancelled) return;
+        setResolving(false);
+        if (error || !list.length) {
+          setResolveError(error || 'Tidak ada sumber video.');
+          return;
+        }
+        setSources(list);
+        applySource(0, list);
+      })
+      .catch(() => {
+        if (cancelled) return;
+        setResolving(false);
+        setResolveError('Gagal memuat video. Periksa koneksi lalu coba lagi.');
+      });
     return () => { cancelled = true; };
-  }, [anime, episodeNumber, episode.videoUrl]);
+  }, [anime, episodeNumber, episode.videoUrl, applySource]);
+
+  const tryNextSource = useCallback(() => {
+    const next = sourceIndex + 1;
+    if (next < sources.length) {
+      applySource(next, sources);
+    } else {
+      setResolveError(sources.length > 1
+        ? 'Semua server gagal. Coba lagi nanti.'
+        : 'Video gagal dimuat dari server ini.');
+    }
+  }, [sourceIndex, sources, applySource]);
+
+  const retryResolve = useCallback(() => {
+    setResolveError(null);
+    setResolving(true);
+    nekoflixApi.resolveEpisode(anime, episodeNumber)
+      .then(({ sources: list, error }) => {
+        setResolving(false);
+        if (error || !list.length) { setResolveError(error || 'Tidak ada sumber video.'); return; }
+        setSources(list);
+        applySource(0, list);
+      })
+      .catch(() => { setResolving(false); setResolveError('Gagal memuat video. Coba lagi.'); });
+  }, [anime, episodeNumber, applySource]);
 
   // Attach source — HLS via hls.js when the browser can't play m3u8 natively
   useEffect(() => {
@@ -272,6 +327,14 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({
         }}
         onPlay={() => setIsPlaying(true)}
         onPause={() => setIsPlaying(false)}
+        onError={() => {
+          // current source failed -> try next available source automatically
+          if (sources.length > 1 && sourceIndex < sources.length - 1) {
+            tryNextSource();
+          } else if (!resolving) {
+            setResolveError('Video gagal diputar dari server ini.');
+          }
+        }}
         onEnded={() => {
           setIsPlaying(false);
           handleNextEpisode();
@@ -279,6 +342,38 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({
         playsInline
         autoPlay
       />
+
+      {/* Loading overlay */}
+      {resolving && (
+        <div className="absolute inset-0 z-20 flex flex-col items-center justify-center bg-black/70 gap-3">
+          <div className="w-10 h-10 border-4 border-neutral-700 border-t-red-600 rounded-full animate-spin" />
+          <p className="text-sm text-neutral-300 font-medium">Memuat video…</p>
+        </div>
+      )}
+
+      {/* Error overlay */}
+      {!resolving && resolveError && (
+        <div className="absolute inset-0 z-20 flex flex-col items-center justify-center bg-black/80 gap-3 px-8 text-center">
+          <p className="text-white font-semibold">Video tidak bisa diputar</p>
+          <p className="text-sm text-neutral-400 max-w-sm">{resolveError}</p>
+          <div className="flex gap-2 mt-1">
+            <button
+              onClick={retryResolve}
+              className="px-5 py-2 bg-red-600 hover:bg-red-700 text-white text-sm font-bold rounded-lg transition-colors"
+            >
+              Coba Lagi
+            </button>
+            {sources.length > 1 && sourceIndex < sources.length - 1 && (
+              <button
+                onClick={tryNextSource}
+                className="px-5 py-2 bg-neutral-800 hover:bg-neutral-700 text-white text-sm font-bold rounded-lg transition-colors"
+              >
+                Server Lain
+              </button>
+            )}
+          </div>
+        </div>
+      )}
 
       {/* Subtitles Overlay */}
       {currentSubtitleText && (
@@ -594,19 +689,22 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({
                   </div>
 
                   <div className="border-t border-neutral-800 pt-2">
-                    <div className="font-bold text-white mb-1.5">Kualitas Streaming</div>
-                    <div className="space-y-1">
-                      {['1080p Full HD', '720p HD', '480p SD', 'Otomatis'].map((q) => (
+                    <div className="font-bold text-white mb-1.5">Server Video</div>
+                    <div className="space-y-1 max-h-40 overflow-y-auto custom-scrollbar">
+                      {sources.length === 0 && (
+                        <p className="text-neutral-500 text-xs">Belum ada server.</p>
+                      )}
+                      {sources.map((s, i) => (
                         <button
-                          key={q}
+                          key={i}
                           onClick={() => {
-                            setQuality(q);
+                            applySource(i, sources);
                             setShowSettingsDrawer(false);
                           }}
-                          className="w-full flex items-center justify-between p-1 rounded hover:bg-neutral-800 text-neutral-200"
+                          className="w-full flex items-center justify-between p-1.5 rounded hover:bg-neutral-800 text-neutral-200"
                         >
-                          <span>{q}</span>
-                          {quality.includes(q.slice(0, 4)) && <Check className="w-3.5 h-3.5 text-red-500" />}
+                          <span className="truncate text-left">{s.label}</span>
+                          {sourceIndex === i && <Check className="w-3.5 h-3.5 text-red-500 shrink-0 ml-2" />}
                         </button>
                       ))}
                     </div>
