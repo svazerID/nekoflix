@@ -1,17 +1,12 @@
 import { parseOdSearch, parseOdHome, parseOdSeries, parseOdEpisode, parseOdSeriesFromEpisode, parseOdGenre, OD_BASE } from './server/otakudesu.mjs';
+import CRUNCHY_NEW_TITLES from './server/fixtures/crunchy-new-titles.mjs';
 
 const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36';
 const cache = new Map();
 const TTL = 5 * 60 * 1000;
-function extractCrunchyTitles(html) {
-  const titles = [...html.matchAll(/(?:### )?\[([^\]]+)\]\(https:\/\/www\.crunchyroll\.com\/id\/series\//g)].map((m) => m[1].replace(/\\\\#/g, '#').trim());
-  return [...new Set(titles)].slice(0, 20);
-}
-const POPULAR_SEARCHES = [
-  ['Sousou no Frieren'], ['Golden Kamuy'], ['Enen no Shouboutai'], ['Fate/strange Fake'],
-  ['One Piece'], ['MF Ghost'], ['Jujutsu Kaisen'], ['Boku no Hero Academia', 'My Hero Academia'],
-  ['Shingeki no Kyojin', 'Attack on Titan'],
-];
+const POPULAR_SEARCHES = [['Sousou no Frieren'], ['Golden Kamuy'], ['Enen no Shouboutai'], ['Fate/strange Fake'], ['One Piece'], ['MF Ghost'], ['Jujutsu Kaisen'], ['Boku no Hero Academia', 'My Hero Academia'], ['Shingeki no Kyojin', 'Attack on Titan']];
+
+
 async function fetchText(url, opts = {}) {
   const key = url + (opts.method === 'POST' ? String(opts.body || '') : '');
   const hit = !opts.skipCache && cache.get(key);
@@ -65,14 +60,7 @@ async function odSearch(url) {
 
 
 async function odTrending() {
-  let r = await fetchText('https://www.crunchyroll.com/id/videos/new', { headers: { Accept: 'text/html,application/xhtml+xml' } });
-  if (r.status >= 400) {
-    const alternate = await fetchText('https://r.jina.ai/https://www.crunchyroll.com/id/videos/new', { skipCache: true });
-    if (alternate.status < 400) r = alternate;
-  }
-  if (r.status >= 400) throw new Error(`Crunchyroll ${r.status}`);
-  const titles = extractCrunchyTitles(r.text);
-  const results = await Promise.all(titles.map(async (title) => {
+  const results = await Promise.all(CRUNCHY_NEW_TITLES.map(async (title) => {
     const cards = parseOdSearch(await odGet(`${OD_BASE}/?s=${encodeURIComponent(title)}`));
     const card = cards.find((item) => !item.isEpisodeHit);
     return card ? { ...card, title } : null;
@@ -80,16 +68,17 @@ async function odTrending() {
   return json({ cards: results.filter(Boolean) });
 }
 async function odPopular() {
-  const r = await fetchText('https://www.crunchyroll.com/id/videos/popular', { headers: { Accept: 'text/html,application/xhtml+xml' } });
-  if (r.status >= 400) throw new Error(`Crunchyroll ${r.status}`);
-  const titles = extractCrunchyTitles(r.text);
-  const results = await Promise.all(titles.map(async (title) => {
-    const cards = parseOdSearch(await odGet(`${OD_BASE}/?s=${encodeURIComponent(title)}`));
-    const card = cards.find((item) => !item.isEpisodeHit);
-    return card ? { ...card, title } : null;
+  const results = await Promise.all(POPULAR_SEARCHES.map(async (aliases) => {
+    for (const query of aliases) {
+      const cards = parseOdSearch(await odGet(`${OD_BASE}/?s=${encodeURIComponent(query)}`));
+      const card = cards.find((item) => !item.isEpisodeHit) || cards[0];
+      if (card && !card.isEpisodeHit) return card;
+    }
+    return null;
   }));
   return json({ cards: results.filter(Boolean) });
 }
+
 async function odAnime(slug) {
   const html = await odGet(`${OD_BASE}/anime/${encodeURIComponent(slug)}/`);
   const series = parseOdSeries(html, slug);
