@@ -96,8 +96,14 @@ export const nekoflixApi = {
     }
     const sources: { url: string; label: string; kind: 'hls' | 'mp4' }[] = [];
     for (const s of raw.streams || []) {
-      if (s.directStream?.includes('.m3u8')) {
-        sources.push({ url: `/api/proxy?url=${encodeURIComponent(s.directStream)}`, label: `${s.serverName || 'Server'} (HLS)`, kind: 'hls' });
+      // directStream is either an .m3u8 or a /go/dl/ gate that 302s to an MP4 — both go through the proxy
+      if (s.directStream) {
+        const isHls = s.directStream.includes('.m3u8');
+        sources.push({
+          url: `/api/proxy?url=${encodeURIComponent(s.directStream)}`,
+          label: `${s.serverName || 'Server'}${isHls ? ' (HLS)' : ''}`,
+          kind: isHls ? 'hls' : 'mp4',
+        });
       }
     }
     // resolved download mirrors are direct mp4s — playable natively, good fallback

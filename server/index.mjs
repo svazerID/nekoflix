@@ -465,8 +465,10 @@ async function pmap(items, n, fn) {
     try { u = new URL(target); } catch { return res.status(400).send('bad url'); }
     if (!/^https?:$/.test(u.protocol) || !ALLOWED_HOSTS.test(u.hostname)) return res.status(403).send('host not allowed');
     try {
-      // ponytail: no Referer on purpose — kotakanimeid CDN 403s self/foreign Referers, none = 200
+      // ponytail: no Referer on purpose — cdn*.kotakanimeid m3u8 hosts 403 any Referer, none = 200.
+      // s\d+ gate hosts (/go/dl/) are the opposite: they 403 (K11) without the nontonanimeid Referer.
       const headers = { 'User-Agent': UA, Accept: '*/*' };
+      if (/^s\d+\.kotakanimeid\.link$/.test(u.hostname)) headers.Referer = 'https://s13.nontonanimeid.boats/';
       const jar = clearanceFor(u.hostname);
       if (jar) headers.Cookie = jar;
       if (req.headers.range) headers.Range = req.headers.range;
