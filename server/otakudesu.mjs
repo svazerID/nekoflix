@@ -135,6 +135,27 @@ export function parseOdSeriesFromEpisode(html) {
   return match1(html, /href="(https:\/\/otakudesu\.blog\/anime\/[^"]+)"/);
 }
 
+// genre listing: /genres/:slug/ pages use .col-anime-con cards (with pagination)
+export function parseOdGenre(html) {
+  const cards = [];
+  for (const m of html.matchAll(/<div class="col-md-4 col-anime-con[^"]*">([\s\S]*?)(?=<div class="col-md-4 col-anime-con|$)/g)) {
+    const b = m[1];
+    const url = match1(b, /href="(https:\/\/otakudesu\.blog\/anime\/[^"]+)"/);
+    if (!url) continue;
+    const slug = url.match(/\/anime\/([^/]+)\/?/)?.[1] || '';
+    const eps = match1(b, /col-anime-eps">([^<]*)/);
+    cards.push({
+      id: slug, slug,
+      title: stripTags(match1(b, /col-anime-title"><a[^>]*>([^<]+)<\/a>/)),
+      url,
+      poster: match1(b, /col-anime-cover"><img src="([^"]+)"/),
+      episodeBadge: eps.trim(),
+      totalEpisodes: match1(eps, /(\d+)/),
+    });
+  }
+  return cards;
+}
+
 // nonce flow: two-step POST to admin-ajax (browser does the same via jQuery)
 export async function resolveOdMirror(fetchText, mirror, referer) {
   const none = { embedUrl: '', directUrl: '' };

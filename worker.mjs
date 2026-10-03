@@ -2,7 +2,7 @@
 // Serves the OtakuDesu source routes + media proxy; static assets (dist/) via [assets] binding.
 // Reuses the pure parsers from otakudesu.mjs (no Node APIs — atob/URLSearchParams are Workers globals).
 
-import { parseOdSearch, parseOdHome, parseOdSeries, parseOdEpisode, parseOdSeriesFromEpisode, OD_BASE } from './server/otakudesu.mjs';
+import { parseOdSearch, parseOdHome, parseOdSeries, parseOdEpisode, parseOdSeriesFromEpisode, parseOdGenre, OD_BASE } from './server/otakudesu.mjs';
 
 const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36';
 const ALLOWED_HOSTS = /^(s\d+\.kotakanimeid\.link|cdn\d*\.kotakanimeid\.link|s13\.nontonanimeid\.boats|i0\.wp\.com|cdn\.odcloud\.net|desustream\.net)$/;
@@ -99,6 +99,17 @@ async function odSchedule() {
   return json({ days });
 }
 
+// genre listing: /genres/:slug/ — page param optional (source order, no sorting)
+async function odGenre(slug, url) {
+  if (!/^[a-z0-9-]+$/.test(slug)) return json({ error: 'bad genre slug' }, 400);
+  const page = parseInt(url.searchParams.get('page') || '1', 10);
+  const base = page > 1 ? `${OD_BASE}/genres/${encodeURIComponent(slug)}/page/${page}/` : `${OD_BASE}/genres/${encodeURIComponent(slug)}/`;
+  const html = await odGet(base);
+  const cards = parseOdGenre(html);
+  if (!cards.length) throw new Error('empty genre');
+  return json({ cards, genre: slug, page, hasNext: /\/page\/\d+\/?"|page\/\d+\/\//.test(html) && cards.length >= 15 });
+}
+
 // ---------- media proxy ----------
 function proxyUrl(u, base) {
   return `/api/proxy?url=${encodeURIComponent(new URL(u, base).toString())}`;
@@ -151,6 +162,8 @@ async function handleApi(req, url) {
     if (path === '/api/od/home') return await odHome(url);
     if (path === '/api/od/search') return await odSearch(url);
     if (path === '/api/od/schedule') return await odSchedule();
+    const odGenreM = path.match(/^\/api\/od\/genre\/([^/]+)$/);
+    if (odGenreM) return await odGenre(decodeURIComponent(odGenreM[1]), url);
     const odAnimeM = path.match(/^\/api\/od\/anime\/([^/]+)$/);
     if (odAnimeM) return await odAnime(decodeURIComponent(odAnimeM[1]));
     const odWatchM = path.match(/^\/api\/od\/watch\/([^/]+)$/);

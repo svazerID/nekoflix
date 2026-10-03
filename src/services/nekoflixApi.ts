@@ -99,6 +99,11 @@ export const nekoflixApi = {
     return mapSeries(raw);
   },
 
+  async genreCards(genreSlug: string, page = 1): Promise<any[]> {
+    const { cards } = await apiGet<{ cards: any[] }>(`/od/genre/${genreSlug}?page=${page}`);
+    return cards || [];
+  },
+
   async searchRemote(q: string): Promise<Anime[]> {
     const { cards } = await apiGet<{ cards: any[] }>(`/od/search?q=${encodeURIComponent(q)}`);
     // each card is a series slug -> fetch details
