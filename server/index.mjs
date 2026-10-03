@@ -295,7 +295,63 @@ export function buildApp({ serveStatic = true } = {}) {
   const app = express();
   app.use(express.json());
 
-  // ---------- WordPress REST API data source (bypasses the Cloudflare HTML challenge) ----------
+  // ---------- Kitsu (MyAnimeList-like) metadata: posters + synopsis ----------
+// The site's own WP media endpoints 401 for guests, so posters come from Kitsu's
+// free public API instead. Results are cached in-memory + on disk.
+const POSTER_CACHE_FILE = '/home/hatch/workspace/nekoflix-cf/poster-cache.json';
+const kitsuMem = new Map();
+let kitsuDisk = null;
+function kitsuDiskLoad() {
+  if (kitsuDisk) return kitsuDisk;
+  try { kitsuDisk = JSON.parse(fs.readFileSync(POSTER_CACHE_FILE, 'utf8')); }
+  catch { kitsuDisk = {}; }
+  return kitsuDisk;
+}
+function kitsuDiskSave() {
+  try { fs.writeFileSync(POSTER_CACHE_FILE, JSON.stringify(kitsuDisk)); } catch {}
+}
+const kitsuNorm = (t) => (t || '')
+  .replace(/\s*episode\s*\d+.*$/i, '')
+  .replace(/\s*-\s*episode.*$/i, '')
+  .replace(/\s+/g, ' ').trim();
+async function kitsuFor(title) {
+  const key = kitsuNorm(title).toLowerCase();
+  if (!key) return null;
+  if (kitsuMem.has(key)) return kitsuMem.get(key);
+  const disk = kitsuDiskLoad();
+  if (disk[key]) { kitsuMem.set(key, disk[key]); return disk[key]; }
+  let out = null;
+  try {
+    const u = `https://kitsu.io/api/edge/anime?filter[text]=${encodeURIComponent(kitsuNorm(title))}&page[limit]=1&fields[anime]=canonicalTitle,synopsis,posterImage`;
+    const r = await fetch(u, { headers: { 'User-Agent': 'NekoFlix/1.0', Accept: 'application/vnd.api+json' } });
+    const a = (await r.json()).data?.[0]?.attributes;
+    if (a?.posterImage) {
+      out = {
+        poster: a.posterImage.medium || a.posterImage.small || '',
+        synopsis: (a.synopsis || '').trim(),
+        canonicalTitle: a.canonicalTitle || '',
+      };
+    }
+  } catch {}
+  kitsuMem.set(key, out);
+  disk[key] = out;
+  kitsuDiskSave();
+  return out;
+}
+// run fn over items with limited parallelism
+async function pmap(items, n, fn) {
+  const res = new Array(items.length);
+  let i = 0;
+  await Promise.all(Array.from({ length: Math.min(n, items.length) }, async () => {
+    while (i < items.length) {
+      const k = i++;
+      try { res[k] = await fn(items[k], k); } catch { res[k] = items[k]; }
+    }
+  }));
+  return res;
+}
+
+// ---------- WordPress REST API data source (bypasses the Cloudflare HTML challenge) ----------
   // The site's HTML pages sit behind a Cloudflare managed challenge, but /wp-json/* is open.
   // Series == WP category; episode == WP post in that category.
   const WPAPI = `${BASE}/wp-json/wp/v2`;
@@ -328,20 +384,21 @@ export function buildApp({ serveStatic = true } = {}) {
         episodeBadge: n ? `Episode ${n}` : '', totalEpisodes: String(cat.count || ''),
       });
     }
+    await pmap(cards, 4, async (c) => { c.poster = (await kitsuFor(c.title))?.poster || ''; });
     return { cards, page, hasNext: posts.length === 20 };
   }
   async function wpSearch(q) {
     const cats = await wpGet(`/categories?search=${encodeURIComponent(q)}&per_page=20&_fields=id,slug,name,count`);
-    return {
-      cards: cats.map((cat) => ({
-        id: cat.slug, slug: cat.slug, title: cat.name,
-        url: `${BASE}/anime/${cat.slug}/`, poster: '',
-        episodeBadge: '', totalEpisodes: String(cat.count || ''),
-      })),
-    };
+    const cards = cats.map((cat) => ({
+      id: cat.slug, slug: cat.slug, title: cat.name,
+      url: `${BASE}/anime/${cat.slug}/`, poster: '',
+      episodeBadge: '', totalEpisodes: String(cat.count || ''),
+    }));
+    await pmap(cards, 4, async (c) => { c.poster = (await kitsuFor(c.title))?.poster || ''; });
+    return { cards };
   }
   async function wpAnime(seriesSlug) {
-    const cats = await wpGet(`/categories?slug=${encodeURIComponent(seriesSlug)}&_fields=id,slug,name,count`);
+    const cats = await wpGet(`/categories?slug=${encodeURIComponent(seriesSlug)}&_fields=id,slug,name,count,description`);
     if (!cats.length) throw new Error('series not found');
     const cat = cats[0];
     const posts = await wpGet(`/posts?categories=${cat.id}&per_page=100&orderby=date&order=asc&_fields=slug,title,link`);
@@ -349,11 +406,14 @@ export function buildApp({ serveStatic = true } = {}) {
       .map((p) => ({ number: epNum(p.slug, p.title?.rendered || ''), url: p.link }))
       .filter((e) => e.number > 0)
       .sort((a, b) => a.number - b.number);
+    const meta = await kitsuFor(cat.name);
+    const poster = meta?.poster || '';
+    for (const e of episodes) e.thumbnail = poster;
     return {
       id: cat.slug, slug: cat.slug, title: cat.name, japaneseTitle: '',
-      poster: '', genres: [], rating: '', type: '', status: '',
+      poster, genres: [], rating: '', type: '', status: '',
       totalEpisodes: String(episodes.length || cat.count || ''), duration: '', season: '',
-      synopsis: '', episodes,
+      synopsis: meta?.synopsis || stripTags(cat.description || ''), episodes,
     };
   }
 
