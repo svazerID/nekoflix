@@ -546,7 +546,7 @@ export const PROFILES: { id: string; name: string; avatar: string; isKids?: bool
   {
     id: 'user-wibu',
     name: 'Wibu King',
-    avatar: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80"><defs><linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="%23e11d48"/><stop offset="100%" stop-color="%239f1239"/></linearGradient></defs><rect width="80" height="80" rx="16" fill="url(%23g1)"/><text x="40" y="46" font-family="sans-serif" font-size="30" text-anchor="middle" dominant-baseline="central">👑</text></svg>'
+    avatar: '/icon-192.png'
   },
   {
     id: 'user-akari',
