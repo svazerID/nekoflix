@@ -4,7 +4,8 @@ import fs from 'fs';
 import path from 'path';
 import { Readable } from 'stream';
 import { fileURLToPath } from 'url';
-import { parseOdSearch, parseOdHome, parseOdSeries, parseOdEpisode, parseOdSeriesFromEpisode, OD_BASE } from './otakudesu.mjs';
+import { parseOdSearch, parseOdHome, parseOdSeries, parseOdEpisode, parseOdSeriesFromEpisode, parseOdGenre, OD_BASE } from './otakudesu.mjs';
+import CRUNCHY_NEW_TITLES from './fixtures/crunchy-new-titles.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const BASE = 'https://s13.nontonanimeid.boats';
@@ -598,6 +599,27 @@ async function pmap(items, n, fn) {
         days.push({ day: m[1], items });
       }
       res.json({ days });
+    } catch (e) { res.status(502).json({ error: String(e.message || e) }); }
+  });
+
+  app.get('/api/od/trending', async (_req, res) => {
+    try {
+      const names = CRUNCHY_NEW_TITLES;
+      const results = await Promise.all(names.map(async (q) => {
+        const cards = parseOdSearch(await odGet(`${OD_BASE}/?s=${encodeURIComponent(q)}`));
+        const card = cards.find((c) => !c.isEpisodeHit);
+        return card ? { ...card, title: q } : null;
+      }));
+      res.json({ cards: results.filter(Boolean) });
+    } catch (e) { res.status(502).json({ error: String(e.message || e) }); }
+  });
+
+  app.get('/api/od/genre/:slug', async (req, res) => {
+    try {
+      const page = parseInt(req.query.page || '1', 10);
+      // page 1 without /page/1/ — that path 301s to the bare genre URL (redirect: manual)
+      const html = await odGet(page > 1 ? `${OD_BASE}/genres/${encodeURIComponent(req.params.slug)}/page/${page}/` : `${OD_BASE}/genres/${encodeURIComponent(req.params.slug)}/`);
+      res.json({ cards: parseOdGenre(html), page });
     } catch (e) { res.status(502).json({ error: String(e.message || e) }); }
   });
 

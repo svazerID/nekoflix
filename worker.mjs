@@ -110,14 +110,15 @@ async function odSchedule() {
 }
 async function odGenre(slug, url) {
   const page = parseInt(url.searchParams.get('page') || '1', 10);
-  const html = await odGet(`${OD_BASE}/genre/${encodeURIComponent(slug)}/page/${page}/`);
+  // page 1 without /page/1/ — that path 301s to the bare genre URL (redirect: manual)
+  const html = await odGet(page > 1 ? `${OD_BASE}/genres/${encodeURIComponent(slug)}/page/${page}/` : `${OD_BASE}/genres/${encodeURIComponent(slug)}/`);
   return json({ cards: parseOdGenre(html), page });
 }
 async function mediaProxy(req, url) {
   const target = url.searchParams.get('url') || '';
   let parsed;
   try { parsed = new URL(target); } catch { return new Response('bad url', { status: 400 }); }
-  if (parsed.protocol !== 'https:' || !['odcdn.com', 'desustream.net', 'upbolt.com', 'filedon.com', 'blogger.com'].some((h) => parsed.hostname === h || parsed.hostname.endsWith(`.${h}`))) return new Response('host not allowed', { status: 403 });
+  if (parsed.protocol !== 'https:' || !['odcdn.com', 'odcloud.net', 'desustream.net', 'upbolt.com', 'filedon.com', 'blogger.com'].some((h) => parsed.hostname === h || parsed.hostname.endsWith(`.${h}`))) return new Response('host not allowed', { status: 403 });
   const headers = new Headers({ 'User-Agent': UA, Referer: `${OD_BASE}/` });
   const range = req.headers.get('Range');
   if (range) headers.set('Range', range);
