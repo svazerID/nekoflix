@@ -22,7 +22,8 @@ function mapSeries(raw: any): Anime {
     id: ep.url,
     animeId: raw.slug,
     episodeNumber: ep.number,
-    title: `Episode ${ep.number}`,
+    // source title is "<Series> Episode N Subtitle Indonesia" — keep the distinguishing tail only
+    title: ep.title?.replace(/^.*\s+Episode\s+\d+\s*/, '') || `Episode ${ep.number}`,
     synopsis: '',
     thumbnailUrl: raw.poster || '',
     duration: raw.duration || '24m',
@@ -132,7 +133,7 @@ export const nekoflixApi = {
   },
 
   async resolveEpisode(anime: Anime, episodeNumber: number): Promise<{
-    videoUrl: string; sources: { url: string; label: string; kind: 'hls' | 'mp4' }[]; downloadUrl?: string; error?: string; errorCode?: string;
+    videoUrl: string; sources: { url: string; label: string; kind: 'hls' | 'mp4' | 'embed' }[]; downloadUrl?: string; error?: string; errorCode?: string;
   }> {
     const ep = anime.episodes.find((e) => e.episodeNumber === episodeNumber) || anime.episodes[0];
     if (ep.videoUrl) return { videoUrl: ep.videoUrl, sources: [{ url: ep.videoUrl, label: 'Default', kind: 'mp4' }] };
@@ -157,7 +158,7 @@ export const nekoflixApi = {
     if (raw.error) {
       return { videoUrl: '', sources: [], error: 'Video belum tersedia untuk episode ini.', errorCode: raw.code || 'no_streams' };
     }
-    const sources: { url: string; label: string; kind: 'hls' | 'mp4' }[] = [];
+    const sources: { url: string; label: string; kind: 'hls' | 'mp4' | 'embed' }[] = [];
     for (const s of raw.streams || []) {
       const ds: string | undefined = s.directStream || s.direct_stream;
       if (ds) {
@@ -170,6 +171,9 @@ export const nekoflixApi = {
           label: `${s.serverName || s.server_name || 'Server'}${isHls ? ' (HLS)' : ''}`,
           kind: isHls ? 'hls' : 'mp4',
         });
+      } else if (s.embedUrl) {
+        // embed-only mirror (vidhide/mega/filedon): no direct stream — player opens it in a new tab
+        sources.push({ url: s.embedUrl, label: `${s.serverName || 'Server'} (Embed)`, kind: 'embed' });
       }
     }
     // download links are NOT stream servers — expose the first /out/ link separately

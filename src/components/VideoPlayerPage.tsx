@@ -62,7 +62,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({
   const [showSettingsDrawer, setShowSettingsDrawer] = useState(false);
   const [showSubtitleDrawer, setShowSubtitleDrawer] = useState(false);
   const [activeVideoSrc, setActiveVideoSrc] = useState(episode.videoUrl);
-  const [sources, setSources] = useState<{ url: string; label: string; kind: 'hls' | 'mp4' }[]>([]);
+  const [sources, setSources] = useState<{ url: string; label: string; kind: 'hls' | 'mp4' | 'embed' }[]>([]);
   const [downloadUrl, setDownloadUrl] = useState('');
   const [sourceIndex, setSourceIndex] = useState(0);
   const [resolving, setResolving] = useState(false);
@@ -70,10 +70,15 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({
 
   const controlsTimeoutRef = useRef<number | null>(null);
 
-  const applySource = useCallback((idx: number, list: { url: string; label: string; kind: 'hls' | 'mp4' }[]) => {
+  const applySource = useCallback((idx: number, list: { url: string; label: string; kind: 'hls' | 'mp4' | 'embed' }[]) => {
     if (idx >= list.length) return;
     setSourceIndex(idx);
     setResolveError(null);
+    if (list[idx].kind === 'embed') {
+      // embed-only mirror: can't play in <video> (cross-origin) — open the host player in a new tab
+      window.open(list[idx].url, '_blank', 'noopener');
+      return;
+    }
     setActiveVideoSrc(list[idx].url);
   }, []);
 
@@ -108,7 +113,8 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({
           return;
         }
         setSources(list);
-        applySource(0, list);
+        const firstPlayable = list.findIndex((s) => s.kind !== 'embed');
+        applySource(firstPlayable === -1 ? 0 : firstPlayable, list);
       })
       .catch(() => {
         if (cancelled) return;
@@ -119,8 +125,8 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({
   }, [anime, episodeNumber, episode.videoUrl, applySource]);
 
   const tryNextSource = useCallback(() => {
-    const next = sourceIndex + 1;
-    if (next < sources.length) {
+    const next = sources.findIndex((s, i) => i > sourceIndex && s.kind !== 'embed');
+    if (next !== -1) {
       applySource(next, sources);
     } else {
       setResolveError(sources.length > 1
@@ -138,7 +144,8 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({
         setDownloadUrl(dUrl || '');
         if (error || !list.length) { setResolveError(error || 'Tidak ada sumber video.'); return; }
         setSources(list);
-        applySource(0, list);
+        const firstPlayable = list.findIndex((s) => s.kind !== 'embed');
+        applySource(firstPlayable === -1 ? 0 : firstPlayable, list);
       })
       .catch(() => { setResolving(false); setResolveError('Gagal memuat video. Coba lagi.'); });
   }, [anime, episodeNumber, applySource]);
