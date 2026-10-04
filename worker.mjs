@@ -118,7 +118,7 @@ async function mediaProxy(req, url) {
   const target = url.searchParams.get('url') || '';
   let parsed;
   try { parsed = new URL(target); } catch { return new Response('bad url', { status: 400 }); }
-  if (parsed.protocol !== 'https:' || !['odcdn.com', 'odcloud.net', 'desustream.net', 'upbolt.com', 'filedon.com', 'blogger.com'].some((h) => parsed.hostname === h || parsed.hostname.endsWith(`.${h}`))) return new Response('host not allowed', { status: 403 });
+  if (parsed.protocol !== 'https:' || !['odcdn.com', 'odcloud.net', 'desustream.net', 'upbolt.com', 'filedon.com', 'blogger.com', 'googlevideo.com'].some((h) => parsed.hostname === h || parsed.hostname.endsWith(`.${h}`))) return new Response('host not allowed', { status: 403 });
   const headers = new Headers({ 'User-Agent': UA, Referer: `${OD_BASE}/` });
   const range = req.headers.get('Range');
   if (range) headers.set('Range', range);

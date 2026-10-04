@@ -322,7 +322,7 @@ async function parseEpisode(pageUrl, html) {
 }
 
 // ---------- stream proxy (Referer-gated CDN + m3u8 rewrite) ----------
-const ALLOWED_HOSTS = /^(s\d+\.kotakanimeid\.link|cdn\d*\.kotakanimeid\.link|s13\.nontonanimeid\.boats|i0\.wp\.com|cdn\.odcloud\.net|desustream\.net)$/;
+const ALLOWED_HOSTS = /^(s\d+\.kotakanimeid\.link|cdn\d*\.kotakanimeid\.link|s13\.nontonanimeid\.boats|i0\.wp\.com|cdn\.odcloud\.net|desustream\.net|[^.]*\.googlevideo\.com)$/;
 
 export function buildApp({ serveStatic = true } = {}) {
   const app = express();

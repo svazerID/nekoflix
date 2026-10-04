@@ -157,6 +157,39 @@ export function parseOdGenre(html) {
   return cards;
 }
 
+// blogger.com/video.g token -> direct googlevideo mp4/hls via batchexecute RPC.
+// googlevideo URLs are IP-bound (valid ~6h); the proxy re-resolves, so callers may
+// receive a blogger URL placeholder only if the RPC fails — normally a direct URL.
+// ponytail: fixed itag list, extend ITAG map if other qualities appear.
+const OD_ITAG_QUALITY = { '7': '240p', '13': '144p', '18': '360p', '22': '720p', '37': '1080p' };
+export async function resolveOdBlogger(fetchText, bloggerUrl) {
+  try {
+    const page = await fetchText(bloggerUrl, { headers: { Referer: `${OD_BASE}/` } });
+    if (page.status >= 400) return '';
+    const sid = match1(page.text, /FdrFJe":"([0-9-]+)"/);
+    const bl = match1(page.text, /cfb2h":"([^"]+)"/);
+    if (!sid || !bl) return '';
+    const reqid = Math.floor(Date.now() / 1000) % 86400;
+    const token = bloggerUrl.split('token=')[1];
+    const rpc = await fetchText('https://www.blogger.com/_/BloggerVideoPlayerUi/data/batchexecute' +
+      `?rpcids=WcwnYd&source-path=/video.g&f.sid=${sid}&bl=${bl}&hl=en-US&_reqid=${reqid}&rt=c`, {
+      method: 'POST', skipCache: true,
+      body: new URLSearchParams({ 'f.req': `[[["WcwnYd","[\\\"${token}\\\",null,0]",null,"generic"]]]` }).toString(),
+      headers: { Referer: 'https://www.blogger.com/', 'X-Same-Domain': '1', 'X-Requested-With': 'XMLHttpRequest', Origin: 'https://www.blogger.com' },
+    });
+    if (rpc.status >= 400 || !rpc.text.includes('videoplayback')) return '';
+    const raw = [...rpc.text.matchAll(/https?:[^"]*videoplayback[^"]*/g)]
+      .map((m) => m[0].replace(/\\+$/, "").replaceAll("\\\\u003d", "=").replaceAll("\\\\u0026", "&").replaceAll("\\\\u002f", "/"));
+    // prefer highest itag that maps to a known quality
+    const order = ['37', '22', '18', '7', '13'];
+    for (const itag of order) {
+      const hit = raw.find((u) => u.includes(`itag=${itag}`));
+      if (hit) return hit;
+    }
+    return raw[0] || '';
+  } catch { return ''; }
+}
+
 // nonce flow: two-step POST to admin-ajax (browser does the same via jQuery)
 export async function resolveOdMirror(fetchText, mirror, referer) {
   const none = { embedUrl: '', directUrl: '' };
@@ -178,13 +211,19 @@ export async function resolveOdMirror(fetchText, mirror, referer) {
     if (!embedUrl) return none;
     const ref = `${OD_BASE}/`;
 
-    // 1) desustream (odcdn/odstream): mp4 in `const videoURL = "..."`
+    // 1) desustream (odcdn/odstream/ondesu v5): mp4 in `const videoURL = "..."`
+    //    v5 pages embed a blogger.com/video.g iframe instead — resolve via batchexecute RPC
+    //    (googlevideo URLs are IP-bound: resolve on the same server that will proxy them).
     if (/desustream\.net/.test(embedUrl)) {
       const e = await fetchText(embedUrl, { headers: { Referer: ref } });
       const direct = match1(e.text, /const\s+videoURL\s*=\s*"([^"]+)"/)
         || match1(e.text, /"file"\s*:\s*"([^"]+)"/)
         || match1(e.text, /https:\/\/[^"'\s]+\.(?:mp4|m3u8)/);
-      return { embedUrl, directUrl: direct || '' };
+      if (direct) return { embedUrl, directUrl: direct };
+      // v5 style: page is a shell around a blogger.com/video.g iframe
+      const bloggerFrame = match1(e.text, /iframe[^>]*src="(https:\/\/www\.blogger\.com\/video\.g\?token=[^"]+)"/);
+      if (bloggerFrame) return { embedUrl, directUrl: await resolveOdBlogger(fetchText, bloggerFrame) };
+      return { embedUrl, directUrl: '' };
     }
 
     // 2) upbolt/filedon-style hosts: POST /dl (op=embed) -> jwplayer sources (HLS)
