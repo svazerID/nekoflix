@@ -72,7 +72,7 @@ export const SchedulePage: React.FC<{
             <CalendarDays className="w-7 h-7 text-red-500" /> Jadwal Rilis
           </h2>
           <p className="text-xs sm:text-sm text-neutral-400 mt-1">
-            Anime ongoing beserta hari rilisnya (mengikuti jadwal OtakuDesu)
+            Anime ongoing beserta hari rilisnya (data langsung dari sumber)
           </p>
         </div>
         <button
