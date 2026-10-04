@@ -7,3 +7,5 @@ coverage/
 .env*
 !.env.example
 bug1.jpg
+*.mjs
+probe.mjs
