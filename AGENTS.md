@@ -11,6 +11,7 @@ Anime streaming web app: React 19 + Vite + Tailwind 4 frontend scraping Indonesi
 - `node server/index.mjs --selftest` — offline scrape-parser self-check (no network).
 - `node server/worker-selftest.mjs` — runs `worker.mjs` against real upstreams from Node (needs network; full catalog→watch→proxy cycle).
 - `node server/popular-selftest.mjs`, `node server/crunchy-new-selftest.mjs` — targeted upstream checks.
+- `npx tsx scripts/history.check.ts` — watch-history merge/limit/remove self-check (offline).
 
 ## Architecture
 

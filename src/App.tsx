@@ -175,6 +175,21 @@ export default function App() {
     showToast('Berkas unduhan dihapus');
   };
 
+  const handleRemoveHistory = (animeId: string, episodeId: string) => {
+    setWatchHistory(storageService.removeWatchHistoryItem(activeProfile.id, animeId, episodeId));
+    showToast('Dihapus dari riwayat tontonan');
+  };
+
+  const handleClearHistory = () => {
+    setWatchHistory(storageService.clearWatchHistory(activeProfile.id));
+    showToast('Riwayat tontonan dibersihkan');
+  };
+
+  // Open a history item whose title is no longer in the live catalog.
+  const handleResumeById = (animeId: string, episodeNumber: number) => {
+    navigateTo(`#/watch/${animeId}/${episodeNumber}`);
+  };
+
   // Parse Current Route
   const route = useMemo(() => {
     const hash = currentHash.replace(/^#\/?/, '');
@@ -273,7 +288,23 @@ export default function App() {
   }, [route.type]);
 
   // If in dedicated Video Player Route -> Render ONLY the Video Player Page on its own URL!
-  if (route.type === 'watch' && activeAnime) {
+  if (route.type === 'watch') {
+    if (!activeAnime) {
+      return (
+        <div className="min-h-screen bg-neutral-950 text-neutral-100 flex items-center justify-center">
+          <div className="text-center space-y-3">
+            <div className="w-9 h-9 mx-auto border-4 border-neutral-800 border-t-red-600 rounded-full animate-spin" />
+            <p className="text-xs text-neutral-400">Memuat episode…</p>
+            <button
+              onClick={() => navigateTo('#/')}
+              className="text-xs font-semibold text-neutral-400 hover:text-white transition-colors"
+            >
+              Kembali ke beranda
+            </button>
+          </div>
+        </div>
+      );
+    }
     return (
       <div className="min-h-screen bg-neutral-950 text-neutral-100">
         <VideoPlayerPage
@@ -548,6 +579,9 @@ export default function App() {
             onToggleWatchlist={handleToggleWatchlist}
             onToggleFavorite={handleToggleFavorite}
             onRemoveDownload={handleRemoveDownload}
+            onRemoveHistory={handleRemoveHistory}
+            onClearHistory={handleClearHistory}
+            onResumeById={handleResumeById}
             onNavigateHome={() => navigateTo('#/')}
           />
         )}

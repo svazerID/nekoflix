@@ -21,6 +21,15 @@ interface VideoPlayerPageProps {
 const kindBadge = (kind: EpisodeMirror['kind']) =>
   kind === 'embed' ? 'Embed' : kind === 'hls' ? 'HLS' : 'Direct';
 
+const fmt = (secs: number) => {
+  const s = Math.max(0, Math.floor(secs));
+  const h = Math.floor(s / 3600);
+  const m = Math.floor((s % 3600) / 60);
+  const ss = s % 60;
+  return h ? `${h}:${String(m).padStart(2, '0')}:${String(ss).padStart(2, '0')}`
+           : `${m}:${String(ss).padStart(2, '0')}`;
+};
+
 // Full-screen watch view, ZerDonghua-style: player → server rail → prev/next →
 // related → recommendations → footer, all scrollable on one page.
 export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({
@@ -38,6 +47,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({
   const nextEp = anime.episodes[index + 1];
 
   const videoRef = useRef<HTMLVideoElement>(null);
+  const lastSavedRef = useRef(0);
   const [mirrors, setMirrors] = useState<EpisodeMirror[]>([]);
   const [selected, setSelected] = useState(0);
   const [loading, setLoading] = useState(true);
@@ -99,6 +109,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({
       return;
     }
     const src = current.url;
+    if (lastSavedRef.current) resumeAt.current = lastSavedRef.current;
     if (src.includes('.m3u8') && !video.canPlayType('application/vnd.apple.mpegurl')) {
       let hls: { destroy: () => void } | null = null;
       let cancelled = false;
@@ -115,6 +126,51 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({
     video.src = src;
     video.play().catch(() => {});
   }, [current?.url, current?.kind]);
+
+  const persistProgress = useCallback((force = false) => {
+    const v = videoRef.current;
+    if (!v || !v.currentTime || !v.duration) return;
+    if (!force && Math.abs(v.currentTime - lastSavedRef.current) < 2) return;
+    lastSavedRef.current = v.currentTime;
+    storageService.saveWatchProgress(activeProfileId, {
+      animeId: anime.id,
+      episodeId: episode.id,
+      episodeNumber: episode.episodeNumber,
+      episodeTitle: episode.title,
+      progressSeconds: Math.floor(v.currentTime),
+      durationSeconds: Math.floor(v.duration),
+      lastWatchedAt: Date.now(),
+      animeTitle: anime.title,
+      posterUrl: anime.posterUrl,
+    });
+  }, [activeProfileId, anime.id, anime.title, anime.posterUrl, episode.id, episode.episodeNumber, episode.title]);
+
+  // Resume where the last session stopped (only if there was meaningful progress).
+  const resumeAt = useRef<number | null>(null);
+  const [resumed, setResumed] = useState(false);
+  const [resumeFrom, setResumeFrom] = useState(0);
+  useEffect(() => {
+    const h = storageService.getWatchHistory(activeProfileId)
+      .find((x) => x.animeId === anime.id && x.episodeNumber === episode.episodeNumber);
+    const t = h && h.progressSeconds > 30 && h.progressSeconds < (h.durationSeconds || Infinity) * 0.95
+      ? h.progressSeconds : 0;
+    resumeAt.current = t || null;
+    setResumeFrom(t);
+    setResumed(t > 0);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [anime.id, episode.episodeNumber, activeProfileId]);
+
+  const onLoadedMetadata = () => {
+    const v = videoRef.current;
+    if (v && resumeAt.current && !v.currentTime) v.currentTime = resumeAt.current;
+  };
+
+  // Save when leaving, and when the tab closes.
+  useEffect(() => {
+    const flush = () => persistProgress(true);
+    window.addEventListener('beforeunload', flush);
+    return () => { window.removeEventListener('beforeunload', flush); flush(); };
+  }, [persistProgress]);
 
   const retry = useCallback(() => {
     setLoading(true);
@@ -133,18 +189,8 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({
 
   const onTimeUpdate = () => {
     const v = videoRef.current;
-    if (!v || !v.currentTime || !v.duration) return;
-    if (v.currentTime > 5) {
-      storageService.saveWatchProgress(activeProfileId, {
-        animeId: anime.id,
-        episodeId: episode.id,
-        episodeNumber: episode.episodeNumber,
-        episodeTitle: episode.title,
-        progressSeconds: Math.floor(v.currentTime),
-        durationSeconds: Math.floor(v.duration),
-        lastWatchedAt: Date.now(),
-      });
-    }
+    if (!v || v.currentTime <= 5) return;
+    persistProgress();
   };
 
   return (
@@ -250,9 +296,30 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({
               autoPlay
               playsInline
               onTimeUpdate={onTimeUpdate}
+              onLoadedMetadata={onLoadedMetadata}
+              onEnded={() => persistProgress(true)}
             />
           )}
         </div>
+
+        {/* Resume notice */}
+        {resumed && !loading && !error && !isEmbed && (
+          <div className="flex items-center justify-between gap-3 border-t border-neutral-800 bg-neutral-900 px-3 py-2 text-[11px] sm:text-xs">
+            <span className="text-neutral-300">
+              Dilanjutkan dari <span className="font-mono text-white">{fmt(resumeFrom)}</span>
+            </span>
+            <button
+              onClick={() => {
+                const v = videoRef.current;
+                if (v) { v.currentTime = 0; v.play().catch(() => {}); }
+                setResumed(false);
+              }}
+              className="font-semibold text-red-400 hover:text-white transition-colors cursor-pointer"
+            >
+              Mulai dari awal
+            </button>
+          </div>
+        )}
 
         {/* Body */}
         <div className="flex-1 space-y-6 border-t border-neutral-800 bg-neutral-950 px-3 py-4 sm:px-5 sm:py-6 pb-12">

@@ -1,5 +1,6 @@
 import { Anime, DownloadItem, Review, UserProfile, WatchHistoryItem } from '../types/anime';
 import { INITIAL_ANIMES, INITIAL_REVIEWS, PROFILES } from '../data/animeData';
+import { mergeHistory, removeHistoryItem } from './history';
 
 const STORAGE_KEYS = {
   ANIMES: 'nekoflix_animes_v1',
@@ -146,11 +147,20 @@ export const storageService = {
     ];
   },
   saveWatchProgress(profileId: string, item: WatchHistoryItem): WatchHistoryItem[] {
-    const current = this.getWatchHistory(profileId);
-    const filtered = current.filter((h) => !(h.animeId === item.animeId && h.episodeId === item.episodeId));
-    const updated = [item, ...filtered];
+    const updated = mergeHistory(this.getWatchHistory(profileId), item);
     localStorage.setItem(`${STORAGE_KEYS.HISTORY}_${profileId}`, JSON.stringify(updated));
     return updated;
+  },
+
+  removeWatchHistoryItem(profileId: string, animeId: string, episodeId: string): WatchHistoryItem[] {
+    const updated = removeHistoryItem(this.getWatchHistory(profileId), animeId, episodeId);
+    localStorage.setItem(`${STORAGE_KEYS.HISTORY}_${profileId}`, JSON.stringify(updated));
+    return updated;
+  },
+
+  clearWatchHistory(profileId: string): WatchHistoryItem[] {
+    localStorage.setItem(`${STORAGE_KEYS.HISTORY}_${profileId}`, JSON.stringify([]));
+    return [];
   },
 
   // Downloads

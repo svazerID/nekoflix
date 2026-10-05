@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Bookmark, Heart, History, Download, Play, Trash2, ArrowRight } from 'lucide-react';
+import { Bookmark, Heart, History, Download, Play, Trash2, ArrowRight, X } from 'lucide-react';
 import { Anime, DownloadItem, WatchHistoryItem } from '../types/anime';
 import { AnimeCard } from './AnimeCard';
 
@@ -14,6 +14,9 @@ interface WatchlistPageProps {
   onToggleWatchlist: (animeId: string) => void;
   onToggleFavorite: (animeId: string) => void;
   onRemoveDownload: (id: string) => void;
+  onRemoveHistory: (animeId: string, episodeId: string) => void;
+  onClearHistory: () => void;
+  onResumeById: (animeId: string, episodeNumber: number) => void;
   onNavigateHome: () => void;
 }
 
@@ -28,12 +31,24 @@ export const WatchlistPage: React.FC<WatchlistPageProps> = ({
   onToggleWatchlist,
   onToggleFavorite,
   onRemoveDownload,
+  onRemoveHistory,
+  onClearHistory,
+  onResumeById,
   onNavigateHome,
 }) => {
   const [activeTab, setActiveTab] = useState<'watchlist' | 'favorites' | 'history' | 'downloads'>('watchlist');
 
   const watchlistAnimes = allAnimes.filter((a) => watchlistIds.includes(a.id));
   const favoriteAnimes = allAnimes.filter((a) => favoriteIds.includes(a.id));
+
+  const relTime = (ts: number) => {
+    const mins = Math.floor((Date.now() - ts) / 60000);
+    if (mins < 1) return 'Baru saja';
+    if (mins < 60) return `${mins} menit lalu`;
+    const hrs = Math.floor(mins / 60);
+    if (hrs < 24) return `${hrs} jam lalu`;
+    return `${Math.floor(hrs / 24)} hari lalu`;
+  };
 
   return (
     <div className="min-h-screen pt-28 sm:pt-32 pb-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-6">
@@ -169,71 +184,125 @@ export const WatchlistPage: React.FC<WatchlistPageProps> = ({
       {activeTab === 'history' && (
         <div className="space-y-4">
           {watchHistory.length > 0 ? (
-            <div className="divide-y divide-neutral-800">
-              {watchHistory.map((item) => {
-                const anime = allAnimes.find((a) => a.id === item.animeId);
-                if (!anime) return null;
-                const progressPercent = item.durationSeconds > 0
-                  ? Math.min(100, Math.round((item.progressSeconds / item.durationSeconds) * 100))
-                  : 0;
+            <>
+              <div className="flex items-center justify-between gap-3">
+                <p className="text-xs text-neutral-400">
+                  {watchHistory.length} episode · tersimpan otomatis saat kamu menonton
+                </p>
+                <button
+                  onClick={onClearHistory}
+                  className="flex items-center gap-1.5 px-3 py-1.5 bg-neutral-900 hover:bg-neutral-800 border border-neutral-700 hover:border-red-500/60 text-neutral-300 hover:text-red-400 rounded text-xs font-semibold transition-colors"
+                >
+                  <Trash2 className="w-3.5 h-3.5" />
+                  <span>Hapus Semua</span>
+                </button>
+              </div>
+              <div className="divide-y divide-neutral-800">
+                {watchHistory.map((item) => {
+                  const anime = allAnimes.find((a) => a.id === item.animeId);
+                  const title = anime?.title || item.animeTitle || 'Judul tidak dikenal';
+                  const poster = anime?.bannerUrl || anime?.posterUrl || item.posterUrl || '';
+                  const progressPercent = item.durationSeconds > 0
+                    ? Math.min(100, Math.round((item.progressSeconds / item.durationSeconds) * 100))
+                    : 0;
+                  const playable = !!anime;
 
-                return (
-                  <div
-                    key={`${item.animeId}-${item.episodeId}`}
-                    className="py-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 group"
-                  >
-                    <div className="flex items-center gap-4 flex-1">
-                      {/* Thumbnail with progress */}
-                      <div
-                        onClick={() => onPlay(anime, item.episodeNumber)}
-                        className="relative w-36 sm:w-44 aspect-video rounded-md overflow-hidden bg-neutral-900 shrink-0 cursor-pointer shadow group-hover:ring-1 group-hover:ring-red-500 transition-all"
-                      >
-                        <img
-                          src={anime.bannerUrl || anime.posterUrl}
-                          alt={anime.title}
-                          referrerPolicy="no-referrer"
-                          className="w-full h-full object-cover"
-                        />
-                        <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                          <Play className="w-8 h-8 text-white fill-current" />
+                  return (
+                    <div
+                      key={`${item.animeId}-${item.episodeId}`}
+                      className="py-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 group"
+                    >
+                      <div className="flex items-center gap-4 flex-1 min-w-0">
+                        {/* Thumbnail with progress */}
+                        <div
+                          onClick={() => playable && onPlay(anime!, item.episodeNumber)}
+                          className={`relative w-36 sm:w-44 aspect-video rounded-md overflow-hidden bg-neutral-900 shrink-0 shadow group-hover:ring-1 group-hover:ring-red-500 transition-all ${playable ? 'cursor-pointer' : ''}`}
+                        >
+                          {poster ? (
+                            <img
+                              src={poster}
+                              alt={title}
+                              referrerPolicy="no-referrer"
+                              className="w-full h-full object-cover"
+                            />
+                          ) : (
+                            <div className="w-full h-full flex items-center justify-center text-neutral-700">
+                              <History className="w-6 h-6" />
+                            </div>
+                          )}
+                          {playable && (
+                            <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                              <Play className="w-8 h-8 text-white fill-current" />
+                            </div>
+                          )}
+                          {/* Progress bar on thumbnail */}
+                          <div className="absolute bottom-0 left-0 right-0 h-1.5 bg-neutral-800">
+                            <div
+                              className="h-full bg-red-600"
+                              style={{ width: `${progressPercent}%` }}
+                            />
+                          </div>
                         </div>
-                        {/* Progress bar on thumbnail */}
-                        <div className="absolute bottom-0 left-0 right-0 h-1.5 bg-neutral-800">
-                          <div
-                            className="h-full bg-red-600"
-                            style={{ width: `${progressPercent}%` }}
-                          />
+
+                        {/* Info */}
+                        <div className="space-y-1 min-w-0">
+                          <div className="flex items-center gap-2">
+                            <h4
+                              onClick={() => playable && onPlay(anime!, item.episodeNumber)}
+                              className={`text-sm sm:text-base font-bold text-white transition-colors truncate ${playable ? 'hover:text-red-400 cursor-pointer' : ''}`}
+                            >
+                              {title}
+                            </h4>
+                            {!playable && (
+                              <span className="text-[10px] px-1.5 py-0.5 rounded bg-neutral-800 text-neutral-500 shrink-0">
+                                di luar katalog
+                              </span>
+                            )}
+                          </div>
+                          <div className="text-xs text-neutral-400 truncate">
+                            Episode {item.episodeNumber}
+                            {item.episodeTitle ? `: ${item.episodeTitle}` : ''}
+                          </div>
+                          <div className="text-[11px] text-neutral-500 font-mono">
+                            {item.durationSeconds > 0
+                              ? `Tersisa ${Math.max(0, Math.floor((item.durationSeconds - item.progressSeconds) / 60))} menit lagi (${progressPercent}% selesai)`
+                              : `${Math.floor(item.progressSeconds / 60)} menit ditonton`}
+                          </div>
+                          <div className="text-[10px] text-neutral-600">{relTime(item.lastWatchedAt)}</div>
                         </div>
                       </div>
 
-                      {/* Info */}
-                      <div className="space-y-1">
-                        <h4
-                          onClick={() => onPlay(anime, item.episodeNumber)}
-                          className="text-sm sm:text-base font-bold text-white hover:text-red-400 cursor-pointer transition-colors"
+                      <div className="flex items-center gap-2 shrink-0">
+                        {playable ? (
+                          <button
+                            onClick={() => onPlay(anime!, item.episodeNumber)}
+                            className="flex items-center gap-1.5 px-4 py-2 bg-neutral-800 hover:bg-neutral-700 text-white rounded text-xs font-semibold transition-colors"
+                          >
+                            <Play className="w-3.5 h-3.5 fill-current" />
+                            <span>Lanjutkan</span>
+                          </button>
+                        ) : (
+                          <button
+                            onClick={() => onResumeById(item.animeId, item.episodeNumber)}
+                            className="flex items-center gap-1.5 px-4 py-2 bg-neutral-800 hover:bg-neutral-700 text-white rounded text-xs font-semibold transition-colors"
+                          >
+                            <Play className="w-3.5 h-3.5 fill-current" />
+                            <span>Buka</span>
+                          </button>
+                        )}
+                        <button
+                          onClick={() => onRemoveHistory(item.animeId, item.episodeId)}
+                          className="p-2 text-neutral-500 hover:text-red-400 hover:bg-neutral-800 rounded transition-colors"
+                          title="Hapus dari riwayat"
                         >
-                          {anime.title}
-                        </h4>
-                        <div className="text-xs text-neutral-400">
-                          Episode {item.episodeNumber}: {item.episodeTitle}
-                        </div>
-                        <div className="text-[11px] text-neutral-500 font-mono">
-                          Tersisa {Math.max(0, Math.floor((item.durationSeconds - item.progressSeconds) / 60))} menit lagi ({progressPercent}% selesai)
-                        </div>
+                          <X className="w-4 h-4" />
+                        </button>
                       </div>
                     </div>
-
-                    <button
-                      onClick={() => onPlay(anime, item.episodeNumber)}
-                      className="flex items-center gap-1.5 px-4 py-2 bg-neutral-800 hover:bg-neutral-700 text-white rounded text-xs font-semibold transition-colors"
-                    >
-                      <Play className="w-3.5 h-3.5 fill-current" />
-                      <span>Lanjutkan</span>
-                    </button>
-                  </div>
-                );
-              })}
-            </div>
+                  );
+                })}
+              </div>
+            </>
           ) : (
             <div className="py-20 text-center space-y-3">
               <History className="w-12 h-12 mx-auto text-neutral-600" />

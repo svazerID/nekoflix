@@ -76,6 +76,9 @@ export interface WatchHistoryItem {
   progressSeconds: number;
   durationSeconds: number;
   lastWatchedAt: number;
+  /** Denormalized so history rows still render for titles missing from the live catalog. */
+  animeTitle?: string;
+  posterUrl?: string;
 }
 
 export interface DownloadItem {
