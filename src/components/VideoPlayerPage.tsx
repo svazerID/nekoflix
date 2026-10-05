@@ -67,6 +67,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({
   const [sourceIndex, setSourceIndex] = useState(0);
   const [resolving, setResolving] = useState(false);
   const [resolveError, setResolveError] = useState<string | null>(null);
+  const [embedUrl, setEmbedUrl] = useState<string | null>(null);
 
   const controlsTimeoutRef = useRef<number | null>(null);
 
@@ -75,15 +76,18 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({
     setSourceIndex(idx);
     setResolveError(null);
     if (list[idx].kind === 'embed') {
-      // embed-only mirror: can't play in <video> (cross-origin) — open the host player in a new tab
-      window.open(list[idx].url, '_blank', 'noopener');
+      // embed-only mirror: play the host player inline in an <iframe> (no new tab)
+      setEmbedUrl(list[idx].url);
+      setActiveVideoSrc('');
       return;
     }
+    setEmbedUrl(null);
     setActiveVideoSrc(list[idx].url);
   }, []);
 
   useEffect(() => {
     setActiveVideoSrc(episode.videoUrl);
+    setEmbedUrl(null);
     setCurrentTime(0);
     if (videoRef.current) {
       videoRef.current.currentTime = 0;
@@ -125,7 +129,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({
   }, [anime, episodeNumber, episode.videoUrl, applySource]);
 
   const tryNextSource = useCallback(() => {
-    const next = sources.findIndex((s, i) => i > sourceIndex && s.kind !== 'embed');
+    const next = sources.findIndex((_s, i) => i > sourceIndex);
     if (next !== -1) {
       applySource(next, sources);
     } else {
@@ -345,7 +349,7 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({
       {/* Background Video Element */}
       <video
         ref={videoRef}
-        src={activeVideoSrc}
+        src={activeVideoSrc || undefined}
         className="absolute inset-0 w-full h-full object-contain cursor-pointer"
         onClick={togglePlay}
         onTimeUpdate={() => {
@@ -379,6 +383,18 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({
         playsInline
         autoPlay
       />
+
+      {/* Embed mirror — host player inline (no new tab) */}
+      {embedUrl && (
+        <iframe
+          src={embedUrl}
+          title="Mirror"
+          className="absolute inset-0 w-full h-full border-0 bg-black"
+          allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+          allowFullScreen
+          referrerPolicy="no-referrer"
+        />
+      )}
 
       {/* Loading overlay */}
       {resolving && (
