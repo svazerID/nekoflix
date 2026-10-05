@@ -27,7 +27,6 @@ export default function App() {
         if (!cancelled && live.length) {
           setAnimes(live);
           storageService.saveAnimes(live);
-          setLiveLoaded(true);
         }
       })
       .catch((e) => console.warn('Katalog live gagal, memakai data cache/sample:', e));
@@ -276,7 +275,7 @@ export default function App() {
   // If in dedicated Video Player Route -> Render ONLY the Video Player Page on its own URL!
   if (route.type === 'watch' && activeAnime) {
     return (
-      <div className="min-h-screen bg-black text-white">
+      <div className="min-h-screen bg-neutral-950 text-neutral-100">
         <VideoPlayerPage
           anime={activeAnime}
           episodeNumber={route.episodeNumber || 1}
@@ -289,6 +288,8 @@ export default function App() {
             navigateTo(`#/watch/${activeAnime.id}/${epNum}`);
           }}
           activeProfileId={activeProfile.id}
+          recommended={livePopular.filter((a) => a.id !== activeAnime.id).slice(0, 10)}
+          onOpenAnime={(a) => navigateTo(`#/anime/${a.id}`)}
         />
       </div>
     );

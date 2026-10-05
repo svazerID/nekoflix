@@ -1,3 +1,9 @@
+export interface EpisodeMirror {
+  name: string;
+  url: string;
+  kind: 'embed' | 'hls' | 'mp4';
+}
+
 export interface Episode {
   id: string;
   animeId: string;
@@ -8,6 +14,8 @@ export interface Episode {
   duration: string;
   durationSeconds: number;
   videoUrl: string;
+  /** Mirrors resolved for this episode (populated on play, not stored). */
+  mirrors?: EpisodeMirror[];
   introStart?: number;
   introEnd?: number;
   subtitles?: {

@@ -1,5 +1,5 @@
 // Live catalog from the NekoFlix scrape backend (server/index.mjs). sessionStorage cache per session.
-import { Anime, Episode } from '../types/anime';
+import { Anime, Episode, EpisodeMirror } from '../types/anime';
 import { GENRE_MAP } from '../components/SearchAndBrowse';
 
 const API = '/api';
@@ -133,10 +133,10 @@ export const nekoflixApi = {
   },
 
   async resolveEpisode(anime: Anime, episodeNumber: number): Promise<{
-    videoUrl: string; sources: { url: string; label: string; kind: 'hls' | 'mp4' | 'embed' }[]; downloadUrl?: string; error?: string; errorCode?: string;
+    videoUrl: string; sources: EpisodeMirror[]; downloadUrl?: string; error?: string; errorCode?: string;
   }> {
     const ep = anime.episodes.find((e) => e.episodeNumber === episodeNumber) || anime.episodes[0];
-    if (ep.videoUrl) return { videoUrl: ep.videoUrl, sources: [{ url: ep.videoUrl, label: 'Default', kind: 'mp4' }] };
+    if (ep.videoUrl) return { videoUrl: ep.videoUrl, sources: [{ name: 'Default', url: ep.videoUrl, kind: 'mp4' }] };
     let raw: any;
     try {
       // primary: OtakuDesu chain (works even when the other origin is challenge-gated)
@@ -158,7 +158,7 @@ export const nekoflixApi = {
     if (raw.error) {
       return { videoUrl: '', sources: [], error: 'Video belum tersedia untuk episode ini.', errorCode: raw.code || 'no_streams' };
     }
-    const sources: { url: string; label: string; kind: 'hls' | 'mp4' | 'embed' }[] = [];
+    const sources: EpisodeMirror[] = [];
     for (const s of raw.streams || []) {
       const ds: string | undefined = s.directStream || s.direct_stream;
       if (ds) {
@@ -168,12 +168,12 @@ export const nekoflixApi = {
         const edge = /upbolt\.|filedon\.|edge\d*\./.test(new URL(ds).hostname);
         sources.push({
           url: edge ? ds : `/api/proxy?url=${encodeURIComponent(ds)}`,
-          label: `${s.serverName || s.server_name || 'Server'}${isHls ? ' (HLS)' : ''}`,
+          name: `${s.serverName || s.server_name || 'Server'}${isHls ? ' (HLS)' : ''}`,
           kind: isHls ? 'hls' : 'mp4',
         });
       } else if (s.embedUrl) {
-        // embed-only mirror (vidhide/mega/filedon): no direct stream — player opens it in a new tab
-        sources.push({ url: s.embedUrl, label: `${s.serverName || 'Server'} (Embed)`, kind: 'embed' });
+        // embed-only mirror (vidhide/mega/filedon): no direct stream — played in an inline iframe
+        sources.push({ name: `${s.serverName || 'Server'} (Embed)`, url: s.embedUrl, kind: 'embed' });
       }
     }
     // download links are NOT stream servers — expose the first /out/ link separately
