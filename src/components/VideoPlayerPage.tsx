@@ -162,7 +162,14 @@ export const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({
   // Attach source — HLS via hls.js when the browser can't play m3u8 natively
   useEffect(() => {
     const video = videoRef.current;
-    if (!video || !activeVideoSrc) return;
+    if (!video) return;
+    if (!activeVideoSrc) {
+      // embed mirror active: stop the <video> so it can't keep playing behind the iframe
+      video.pause();
+      video.removeAttribute('src');
+      video.load();
+      return;
+    }
     if (activeVideoSrc.includes('.m3u8') && !video.canPlayType('application/vnd.apple.mpegurl')) {
       let hls: { destroy: () => void } | null = null;
       let cancelled = false;
